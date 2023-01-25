@@ -28,11 +28,16 @@
                         <label>No Seri *</label>
                         <input type="hidden" name="id" value="<?= $row->item_id ?>">
                         <input type="text" name="no_seri" value="<?= $row->no_seri ?>" class="form-control" required>
+                        <div class="form-group">
+                            <label for="nama_alat_ukur">Nama Alat Ukur*</label>
+                            <input type="hidden" name="id" value="<?= $row->item_id ?>">
+                            <input type="text" name="nama_alat_ukur" value="<?= $row->nama_alat_ukur ?>" class="form-control" required>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="nama_alat_ukur">Nama Alat Ukur*</label>
+                        <label for="merk">Merk</label>
                         <input type="hidden" name="id" value="<?= $row->item_id ?>">
-                        <input type="text" name="nama_alat_ukur" value="<?= $row->nama_alat_ukur ?>" class="form-control" required>
+                        <input type="text" name="merk" value="<?= $row->merk ?>" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label>Category *</label>
@@ -44,13 +49,26 @@
                         ) ?>
                     </div>
                     <div class="form-group">
-                        <label>pemilik *</label>
+                        <label>Pemilik *</label>
                         <?php echo form_dropdown(
                             'pemilik',
                             $pemilik,
                             $selectedpemilik,
                             ['class' => 'form-control', 'required' => 'required']
                         ) ?>
+                    </div>
+                    <div class="form-group">
+                        <label>durasi_kalibrasi *</label>
+                        <select name="durasi_kalibrasi" class="form-control" required>
+                            <option value="">- Pilih -</option>
+                            <option value="1x/1y" <?= $row->durasi_kalibrasi == 'L' ? 'selected' : '' ?>>1 kali per satu tahun</option>
+                            <option value="1x/2y" <?= $row->durasi_kalibrasi == 'P' ? 'selected' : '' ?>>1 kali per dua tahun</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="pertama_kalibrasi">Pertama Kalibrasi</label>
+                        <input type="hidden" name="id" value="<?= $row->item_id ?>">
+                        <input type="date" name="pertama_kalibrasi" value="<?= $row->pertama_kalibrasi ?>">
                     </div>
                     <div class="form-group">
                         <label>Image</label>

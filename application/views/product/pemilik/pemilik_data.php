@@ -1,10 +1,10 @@
 <section class="content-header">
-    <h1>pemilik
+    <h1>Pemilik
         <small>Satuan Barang</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">pemilik</i>
+        <li class="active">Pemilik</i>
     </ol>
 </section>
 
@@ -13,7 +13,7 @@
     <?php $this->view('messages') ?>
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Data pemilik</h3>
+            <h3 class="box-title">Data Pemilik</h3>
             <div class="pull-right">
                 <a href="<?= site_url('pemilik/add') ?>" class="btn btn-primary btn-flat">
                     <i class="fa fa-plus"></i> Create
@@ -35,7 +35,7 @@
                     foreach ($row->result() as $key => $data) { ?>
                         <tr>
                             <td style="width:5%;"><?= $no++ ?>.</td>
-                            <td><?= $data->pemilik_name ?></td>
+                            <td><?= $data->name ?></td>
                             <td class="text-center" width="160px">
                                 <a href="<?= site_url('pemilik/edit/' . $data->pemilik_id) ?>" class="btn btn-primary btn-xs">
                                     <i class="fa fa-pencil"></i> Update

@@ -1,10 +1,9 @@
 <section class="content-header">
-    <h1>category
-        <small>Pemasok Barang</small>
+    <h1>Category
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">categorys</i>
+        <li class="active">Category</i>
     </ol>
 </section>
 
@@ -13,7 +12,7 @@
     <?php $this->view('messages') ?>
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Data categorys</h3>
+            <h3 class="box-title">Data Category</h3>
             <div class="pull-right">
                 <a href="<?= site_url('category/add') ?>" class="btn btn-primary btn-flat">
                     <i class="fa fa-plus"></i> Create
@@ -27,6 +26,9 @@
                     <tr>
                         <th>No</th>
                         <th>Jenis Alat</th>
+                        <th>Fungsi</th>
+                        <th>Range</th>
+                        <th>Akurasi</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -36,6 +38,9 @@
                         <tr>
                             <td style="width:5%;"><?= $no++ ?>.</td>
                             <td><?= $data->jenisalat ?></td>
+                            <td><?= $data->fungsi ?></td>
+                            <td><?= $data->range ?></td>
+                            <td><?= $data->akurasi ?></td>
                             <td class="text-center" width="160px">
                                 <a href="<?= site_url('category/edit/' . $data->category_id) ?>" class="btn btn-primary btn-xs">
                                     <i class="fa fa-pencil"></i> Update
@@ -52,5 +57,4 @@
         </div>
     </div>
 
-        
 </section>

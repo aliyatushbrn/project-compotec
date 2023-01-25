@@ -23,6 +23,9 @@ class Category extends CI_Controller
         $category = new stdClass();
         $category->category_id = null;
         $category->jenisalat = null;
+        $category->fungsi = null;
+        $category->range = null;
+        $category->akurasi = null;
         $data = array(
             'page' => 'add',
             'row' => $category
@@ -35,6 +38,9 @@ class Category extends CI_Controller
         $query = $this->category_m->get($id);
         if ($query->num_rows() > 0) {
             $category = $query->row();
+            $category->fungsi = null;
+            $category->range = null;
+            $category->akurasi = null;
             $data = array(
                 'page' => 'edit',
                 'row' => $category

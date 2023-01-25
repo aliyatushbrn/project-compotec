@@ -19,9 +19,10 @@ class merk extends CI_Controller
 
     public function add()
     {
+
         $merk = new stdClass();
         $merk->merk_id = null;
-        $merk->nmerk_name = null;
+        $merk->name = null;
         $data = array(
             'page' => 'add',
             'row' => $merk
@@ -50,20 +51,22 @@ class merk extends CI_Controller
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
             $this->merk_m->add($post);
-        } else  if (isset($_POST['edit'])) {
+        } else if (isset($_POST['edit'])) {
             $this->merk_m->edit($post);
         }
         if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('success', 'data berhasil disimpan');
+            $this->session->set_flashdata('success', 'Data berhasil disimpan');
         }
         redirect('merk');
     }
 
     public function del($id)
     {
+
         $this->merk_m->del($id);
         if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('success', 'data berhasil dihapus');
+
+            $this->session->set_flashdata('success', 'Data berhasil dihapus');
         }
         redirect('merk');
     }

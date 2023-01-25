@@ -19,9 +19,10 @@ class pemilik extends CI_Controller
 
     public function add()
     {
+
         $pemilik = new stdClass();
         $pemilik->pemilik_id = null;
-        $pemilik->pemilik_name = null;
+        $pemilik->name = null;
         $data = array(
             'page' => 'add',
             'row' => $pemilik
@@ -50,20 +51,22 @@ class pemilik extends CI_Controller
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
             $this->pemilik_m->add($post);
-        } else  if (isset($_POST['edit'])) {
+        } else if (isset($_POST['edit'])) {
             $this->pemilik_m->edit($post);
         }
         if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('success', 'data berhasil disimpan');
+            $this->session->set_flashdata('success', 'Data berhasil disimpan');
         }
         redirect('pemilik');
     }
 
     public function del($id)
     {
+
         $this->pemilik_m->del($id);
         if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('success', 'data berhasil dihapus');
+
+            $this->session->set_flashdata('success', 'Data berhasil dihapus');
         }
         redirect('pemilik');
     }

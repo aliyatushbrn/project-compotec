@@ -1,7 +1,6 @@
 <section class="content-header">
     <h1>
         Dashboard
-        <small>Control Panel</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
@@ -11,7 +10,8 @@
 
 <!-- Main content -->
 <section class="content">
-
-    dashboard page
+    <div class="text-center">
+        <img src="<?php echo base_url() ?>assets/logo/logo compotec.jpg" height="300px" width="800px" alt="logo">
 
 </section>
+</div>

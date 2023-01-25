@@ -22,32 +22,41 @@
             </div>
         </div>
         <div class="box-body table-responsive">
-            <table class="table table-bordered table-striped" id="table1">
+            <table class="table table-bordered table-striped" id="table1" style="width:150%;">
                 <thead>
                     <tr>
                         <th>No</th>
                         <th>No Seri</th>
                         <th>Nama Alat Ukur</th>
+                        <th>Merk</th>
                         <th>Category</th>
-                        <th>pemilik</th>
+                        <th>Pemilik</th>
+                        <th>Durasi Kalibrasi</th>
+                        <th>Tanggal Pertama Kalibrasi</th>
+                        <th>Tanggal Kalibrasi Selanjutnya</th>
                         <th>Image</th>
                         <th>Actions</th>
                     </tr>
+                    </td>
                 </thead>
                 <tbody>
                     <?php $no = 1;
                     foreach ($row->result() as $key => $data) { ?>
                         <tr>
-                            <td style="width:5%;"> <?= $no++ ?>.</td>
-                            <td>
+                            <td style="width:3%;"> <?= $no++ ?>.</td>
+                            <td style="width:10%;">
                                 <?= $data->no_seri ?>.</br>
                                 <a href="<?= site_url('item/barcode_qrcode/' . $data->item_id) ?>" class="btn btn-default btn-xs">
                                     Generate <i class="fa fa-barcode"></i>
                                 </a>
                             </td>
-                            <td><?= $data->nama_alat_ukur ?></td>
-                            <td><?= $data->jenisalat ?></td>
-                            <td><?= $data->pemilik_name ?></td>
+                            <td> <?= $data->nama_alat_ukur ?></td>
+                            <td> <?= $data->merk ?></td>
+                            <td> <?= $data->jenisalat ?></td>
+                            <td> <?= $data->pemilik_name ?></td>
+                            <td> <?= $data->durasi_kalibrasi ?></td>
+                            <td> <?= $data->pertama_kalibrasi ?></td>
+                            <td> <?= $data->next_kalibrasi ?></td>
                             <td>
                                 <?php if ($data->image != null) { ?>
                                     <img src="<?= base_url('uploads/product/' . $data->image) ?>" style="width:100px">

@@ -54,7 +54,7 @@ class Pelanggan extends CI_Controller
         if (isset($_POST['add'])) {
             $this->customer_m->add($post);
         } else  if (isset($_POST['edit'])) {
-            $this->customer_m->add($post);
+            $this->customer_m->edit($post);
         }
         if ($this->db->affected_rows() > 0) {
             echo "<script> alert('Data berhasil disimpan');</script>";

@@ -23,8 +23,11 @@ class item_m extends CI_Model
         $params = [
             'no_seri' => $post['no_seri'],
             'nama_alat_ukur' => $post['nama_alat_ukur'],
+            'merk' => $post['merk'],
             'category_id' => $post['category'],
             'pemilik_id' => $post['pemilik'],
+            'durasi_kalibrasi' => $post['durasi_kalibrasi'],
+            'pertama_kalibrasi' => $post['pertama_kalibrasi'],
             'image' => $post['image'],
         ];
         $this->db->insert('p_item', $params);
@@ -35,8 +38,10 @@ class item_m extends CI_Model
         $params = [
             'no_seri' => $post['no_seri'],
             'nama_alat_ukur' => $post['nama_alat_ukur'],
+            'merk' => $post['merk'],
             'category_id' => $post['category'],
             'pemilik_id' => $post['pemilik'],
+            'pertama_kalibrasi' => $post['pertama_kalibrasi'],
             'updated' => date('Y-m-d H:i:s')
         ];
         if ($post['image'] != null) {

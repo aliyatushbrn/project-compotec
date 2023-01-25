@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>myPOS - by Rpl SMKN4</title>
+  <title>Project - by Rpl SMKN4</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/font-awesome/css/font-awesome.min.css">
@@ -119,19 +119,24 @@
             <a href=" <?= site_url('dashboard') ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
           </li>
           <li <?= $this->uri->segment(1) == 'customer' ? 'class="active"' : '' ?>>
-            <a href=" <?= site_url('customer') ?>"><i class="fa fa-users"></i> <span>Customers</span></a>
+            <a href=" <?= site_url('customer') ?>"><i class="fa fa-users"></i> <span>Pelanggan</span></a>
           </li>
-          <li class="treeview <?= $this->uri->segment(1) == 'category' || $this->uri->segment(1) == 'unit' || $this->uri->segment(1) == 'item' ? 'active' : '' ?>">
+          <li <?= $this->uri->segment(1) == 'item' ? 'class="active"' : '' ?>>
+            <a href="<?= site_url('item') ?>"><i class="fa fa-industry"></i>Master Data</a>
+          </li>
+          <li <?= $this->uri->segment(1) == 'kalibrasi' ? 'class="active"' : '' ?>>
+            <a href="<?= site_url('kalibrasi') ?>"><i class="fa fa-hourglass-half"></i>Master Kalibrasi</a>
+          </li>
+          <li class="treeview <?= $this->uri->segment(1) == 'category' || $this->uri->segment(1) == 'pemilik' || $this->uri->segment(1) == 'merk' ? 'active' : '' ?>">
             <a href="#">
-              <i class="fa fa-archive"></i> <span>Products</span>
+              <i class="fa fa-archive"></i> <span>Master Product</span>
               <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
             <ul class="treeview-menu">
-              <li <?= $this->uri->segment(1) == 'category' ? 'class="active"' : '' ?>><a href=" <?= site_url('category') ?>"><i class="fa fa-circle-o"></i> Categories</a></li>
+              <li <?= $this->uri->segment(1) == 'category' ? 'class="active"' : '' ?>><a href=" <?= site_url('category') ?>"><i class="fa fa-circle-o"></i> Category</a></li>
               <li <?= $this->uri->segment(1) == 'pemmilik' ? 'class="active"' : '' ?>><a href=" <?= site_url('pemilik') ?>"><i class="fa fa-circle-o"></i> Pemilik</a></li>
-              <li <?= $this->uri->segment(1) == 'merk' ? 'class="active"' : '' ?>><a href=" <?= site_url('merk') ?>"><i class="fa fa-circle-o"></i> Merk</a></li>
-              <li <?= $this->uri->segment(1) == 'item' ? 'class="active"' : '' ?>><a href="<?= site_url('item') ?>"><i class="fa fa-circle-o"></i> Items</a></li>
+
             </ul>
           </li>
           <li class="treeview">
@@ -140,7 +145,7 @@
               <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="<?= site_url('history') ?>"><i class="fa fa-circle-o"></i> history</a></li>
+              <li <?= $this->uri->segment(1) == 'history' ? 'class="active"' : '' ?>><a href="<?= site_url('history') ?>"><i class="fa fa-circle-o"></i> history</a></li>
             </ul>
           </li>
           <?php if ($this->fungsi->user_login()->level == 1) { ?>
@@ -150,11 +155,14 @@
         </ul>
       </section>
     </aside>
-
     <!-- Content Wrapper -->
     <div class="content-wrapper">
       <?php echo $contents  ?>
     </div>
+    <div>
+
+    </div>
+
 
     <script src="<?= base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="<?= base_url() ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>

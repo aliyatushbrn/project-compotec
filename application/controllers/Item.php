@@ -1,20 +1,20 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class item extends CI_Controller
+class Item extends CI_Controller
 {
 
     function __construct()
     {
         parent::__construct();
         check_not_login();
-        $this->load->model(['item_m', 'category_m', 'pemilik_m']);
+        $this->load->model(['item_m', 'category_m', 'pemilik_m', 'kalibrasi_m']);
     }
 
     public function index()
     {
         $data['row'] = $this->item_m->get();
-        $this->template->load('template', 'product/item/item_data', $data);
+        $this->template->load('template', 'masterdata/item_data', $data);
     }
 
     public function add()
@@ -24,18 +24,28 @@ class item extends CI_Controller
         $item->item_id = null;
         $item->no_seri = null;
         $item->nama_alat_ukur = null;
-        $item->category_id = null;
+        $item->jenisalat = null;
+        $item->merk = null;
+        $item->durasi_kalibrasi = null;
+        $item->pertama_kalibrasi = null;
+
 
         $query_category = $this->category_m->get();
         $category[null] = '- Pilih -';
         foreach ($query_category->result() as $ctg) {
             $category[$ctg->category_id] = $ctg->jenisalat;
         }
-
         $query_pemilik = $this->pemilik_m->get();
         $pemilik[null] = '- Pilih -';
-        foreach ($query_pemilik->result() as $unt) {
-            $pemilik[$unt->pemilik_id] = $unt->name;
+        foreach ($query_pemilik->result() as $pmlk) {
+            $pemilik[$pmlk->pemilik_id] = $pmlk->name;
+        }
+
+        $query_kalibrasi = $this->kalibrasi_m->get();
+        $kalibrasi[null] = '- Pilih -';
+        foreach ($query_kalibrasi->result() as $klbrs) {
+            $kalibrasi[$klbrs->kalibrasi_id] = $klbrs->durasi_kalibrasi;
+            $kalibrasi[$klbrs->kalibrasi_id] = $klbrs->pertama_kalibrasi;
         }
 
         $data = array(
@@ -43,8 +53,9 @@ class item extends CI_Controller
             'row' => $item,
             'category' => $category, 'selectedcategory' => null,
             'pemilik' => $pemilik, 'selectedpemilik' => null,
+            'kalibrasi' => $kalibrasi, 'selectedkalibrasi' => null,
         );
-        $this->template->load('template', 'product/item/item_form', $data);
+        $this->template->load('template', 'masterdata/item_form', $data);
     }
 
     public function edit($id)
@@ -52,21 +63,36 @@ class item extends CI_Controller
         $query = $this->item_m->get($id);
         if ($query->num_rows() > 0) {
             $item = $query->row();
+
             $query_category = $this->category_m->get();
+            $category[null] = '- Pilih -';
+            foreach ($query_category->result() as $ctg) {
+                $category[$ctg->category_id] = $ctg->jenisalat;
+            }
 
             $query_pemilik = $this->pemilik_m->get();
             $pemilik[null] = '- Pilih -';
-            foreach ($query_pemilik->result() as $unt) {
-                $pemilik[$unt->pemilik_id] = $unt->name;
+            foreach ($query_pemilik->result() as $pmlk) {
+                $pemilik[$pmlk->pemilik_id] = $pmlk->name;
             }
+
+            $query_kalibrasi = $this->kalibrasi_m->get();
+            $kalibrasi[null] = '- Pilih -';
+            foreach ($query_kalibrasi->result() as $klbrs) {
+                $kalibrasi[$klbrs->kalibrasi_id] = $klbrs->durasi_kalibrasi;
+                $kalibrasi[$klbrs->kalibrasi_id] = $klbrs->pertama_kalibrasi;
+                $kalibrasi[$klbrs->kalibrasi_id] = $klbrs->next_kalibrasi;
+            }
+
 
             $data = array(
                 'page' => 'edit',
                 'row' => $item,
-                'category' => $query_category,
-                'pemilik' => $pemilik, 'selectedpemilik' => $item->pemilik_id,
+                'category' => $category, 'selectedcategory' => null,
+                'pemilik' => $pemilik, 'selectedpemilik' => null,
+                'kalibrasi' => $kalibrasi, 'selectedkalibrasi' => null,
             );
-            $this->template->load('template', 'product/item/item_form', $data);
+            $this->template->load('template', 'masterdata/item_form', $data);
         } else {
             echo "<script> alert('Data tidak ditemukan');";
             echo "window.location='" . site_url('user') . "';</script>";
@@ -83,7 +109,7 @@ class item extends CI_Controller
 
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
-            if ($this->item_m->check_barcode($post['barcode'])->num_rows() > 0) {
+            if ($this->item_m->check_barcode($post['no_seri'])->num_rows() > 0) {
                 $this->session->set_flashdata('error', "barcode $post[barcode] sudah dipakai barang lain");
                 redirect('item/add');
             } else {
@@ -121,7 +147,7 @@ class item extends CI_Controller
 
                         $item = $this->item_m->get($post['id'])->row();
                         if ($item->image != null) {
-                            $target_file = './uploads/product/' . $item->image;
+                            $target_file = './uploads/masterdata/' . $item->image;
                             unlink($target_file);
                         }
 
@@ -152,7 +178,7 @@ class item extends CI_Controller
     {
         $item = $this->item_m->get($id)->row();
         if ($item->image != null) {
-            $target_file = './uploads/product/' . $item->image;
+            $target_file = './uploads/masterdata/' . $item->image;
             unlink($target_file);
         }
 
@@ -166,6 +192,14 @@ class item extends CI_Controller
     function barcode_qrcode($id)
     {
         $data['row'] = $this->item_m->get($id)->row();
-        $this->template->load('template', 'product/item/barcode_qrcode', $data);
+        $this->template->load('template', 'masterdata/barcode_qrcode', $data);
+    }
+
+    function qrcode($id)
+    {
+        $qrCode = new Endroid\QrCode\QrCode('Life is too short to be generating QR codes');
+
+        header('Content-Type: ' . $qrCode->getContentType());
+        echo $qrCode->writeString();
     }
 }
