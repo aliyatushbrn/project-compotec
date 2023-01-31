@@ -118,9 +118,6 @@
           <li <?= $this->uri->segment(1) == 'dashboard' || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>>
             <a href=" <?= site_url('dashboard') ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
           </li>
-          <li <?= $this->uri->segment(1) == 'customer' ? 'class="active"' : '' ?>>
-            <a href=" <?= site_url('customer') ?>"><i class="fa fa-users"></i> <span>Pelanggan</span></a>
-          </li>
           <li <?= $this->uri->segment(1) == 'item' ? 'class="active"' : '' ?>>
             <a href="<?= site_url('item') ?>"><i class="fa fa-industry"></i>Master Data</a>
           </li>

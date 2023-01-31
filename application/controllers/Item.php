@@ -1,6 +1,16 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+use Endroid\QrCode\Color\Color;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelLow;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Label\Label;
+use Endroid\QrCode\Logo\Logo;
+use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeMargin;
+use Endroid\QrCode\Writer\PngWriter;
+use Endroid\QrCode\Writer\ValidationException;
+
 class Item extends CI_Controller
 {
 
@@ -13,6 +23,14 @@ class Item extends CI_Controller
 
     public function index()
     {
+        $this->load->library('ciqrcode');
+        $link = "123";
+        $params['data'] = $link;
+        $params['level'] = 'H';
+        $params['size'] = 10;
+        $params['savename'] = FCPATH . "/assets/logo/$link.png";
+        $this->ciqrcode->generate($params);
+
         $data['row'] = $this->item_m->get();
         $this->template->load('template', 'masterdata/item_data', $data);
     }
@@ -45,7 +63,6 @@ class Item extends CI_Controller
         $kalibrasi[null] = '- Pilih -';
         foreach ($query_kalibrasi->result() as $klbrs) {
             $kalibrasi[$klbrs->kalibrasi_id] = $klbrs->durasi_kalibrasi;
-            $kalibrasi[$klbrs->kalibrasi_id] = $klbrs->pertama_kalibrasi;
         }
 
         $data = array(
@@ -80,8 +97,6 @@ class Item extends CI_Controller
             $kalibrasi[null] = '- Pilih -';
             foreach ($query_kalibrasi->result() as $klbrs) {
                 $kalibrasi[$klbrs->kalibrasi_id] = $klbrs->durasi_kalibrasi;
-                $kalibrasi[$klbrs->kalibrasi_id] = $klbrs->pertama_kalibrasi;
-                $kalibrasi[$klbrs->kalibrasi_id] = $klbrs->next_kalibrasi;
             }
 
 
@@ -101,6 +116,7 @@ class Item extends CI_Controller
 
     public function process()
     {
+
         $config['upload_path']    =  './uploads/product/';
         $config['allowed_types']  =  'gif|jpg|png|jpeg';
         $config['max_size']       =  2048;
@@ -113,6 +129,13 @@ class Item extends CI_Controller
                 $this->session->set_flashdata('error', "barcode $post[barcode] sudah dipakai barang lain");
                 redirect('item/add');
             } else {
+                $this->load->library('ciqrcode');
+                $link = $this->input->post('no_seri');
+                $params['data'] = $link;
+                $params['level'] = 'H';
+                $params['size'] = 10;
+                $params['savename'] = FCPATH . "/assets/logo/$link.png";
+                $this->ciqrcode->generate($params);
 
                 if (@$_FILES['image']['name'] != null) {
                     if ($this->upload->do_upload('image')) {
@@ -137,7 +160,7 @@ class Item extends CI_Controller
                 }
             }
         } else if (isset($_POST['edit'])) {
-            if ($this->item_m->check_barcode($post['barcode'], $post['id'])->num_rows() > 0) {
+            if ($this->item_m->check_barcode($post[''], $post['id'])->num_rows() > 0) {
                 $this->session->set_flashdata('error', "barcode $post[barcode] sudah dipakai barang lain");
                 redirect('item/edit/' . $post['id']);
                 // yang kedua ini
@@ -193,13 +216,5 @@ class Item extends CI_Controller
     {
         $data['row'] = $this->item_m->get($id)->row();
         $this->template->load('template', 'masterdata/barcode_qrcode', $data);
-    }
-
-    function qrcode($id)
-    {
-        $qrCode = new Endroid\QrCode\QrCode('Life is too short to be generating QR codes');
-
-        header('Content-Type: ' . $qrCode->getContentType());
-        echo $qrCode->writeString();
     }
 }

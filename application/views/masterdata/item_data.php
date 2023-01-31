@@ -45,10 +45,7 @@
                         <tr>
                             <td style="width:3%;"> <?= $no++ ?>.</td>
                             <td style="width:10%;">
-                                <?= $data->no_seri ?>.</br>
-                                <a href="<?= site_url('item/barcode_qrcode/' . $data->item_id) ?>" class="btn btn-default btn-xs">
-                                    Generate <i class="fa fa-barcode"></i>
-                                </a>
+                                <img src="<?= base_url('assets/logo/' . $data->no_seri . ".png") ?>" style="width:100px">
                             </td>
                             <td> <?= $data->nama_alat_ukur ?></td>
                             <td> <?= $data->merk ?></td>

@@ -26,7 +26,7 @@ class pemilik_m extends CI_Model
     {
         $params = [
             'name' => $post['pemilik_name'],
-            'update' => date('Y-m-d H:i:s')
+            'updated' => date('Y-m-d H:i:s')
         ];
         $this->db->where('pemilik_id', $post['id']);
         $this->db->update('p_pemilik', $params);

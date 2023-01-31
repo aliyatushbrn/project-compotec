@@ -21,13 +21,14 @@ class kalibrasi extends CI_Controller
     {
 
         $kalibrasi = new stdClass();
-        $kalibrasi->durasi_kalibrasi = null;
         $kalibrasi->nama_alat_ukur = null;
         $kalibrasi->lembaga_kalibrasi = null;
         $kalibrasi->no_sertifikat = null;
         $kalibrasi->file_sertifikat = null;
         $kalibrasi->keterangan = null;
         $kalibrasi->tanggal_kalibrasi = null;
+        $kalibrasi->selanjutnya = null;
+
 
         $query_item = $this->item_m->get();
         $item[null] = '- Pilih -';
@@ -48,13 +49,14 @@ class kalibrasi extends CI_Controller
         $query = $this->kalibrasi_m->get($id);
         if ($query->num_rows() > 0) {
             $kalibrasi = $query->row();
-            $kalibrasi->durasi_kalibrasi = null;
             $kalibrasi->nama_alat_ukur = null;
             $kalibrasi->lembaga_kalibrasi = null;
             $kalibrasi->no_sertifikat = null;
             $kalibrasi->file_sertifikat = null;
             $kalibrasi->keterangan = null;
             $kalibrasi->tanggal_kalibrasi = null;
+            $kalibrasi->selanjutnya = null;
+
 
             $query_item = $this->item_m->get();
             $item[null] = '- Pilih -';
@@ -78,14 +80,36 @@ class kalibrasi extends CI_Controller
     {
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
-            $this->kalibrasi_m->add($post);
+            $config['upload_path']       = './uploads/file_sertifikat/';
+            $config['allowed_types']     = 'pdf|xls|doc|docx|ppt|png|jpg|jpeg';
+            $config['max_size']          = 0;
+            $config['file_name']         = 'kalibrasi-' . date('ymd') . '-' . substr(md5(rand()), 0, 10);
+            $this->load->library('upload', $config);
+
+            if (@$_FILES['file_sertifikat']['name'] != null) {
+                if ($this->upload->do_upload('file_sertifikat')) {
+                    $post['file_sertifikat'] = $this->upload->data('file_name');
+                    $this->kalibrasi_m->add($post);
+                    if ($this->db->affected_rows() > 0) {
+                        $this->session->set_flashdata('success', 'Data berhasil disimpan');
+                    }
+                    redirect('kalibrasi');
+                } else {
+                    $error = $this->upload->display_errors();
+                    $this->session->set_flashdata('error', $error);
+                    redirect('kalibrasi/add');
+                }
+            } else {
+                $post['file_sertifikat'] = null;
+                $this->kalibrasi_m->add($post);
+                if ($this->db->affected_rows() > 0) {
+                    $this->session->set_flashdata('success', 'Data berhasil disimpan');
+                }
+                redirect('kalibrasi');
+            }
         } else if (isset($_POST['edit'])) {
             $this->kalibrasi_m->edit($post);
         }
-        if ($this->db->affected_rows() > 0) {
-            $this->session->set_flashdata('success', 'Data berhasil disimpan');
-        }
-        redirect('kalibrasi');
     }
 
     public function del($id)

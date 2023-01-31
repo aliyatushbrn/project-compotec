@@ -1,6 +1,6 @@
 <section class="content-header">
     <h1>Category
-        <small>Pemasok Barang</small>
+        <small>Barang</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -37,12 +37,12 @@
                         <div class="form-group">
                             <label>Range</label>
                             <input type="hidden" name="id" value="<?= $row->category_id ?>">
-                            <input type="number" name="range" value="<?= $row->range ?>" class="form-control" required>
+                            <input type="text" name="range" value="<?= $row->range ?>" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Akurasi</label>
                             <input type="hidden" name="id" value="<?= $row->category_id ?>">
-                            <input type="number" name="akurasi" value="<?= $row->akurasi ?>" class="form-control" required>
+                            <input type="text" name="akurasi" value="<?= $row->akurasi ?>" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <button type="submit" name="<?= $page ?>" class="btn btn-success btn-flat">

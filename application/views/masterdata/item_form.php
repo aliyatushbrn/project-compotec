@@ -61,8 +61,8 @@
                         <label>durasi_kalibrasi *</label>
                         <select name="durasi_kalibrasi" class="form-control" required>
                             <option value="">- Pilih -</option>
-                            <option value="1x/1y" <?= $row->durasi_kalibrasi == 'L' ? 'selected' : '' ?>>1 kali per satu tahun</option>
-                            <option value="1x/2y" <?= $row->durasi_kalibrasi == 'P' ? 'selected' : '' ?>>1 kali per dua tahun</option>
+                            <option value="1x/1y" <?= $row->durasi_kalibrasi == '1x/1y' ? 'selected' : '' ?>>1 kali per satu tahun</option>
+                            <option value="1x/2y" <?= $row->durasi_kalibrasi == '1x/2y' ? 'selected' : '' ?>>1 kali per dua tahun</option>
                         </select>
                     </div>
                     <div class="form-group">

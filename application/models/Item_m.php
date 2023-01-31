@@ -20,6 +20,13 @@ class item_m extends CI_Model
 
     public function add($post)
     {
+        // var_dump($post['durasi_kalibrasi']);
+        // die;
+        if ($post['durasi_kalibrasi'] == "1x/1y") {
+            $next_kalibrasi = date('Y-m-d', strtotime('+1year', strtotime($post['pertama_kalibrasi'])));
+        } else {
+            $next_kalibrasi = date('Y-m-d', strtotime('+2year', strtotime($post['pertama_kalibrasi'])));
+        }
         $params = [
             'no_seri' => $post['no_seri'],
             'nama_alat_ukur' => $post['nama_alat_ukur'],
@@ -28,6 +35,7 @@ class item_m extends CI_Model
             'pemilik_id' => $post['pemilik'],
             'durasi_kalibrasi' => $post['durasi_kalibrasi'],
             'pertama_kalibrasi' => $post['pertama_kalibrasi'],
+            'next_kalibrasi' => $next_kalibrasi,
             'image' => $post['image'],
         ];
         $this->db->insert('p_item', $params);
@@ -36,11 +44,11 @@ class item_m extends CI_Model
     public function edit($post)
     {
         $params = [
-            'no_seri' => $post['no_seri'],
             'nama_alat_ukur' => $post['nama_alat_ukur'],
             'merk' => $post['merk'],
             'category_id' => $post['category'],
             'pemilik_id' => $post['pemilik'],
+            'durasi_kalibrasi' => $post['durasi_kalibrasi'],
             'pertama_kalibrasi' => $post['pertama_kalibrasi'],
             'updated' => date('Y-m-d H:i:s')
         ];

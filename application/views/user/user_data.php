@@ -41,7 +41,7 @@
                             <td><?= $data->username ?></td>
                             <td><?= $data->name ?></td>
                             <td><?= $data->address ?></td>
-                            <td><?= $data->level == 1 ? "Admin" : "Kasir" ?></td>
+                            <td><?= $data->level == 1 ? "Admin" : "User" ?></td>
                             <td class="text-center" width="160px">
                                 <form action="<?= site_url('user/del') ?>" method="post">
                                     <a href="<?= site_url('user/edit/' . $data->user_id) ?>" class="btn btn-primary btn-xs">

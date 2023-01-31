@@ -23,53 +23,52 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
-                    <form action="<?= site_url('kalibrasi/process') ?>" method="post">
-                        <div class="form-group">
-                            <label>Durasi Kalibrasi</label>
-                            <input type="hidden" name="id" value="<?= $row->durasi_kalibrasi ?>">
-                            <input type="text" name="durasi_kalibrasi" value="<?= $row->durasi_kalibrasi ?>" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Item *</label>
-                            <?php echo form_dropdown(
-                                'item',
-                                $item,
-                                $selecteditem,
-                                ['class' => 'form-control', 'required' => 'required']
-                            ) ?>
-                        </div>
-                        <div class="form-group">
-                            <label>Lembaga Kalibrasi</label>
-                            <input type="hidden" name="id" value="<?= $row->lembaga_kalibrasi ?>">
-                            <input type="text" name="lembaga_kalibrasi" value="<?= $row->lembaga_kalibrasi ?>" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>No Sertifikat</label>
-                            <input type="hidden" name="id" value="<?= $row->no_sertifikat ?>">
-                            <input type="text" name="no_sertifikat " value="<?= $row->no_sertifikat  ?>" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>File Sertikat</label>
-                            <input type="hidden" name="id" value="<?= $row->file_sertifikat ?>">
-                            <input type="text" name="file_sertifikat " value="<?= $row->file_sertifikat  ?>" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Keterangan</label>
-                            <input type="hidden" name="id" value="<?= $row->keterangan ?>">
-                            <input type="text" name="keterangan " value="<?= $row->keterangan  ?>" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Tanggal Kalibrasi</label>
-                            <input type="hidden" name="id" value="<?= $row->tanggal_kalibrasi ?>">
-                            <input type="date" name="tanggal_kalibrasi " value="<?= $row->tanggal_kalibrasi  ?>" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" name="<?= $page ?>" class="btn btn-success btn-flat">
-                                <i class="fa fa-paper-plane"></i> Save
-                            </button>
-                            <button type="Reset" class="btn btn-flat">Reset</button>
-                        </div>
-                    </form>
+                    <?php echo form_open_multipart('kalibrasi/process') ?>
+                    <div class="form-group">
+                        <label>Item *</label>
+                        <?php echo form_dropdown(
+                            'item',
+                            $item,
+                            $selecteditem,
+                            ['class' => 'form-control', 'required' => 'required']
+                        ) ?>
+                    </div>
+                    <div class="form-group">
+                        <label>Lembaga Kalibrasi</label>
+                        <input type="hidden" name="id" value="<?= $row->lembaga_kalibrasi ?>">
+                        <input type="text" name="lembaga_kalibrasi" value="<?= $row->lembaga_kalibrasi ?>" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>No Sertifikat</label>
+                        <input type="hidden" name="id" value="<?= $row->no_sertifikat ?>">
+                        <input type="text" name="no_sertifikat" value="<?= $row->no_sertifikat  ?>" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>File Sertikat</label>
+                        <input type="file" name="file_sertifikat" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Keterangan</label>
+                        <input type="hidden" name="id" value="<?= $row->keterangan ?>">
+                        <input type="text" name="keterangan" value="<?= $row->keterangan  ?>" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tanggal Kalibrasi</label>
+                        <input type="hidden" name="id" value="<?= $row->tanggal_kalibrasi ?>">
+                        <input type="date" name="tanggal_kalibrasi" value="<?= $row->tanggal_kalibrasi  ?>" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Selanjutnya</label>
+                        <input type="hidden" name="id" value="<?= $row->selanjutnya ?>">
+                        <input type="date" name="selanjutnya" value="<?= $row->selanjutnya  ?>" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" name="<?= $page ?>" class="btn btn-success btn-flat">
+                            <i class="fa fa-paper-plane"></i> Save
+                        </button>
+                        <button type="Reset" class="btn btn-flat">Reset</button>
+                    </div>
+                    <?php echo form_close() ?>
                 </div>
             </div>
 
