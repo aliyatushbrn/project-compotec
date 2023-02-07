@@ -53,14 +53,22 @@
                         <input type="text" name="keterangan" value="<?= $row->keterangan  ?>" class="form-control" required>
                     </div>
                     <div class="form-group">
+                        <label>Frekuensi Kalibrasi *</label>
+                        <select name="durasi_kalibrasi" class="form-control" required>
+                            <option value="">- Pilih -</option>
+                            <option value="1x/1y" <?= $row->durasi_kalibrasi == '1x/1y' ? 'selected' : '' ?>>1 kali per satu tahun</option>
+                            <option value="1x/2y" <?= $row->durasi_kalibrasi == '1x/2y' ? 'selected' : '' ?>>1 kali per dua tahun</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Tanggal Pembelian</label>
+                        <input type="hidden" name="id" value="<?= $row->tanggal_pembelian ?>">
+                        <input type="date" name="tanggal_pembelian" value="<?= $row->tanggal_pembelian  ?>" class="form-control" required>
+                    </div>
+                    <div class="form-group">
                         <label>Tanggal Kalibrasi</label>
                         <input type="hidden" name="id" value="<?= $row->tanggal_kalibrasi ?>">
                         <input type="date" name="tanggal_kalibrasi" value="<?= $row->tanggal_kalibrasi  ?>" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Selanjutnya</label>
-                        <input type="hidden" name="id" value="<?= $row->selanjutnya ?>">
-                        <input type="date" name="selanjutnya" value="<?= $row->selanjutnya  ?>" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <button type="submit" name="<?= $page ?>" class="btn btn-success btn-flat">

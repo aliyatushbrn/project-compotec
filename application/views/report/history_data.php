@@ -22,16 +22,21 @@
 
             <form method="post" class="form-inline">
                 <div class="form-group">
-                    <label for="exampleInputName2">Category</label>
-                    <select name="category_id" class="form-control">
-                        <option value="">Pilih Category</option>
+                    <label for="exampleInputName2">Nama Produk</label>
+                    <select name="item_id" class="form-control">
+                        <option value="">Pilih Produk</option>
                         <?php $no = 1;
-                        foreach ($category->result() as $key => $data) { ?>
-                            <option value="<?= $data->category_id ?>"><?= $data->jenisalat ?></option>
+                        foreach ($item->result() as $key => $data) { ?>
+                            <option value="<?= $data->item_id ?>"><?= $data->nama_alat_ukur ?></option>
                         <?php } ?>
                     </select>
-                </div>
-                <button name="btn_search" type="submit" class="btn btn-default">Send invitation</button>
+                    <button name="btn_search" type="submit" class="btn btn-default">Go!</button>
+                    <div class="col-lg-8">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">Go!</button>
+                        </div>
             </form>
             <table class="table table-bordered table-striped" id="table1" style="width:150%;">
                 <thead>
@@ -57,8 +62,8 @@
                             <td> <?= $data->nama_alat_ukur ?></td>
                             <td> <?= $data->jenisalat ?></td>
                             <td> <?= $data->pemilik_name ?></td>
-                            <td> <?= $data->pertama_kalibrasi ?></td>
-                            <td> <?= $data->next_kalibrasi ?></td>
+                            <td> <?= $data->tanggal_kalibrasi ?></td>
+                            <td> <?= $data->selanjutnya ?></td>
                             <td>
                                 <?php if ($data->image != null) { ?>
                                     <img src="<?= base_url('uploads/product/' . $data->image) ?>" style="width:100px">

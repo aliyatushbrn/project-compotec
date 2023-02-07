@@ -18,7 +18,7 @@ class Item extends CI_Controller
     {
         parent::__construct();
         check_not_login();
-        $this->load->model(['item_m', 'category_m', 'pemilik_m', 'kalibrasi_m']);
+        $this->load->model(['item_m', 'category_m', 'pemilik_m', 'range_m', 'akurasi_m']);
     }
 
     public function index()
@@ -44,8 +44,9 @@ class Item extends CI_Controller
         $item->nama_alat_ukur = null;
         $item->jenisalat = null;
         $item->merk = null;
-        $item->durasi_kalibrasi = null;
-        $item->pertama_kalibrasi = null;
+        $item->fungsi = null;
+        $item->range = null;
+        $item->akurasi = null;
 
 
         $query_category = $this->category_m->get();
@@ -58,19 +59,29 @@ class Item extends CI_Controller
         foreach ($query_pemilik->result() as $pmlk) {
             $pemilik[$pmlk->pemilik_id] = $pmlk->name;
         }
-
-        $query_kalibrasi = $this->kalibrasi_m->get();
-        $kalibrasi[null] = '- Pilih -';
-        foreach ($query_kalibrasi->result() as $klbrs) {
-            $kalibrasi[$klbrs->kalibrasi_id] = $klbrs->durasi_kalibrasi;
+        $query_category = $this->category_m->get();
+        $fungsi[null] = '- Pilih -';
+        foreach ($query_category->result() as $fgs) {
+            $fungsi[$fgs->fungsi] = $fgs->fungsi;
         }
-
+        $query_range = $this->range_m->get();
+        $range[null] = '- Pilih -';
+        foreach ($query_range->result() as $rng) {
+            $range[$rng->range_id] = $rng->name;
+        }
+        $query_akurasi = $this->akurasi_m->get();
+        $akurasi[null] = '- Pilih -';
+        foreach ($query_akurasi->result() as $akr) {
+            $akurasi[$akr->akurasi_id] = $akr->name;
+        }
         $data = array(
             'page' => 'add',
             'row' => $item,
             'category' => $category, 'selectedcategory' => null,
             'pemilik' => $pemilik, 'selectedpemilik' => null,
-            'kalibrasi' => $kalibrasi, 'selectedkalibrasi' => null,
+            'fungsi' => $fungsi, 'selectedfungsi' => null,
+            'range' => $range, 'selectedrange' => null,
+            'akurasi' => $akurasi, 'selectedakurasi' => null,
         );
         $this->template->load('template', 'masterdata/item_form', $data);
     }
@@ -93,19 +104,30 @@ class Item extends CI_Controller
                 $pemilik[$pmlk->pemilik_id] = $pmlk->name;
             }
 
-            $query_kalibrasi = $this->kalibrasi_m->get();
-            $kalibrasi[null] = '- Pilih -';
-            foreach ($query_kalibrasi->result() as $klbrs) {
-                $kalibrasi[$klbrs->kalibrasi_id] = $klbrs->durasi_kalibrasi;
+            $query_category = $this->category_m->get();
+            $fungsi[null] = '- Pilih -';
+            foreach ($query_category->result() as $fgs) {
+                $fungsi[$fgs->fungsi] = $fgs->fungsi;
             }
-
+            $query_range = $this->range_m->get();
+            $range[null] = '- Pilih -';
+            foreach ($query_range->result() as $rng) {
+                $range[$rng->range_id] = $rng->name;
+            }
+            $query_akurasi = $this->akurasi_m->get();
+            $akurasi[null] = '- Pilih -';
+            foreach ($query_akurasi->result() as $akr) {
+                $akurasi[$akr->akurasi_id] = $akr->name;
+            }
 
             $data = array(
                 'page' => 'edit',
                 'row' => $item,
                 'category' => $category, 'selectedcategory' => null,
                 'pemilik' => $pemilik, 'selectedpemilik' => null,
-                'kalibrasi' => $kalibrasi, 'selectedkalibrasi' => null,
+                'fungsi' => $fungsi, 'selectedfungsi' => null,
+                'range' => $range, 'selectedrange' => null,
+                'akurasi' => $akurasi, 'selectedakurasi' => null,
             );
             $this->template->load('template', 'masterdata/item_form', $data);
         } else {

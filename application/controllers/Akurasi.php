@@ -1,47 +1,45 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Category extends CI_Controller
+class akurasi extends CI_Controller
 {
 
     function __construct()
     {
         parent::__construct();
         check_not_login();
-        $this->load->model('category_m');
+        $this->load->model('akurasi_m');
     }
 
     public function index()
     {
-        $data['row'] = $this->category_m->get();
-        $this->template->load('template', 'product/category/category_data', $data);
+        $data['row'] = $this->akurasi_m->get();
+        $this->template->load('template', 'product/akurasi/akurasi_data', $data);
     }
 
     public function add()
     {
 
-        $category = new stdClass();
-        $category->category_id = null;
-        $category->jenisalat = null;
-        $category->fungsi = null;
+        $akurasi = new stdClass();
+        $akurasi->akurasi_id = null;
+        $akurasi->name = null;
         $data = array(
             'page' => 'add',
-            'row' => $category
+            'row' => $akurasi
         );
-        $this->template->load('template', 'product/category/category_form', $data);
+        $this->template->load('template', 'product/akurasi/akurasi_form', $data);
     }
 
     public function edit($id)
     {
-        $query = $this->category_m->get($id);
+        $query = $this->akurasi_m->get($id);
         if ($query->num_rows() > 0) {
-            $category = $query->row();
-            $category->fungsi = null;
+            $akurasi = $query->row();
             $data = array(
                 'page' => 'edit',
-                'row' => $category
+                'row' => $akurasi
             );
-            $this->template->load('template', 'product/category/category_form', $data);
+            $this->template->load('template', 'product/akurasi/akurasi_form', $data);
         } else {
             echo "<script> alert('Data tidak ditemukan');";
             echo "window.location='" . site_url('user') . "';</script>";
@@ -52,22 +50,24 @@ class Category extends CI_Controller
     {
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
-            $this->category_m->add($post);
+            $this->akurasi_m->add($post);
         } else if (isset($_POST['edit'])) {
-            $this->category_m->edit($post);
+            $this->akurasi_m->edit($post);
         }
         if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('success', 'Data berhasil disimpan');
         }
-        redirect('category');
+        redirect('akurasi');
     }
 
     public function del($id)
     {
-        $this->category_m->del($id);
+
+        $this->akurasi_m->del($id);
         if ($this->db->affected_rows() > 0) {
+
             $this->session->set_flashdata('success', 'Data berhasil dihapus');
         }
-        redirect('category');
+        redirect('akurasi');
     }
 }

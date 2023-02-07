@@ -14,7 +14,7 @@ class kalibrasi extends CI_Controller
     public function index()
     {
         $data['row'] = $this->kalibrasi_m->get();
-        $this->template->load('template', 'masterkalibrasi/kalibrasi_data', $data);
+        $this->template->load('template', 'datakalibrasi/kalibrasi_data', $data);
     }
 
     public function add()
@@ -26,6 +26,8 @@ class kalibrasi extends CI_Controller
         $kalibrasi->no_sertifikat = null;
         $kalibrasi->file_sertifikat = null;
         $kalibrasi->keterangan = null;
+        $kalibrasi->durasi_kalibrasi = null;
+        $kalibrasi->tanggal_pembelian = null;
         $kalibrasi->tanggal_kalibrasi = null;
         $kalibrasi->selanjutnya = null;
 
@@ -41,7 +43,7 @@ class kalibrasi extends CI_Controller
             'row' => $kalibrasi,
             'item' => $item, 'selecteditem' => null,
         );
-        $this->template->load('template', 'masterkalibrasi/kalibrasi_form', $data);
+        $this->template->load('template', 'datakalibrasi/kalibrasi_form', $data);
     }
 
     public function edit($id)
@@ -54,6 +56,8 @@ class kalibrasi extends CI_Controller
             $kalibrasi->no_sertifikat = null;
             $kalibrasi->file_sertifikat = null;
             $kalibrasi->keterangan = null;
+            $kalibrasi->durasi_kalibrasi = null;
+            $kalibrasi->tanggal_pembelian = null;
             $kalibrasi->tanggal_kalibrasi = null;
             $kalibrasi->selanjutnya = null;
 
@@ -69,7 +73,7 @@ class kalibrasi extends CI_Controller
                 'row' => $kalibrasi,
                 'item' => $item, 'selecteditem' => null,
             );
-            $this->template->load('template', 'masterkalibrasi/kalibrasi_form', $data);
+            $this->template->load('template', 'datakalibrasi/kalibrasi_form', $data);
         } else {
             echo "<script> alert('Data tidak ditemukan');";
             echo "window.location='" . site_url('user') . "';</script>";

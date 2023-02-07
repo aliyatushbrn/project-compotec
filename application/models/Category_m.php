@@ -19,8 +19,6 @@ class category_m extends CI_Model
         $params = [
             'jenisalat' => $post['jenisalat'],
             'fungsi' => $post['fungsi'],
-            'range' => $post['range'],
-            'akurasi' => $post['akurasi'],
         ];
         $this->db->insert('p_category', $params);
     }
@@ -30,8 +28,6 @@ class category_m extends CI_Model
         $params = [
             'jenisalat' => $post['jenisalat'],
             'fungsi' => $post['fungsi'],
-            'range' => $post['range'],
-            'akurasi' => $post['akurasi'],
             'updated' => date('Y-m-d H:i:s')
         ];
         $this->db->where('category_id', $post['id']);

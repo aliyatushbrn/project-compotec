@@ -56,44 +56,54 @@
                             $selectedpemilik,
                             ['class' => 'form-control', 'required' => 'required']
                         ) ?>
-                    </div>
-                    <div class="form-group">
-                        <label>durasi_kalibrasi *</label>
-                        <select name="durasi_kalibrasi" class="form-control" required>
-                            <option value="">- Pilih -</option>
-                            <option value="1x/1y" <?= $row->durasi_kalibrasi == '1x/1y' ? 'selected' : '' ?>>1 kali per satu tahun</option>
-                            <option value="1x/2y" <?= $row->durasi_kalibrasi == '1x/2y' ? 'selected' : '' ?>>1 kali per dua tahun</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="pertama_kalibrasi">Pertama Kalibrasi</label>
-                        <input type="hidden" name="id" value="<?= $row->item_id ?>">
-                        <input type="date" name="pertama_kalibrasi" value="<?= $row->pertama_kalibrasi ?>">
-                    </div>
-                    <div class="form-group">
-                        <label>Image</label>
-                        <?php if ($page == 'edit') {
-                            if ($row->image != null) { ?>
-                                <div style="margin-bottom:4px">
-                                    <img src="<?= base_url('uploads/product/' . $row->image) ?>" style="width:80%">
+                        <div class="form-group">
+                            <label>Fungsi *</label>
+                            <?php echo form_dropdown(
+                                'fungsi',
+                                $fungsi,
+                                $selectedfungsi,
+                                ['class' => 'form-control', 'required' => 'required']
+                            ) ?>
+                            <div class="form-group">
+                                <label>Range *</label>
+                                <?php echo form_dropdown(
+                                    'range',
+                                    $range,
+                                    $selectedrange,
+                                    ['class' => 'form-control', 'required' => 'required']
+                                ) ?>
+                                <div class="form-group">
+                                    <label>Akurasi *</label>
+                                    <?php echo form_dropdown(
+                                        'akurasi',
+                                        $akurasi,
+                                        $selectedakurasi,
+                                        ['class' => 'form-control', 'required' => 'required']
+                                    ) ?>
+                                    <div class="form-group">
+                                        <label>Image</label>
+                                        <?php if ($page == 'edit') {
+                                            if ($row->image != null) { ?>
+                                                <div style="margin-bottom:4px">
+                                                    <img src="<?= base_url('uploads/product/' . $row->image) ?>" style="width:80%">
+                                                </div>
+                                        <?php
+                                            }
+                                        } ?>
+                                        <input type="file" name="image" class="form-control">
+                                        <small>(Biarkan kosong jika tidak <?= $page == 'edit' ? 'diganti' : 'ada' ?>)</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" name="<?= $page ?>" class="btn btn-success btn-flat">
+                                            <i class="fa fa-paper-plane"></i> Save
+                                        </button>
+                                        <button type="Reset" class="btn btn-flat">Reset</button>
+                                    </div>
+                                    <?php echo form_close() ?>
                                 </div>
-                        <?php
-                            }
-                        } ?>
-                        <input type="file" name="image" class="form-control">
-                        <small>(Biarkan kosong jika tidak <?= $page == 'edit' ? 'diganti' : 'ada' ?>)</small>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" name="<?= $page ?>" class="btn btn-success btn-flat">
-                            <i class="fa fa-paper-plane"></i> Save
-                        </button>
-                        <button type="Reset" class="btn btn-flat">Reset</button>
-                    </div>
-                    <?php echo form_close() ?>
-                </div>
-            </div>
+                            </div>
 
-        </div>
-    </div>
+                        </div>
+                    </div>
 
 </section

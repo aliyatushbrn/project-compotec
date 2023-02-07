@@ -9,50 +9,49 @@
 </section>
 
 <!-- Main content -->
-<section class="content">
 
-    <div class="box">
-        <div class="box-header">
-            <h3 class="box-title"><?= ucfirst($page) ?>Category</h3>
-            <div class="pull-right">
-                <a href="<?= site_url('category') ?>" class="btn btn-warning btn-flat">
-                    <i class="fa fa-undo"></i> Backs
-                </a>
-            </div>
-        </div>
-        <div class="box-body">
-            <div class="row">
-                <div class="col-md-4 col-md-offset-4">
-                    <form action="<?= site_url('category/process') ?>" method="post">
-                        <div class="form-group">
-                            <label>Jenis Alat *</label>
-                            <input type="hidden" name="id" value="<?= $row->category_id ?>">
-                            <input type="text" name="jenisalat" value="<?= $row->jenisalat ?>" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Fungsi</label>
-                            <input type="hidden" name="id" value="<?= $row->category_id ?>">
-                            <input type="text" name="fungsi" value="<?= $row->fungsi ?>" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Range</label>
-                            <input type="hidden" name="id" value="<?= $row->category_id ?>">
-                            <input type="text" name="range" value="<?= $row->range ?>" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Akurasi</label>
-                            <input type="hidden" name="id" value="<?= $row->category_id ?>">
-                            <input type="text" name="akurasi" value="<?= $row->akurasi ?>" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" name="<?= $page ?>" class="btn btn-success btn-flat">
-                                <i class="fa fa-paper-plane"></i> Save
-                            </button>
-                            <button type="Reset" class="btn btn-flat">Reset</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title"><?= ucfirst($page) ?>Category</h3>
+        <div class="pull-right">
+            <a href="<?= site_url('category') ?>" class="btn btn-warning btn-flat">
+                <i class="fa fa-undo"></i> Backs
+            </a>
         </div>
     </div>
-</section>
+    <!-- Horizontal Form -->
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Horizontal Form</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal">
+            <div class="box-body">
+                <form action="<?= site_url('category/process') ?>" method="post">
+                    <div class="form-group">
+                        <label>Jenis Alat *</label>
+                        <input type="hidden" name="id" value="<?= $row->category_id ?>">
+                        <input type="text" name="jenisalat" value="<?= $row->jenisalat ?>" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Fungsi *</label>
+                        <input type="hidden" name="id" value="<?= $row->category_id ?>">
+                        <input type="text" name="fungsi" value="<?= $row->fungsi ?>" class="form-control" required>
+
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-default">Cancel</button>
+                        <button type="submit" class="btn btn-info pull-right">Save</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+    </div>
+    </form>
+    </form>
+</div>
+</div>
+</div>
+</div>

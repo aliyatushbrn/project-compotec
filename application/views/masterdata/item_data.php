@@ -31,9 +31,9 @@
                         <th>Merk</th>
                         <th>Category</th>
                         <th>Pemilik</th>
-                        <th>Durasi Kalibrasi</th>
-                        <th>Tanggal Pertama Kalibrasi</th>
-                        <th>Tanggal Kalibrasi Selanjutnya</th>
+                        <th>Fungsi</th>
+                        <th>Range</th>
+                        <th>Akurasi</th>
                         <th>Image</th>
                         <th>Actions</th>
                     </tr>
@@ -44,19 +44,19 @@
                     foreach ($row->result() as $key => $data) { ?>
                         <tr>
                             <td style="width:3%;"> <?= $no++ ?>.</td>
-                            <td style="width:10%;">
-                                <img src="<?= base_url('assets/logo/' . $data->no_seri . ".png") ?>" style="width:100px">
+                            <td style="width:7%;">
+                                <img src="<?= base_url('assets/logo/' . $data->no_seri . ".png") ?>" style="width:80px">
                             </td>
                             <td> <?= $data->nama_alat_ukur ?></td>
                             <td> <?= $data->merk ?></td>
                             <td> <?= $data->jenisalat ?></td>
                             <td> <?= $data->pemilik_name ?></td>
-                            <td> <?= $data->durasi_kalibrasi ?></td>
-                            <td> <?= $data->pertama_kalibrasi ?></td>
-                            <td> <?= $data->next_kalibrasi ?></td>
+                            <td> <?= $data->fungsi ?></td>
+                            <td> <?= $data->range_name ?></td>
+                            <td> <?= $data->akurasi_name ?></td>
                             <td>
                                 <?php if ($data->image != null) { ?>
-                                    <img src="<?= base_url('uploads/product/' . $data->image) ?>" style="width:100px">
+                                    <img src="<?= base_url('uploads/product/' . $data->image) ?>" style="width:80px">
                                 <?php } ?>
                             </td>
                             <td class="text-center" width="160px">
