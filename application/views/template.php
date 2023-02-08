@@ -138,7 +138,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li <?= $this->uri->segment(1) == 'frekuensi' ? 'class="active"' : '' ?>><a href="<?= site_url('frekuensi') ?>"><i class="fa fa-circle-o"></i> Frekuensi Kalibrasi</a></li>
+              <li <?= $this->uri->segment(1) == 'durasi' ? 'class="active"' : '' ?>><a href="<?= site_url('durasi') ?>"><i class="fa fa-circle-o"></i> Durasi Kalibrasi</a></li>
               <li <?= $this->uri->segment(1) == 'lembaga' ? 'class="active"' : '' ?>><a href="<?= site_url('lembaga') ?>"><i class="fa fa-circle-o"></i> Lembaga Kalibrasi</a></li>
             </ul>
           </li>

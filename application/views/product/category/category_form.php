@@ -18,11 +18,8 @@
                 <i class="fa fa-undo"></i> Backs
             </a>
         </div>
-    </div>
-    <!-- Horizontal Form -->
-    <div class="box box-info">
+        <!-- Horizontal Form -->
         <div class="box-header with-border">
-            <h3 class="box-title">Horizontal Form</h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
@@ -41,11 +38,15 @@
 
                     </div>
                     <!-- /.box-body -->
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-default">Cancel</button>
-                        <button type="submit" class="btn btn-info pull-right">Save</button>
-                    </div>
-                    <!-- /.box-footer -->
+                    <div class="form-group">
+                        <div class="col-md-4 col-md-offset-4">
+                            <button type="submit" name="<?= $page ?>" class="btn btn-success btn-flat">
+                                <i class="fa fa-paper-plane"></i> Save
+                            </button>
+                            <button type="Reset" class="btn btn-flat">Reset</button>
+
+                        </div>
+                        <!-- /.box-footer -->
                 </form>
             </div>
     </div>

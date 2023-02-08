@@ -53,11 +53,12 @@
                         <input type="text" name="keterangan" value="<?= $row->keterangan  ?>" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label>Frekuensi Kalibrasi *</label>
+                        <label>Durasi Kalibrasi *</label>
                         <select name="durasi_kalibrasi" class="form-control" required>
                             <option value="">- Pilih -</option>
-                            <option value="1x/1y" <?= $row->durasi_kalibrasi == '1x/1y' ? 'selected' : '' ?>>1 kali per satu tahun</option>
-                            <option value="1x/2y" <?= $row->durasi_kalibrasi == '1x/2y' ? 'selected' : '' ?>>1 kali per dua tahun</option>
+                            <?php foreach ($durasi_kalibrasi->result() as $item) : ?>
+                                <option value="<?= $item->durasi_kalibrasi ?>"><?= '1x/' . $item->durasi_kalibrasi . 'y' ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group">

@@ -1,45 +1,45 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class frekuensi extends CI_Controller
+class durasi extends CI_Controller
 {
 
     function __construct()
     {
         parent::__construct();
         check_not_login();
-        $this->load->model('frekuensi_m');
+        $this->load->model('durasi_m');
     }
 
     public function index()
     {
-        $data['row'] = $this->frekuensi_m->get();
-        $this->template->load('template', 'masterkalibrasi/frekuensi_data', $data);
+        $data['row'] = $this->durasi_m->get();
+        $this->template->load('template', 'durasi/durasi_data', $data);
     }
 
     public function add()
     {
 
-        $frekuensi = new stdClass();
-        $frekuensi->frekuensi_id = null;
-        $frekuensi->name = null;
+        $durasi = new stdClass();
+        $durasi->id_durasi_kalibrasi = null;
+        $durasi->durasi_kalibrasi = null;
         $data = array(
             'page' => 'add',
-            'row' => $frekuensi
+            'row' => $durasi
         );
-        $this->template->load('template', 'masterkalibrasi/frekuensi_form', $data);
+        $this->template->load('template', 'durasi/durasi_form', $data);
     }
 
     public function edit($id)
     {
-        $query = $this->frekuensi_m->get($id);
+        $query = $this->durasi_m->get($id);
         if ($query->num_rows() > 0) {
-            $frekuensi = $query->row();
+            $durasi = $query->row();
             $data = array(
                 'page' => 'edit',
-                'row' => $frekuensi
+                'row' => $durasi
             );
-            $this->template->load('template', 'masterkalibrasi/frekuensi_form', $data);
+            $this->template->load('template', 'durasi/durasi_form', $data);
         } else {
             echo "<script> alert('Data tidak ditemukan');";
             echo "window.location='" . site_url('user') . "';</script>";
@@ -50,24 +50,24 @@ class frekuensi extends CI_Controller
     {
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
-            $this->frekuensi_m->add($post);
+            $this->durasi_m->add($post);
         } else if (isset($_POST['edit'])) {
-            $this->frekuensi_m->edit($post);
+            $this->durasi_m->edit($post);
         }
         if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('success', 'Data berhasil disimpan');
         }
-        redirect('frekuensi');
+        redirect('durasi');
     }
 
     public function del($id)
     {
 
-        $this->frekuensi_m->del($id);
+        $this->durasi_m->del($id);
         if ($this->db->affected_rows() > 0) {
 
             $this->session->set_flashdata('success', 'Data berhasil dihapus');
         }
-        redirect('frekuensi');
+        redirect('durasi');
     }
 }

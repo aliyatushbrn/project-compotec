@@ -20,10 +20,9 @@ class kalibrasi_m extends CI_Model
     public function add($post)
     { // var_dump($post['durasi_kalibrasi']);
         // die;
-        if ($post['durasi_kalibrasi'] == "1x/1y") {
-            $selanjutnya = date('Y-m-d', strtotime('+1year', strtotime($post['tanggal_kalibrasi'])));
-        } else {
-            $selanjutnya = date('Y-m-d', strtotime('+2year', strtotime($post['tanggal_kalibrasi'])));
+        {
+            $tahun = $post['durasi_kalibrasi'];
+            $selanjutnya = date("Y-m-d", strtotime("+" . $tahun . "year", strtotime($post['tanggal_kalibrasi'])));
         }
         $params = [
             'item_id' => $post['item'],

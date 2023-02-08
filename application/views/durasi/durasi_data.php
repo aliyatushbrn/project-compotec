@@ -1,9 +1,10 @@
 <section class="content-header">
-    <h1>frekuensi
+    <h1>durasi
+        <small>Satuan Barang</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">frekuensi</i>
+        <li class="active">durasi</i>
     </ol>
 </section>
 
@@ -12,19 +13,20 @@
     <?php $this->view('messages') ?>
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Data frekuensi</h3>
+            <h3 class="box-title">Data durasi</h3>
             <div class="pull-right">
-                <a href="<?= site_url('frekuensi/add') ?>" class="btn btn-primary btn-flat">
+                <a href="<?= site_url('durasi/add') ?>" class="btn btn-primary btn-flat">
                     <i class="fa fa-plus"></i> Create
                 </a>
             </div>
         </div>
+
         <div class="box-body table-responsive">
             <table class="table table-bordered table-striped" id="table1">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>frekuensi</th>
+                        <th>durasi</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -33,12 +35,12 @@
                     foreach ($row->result() as $key => $data) { ?>
                         <tr>
                             <td style="width:5%;"><?= $no++ ?>.</td>
-                            <td><?= $data->name ?></td>
+                            <td><?= $data->durasi_kalibrasi ?></td>
                             <td class="text-center" width="160px">
-                                <a href="<?= site_url('frekuensi/edit/' . $data->frekuensi_id) ?>" class="btn btn-primary btn-xs">
+                                <a href="<?= site_url('durasi/edit/' . $data->id_durasi_kalibrasi) ?>" class="btn btn-primary btn-xs">
                                     <i class="fa fa-pencil"></i> Update
                                 </a>
-                                <a href="<?= site_url('frekuensi/del/' . $data->frekuensi_id) ?>" onclick="return confirm('Yakin hapus data?')" class="btn btn-danger btn-xs">
+                                <a href="<?= site_url('durasi/del/' . $data->id_durasi_kalibrasi) ?>" onclick="return confirm('Yakin hapus data?')" class="btn btn-danger btn-xs">
                                     <i class="fa fa-trash"></i> Delete
                                 </a>
                             </td>
