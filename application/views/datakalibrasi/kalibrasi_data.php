@@ -43,7 +43,7 @@
                         <tr>
                             <td style="width:5%;"><?= $no++ ?>.</td>
                             <td><?= $data->nama_alat_ukur ?></td>
-                            <td><?= $data->lembaga_kalibrasi ?></td>
+                            <td><?= $data->lembaga_name ?></td>
                             <td><?= $data->no_sertifikat ?></td>
                             <td>
                                 <?php if ($data->file_sertifikat != null) { ?>
@@ -51,7 +51,7 @@
                                 <?php } ?>
                             </td>
                             <td><?= $data->keterangan ?></td>
-                            <td> <?= $data->durasi_kalibrasi ?></td>
+                            <td><?= $data->durasi_kalibrasi ?></td>
                             <td> <?= $data->tanggal_pembelian ?></td>
                             <td><?= $data->tanggal_kalibrasi ?></td>
                             <td><?= $data->selanjutnya ?></td>

@@ -1,5 +1,5 @@
 <section class="content-header">
-    <h1>lembaga Barang</h1>
+    <h1>lembaga</h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">lembaga</i>
@@ -14,7 +14,7 @@
             <h3 class="box-title"><?= ucfirst($page) ?>lembaga</h3>
             <div class="pull-right">
                 <a href="<?= site_url('lembaga') ?>" class="btn btn-warning btn-flat">
-                    <i class="fa fa-undo"></i> Backs
+                    <i class="fa fa-undo"></i> Back
                 </a>
             </div>
         </div>

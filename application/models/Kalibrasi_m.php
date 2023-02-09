@@ -6,9 +6,10 @@ class kalibrasi_m extends CI_Model
 
     public function get($id = null)
     {
-        $this->db->select('kalibrasi.*, p_item.item_id as item_id, p_item.nama_alat_ukur as nama_alat_ukur,');
+        $this->db->select('kalibrasi.*, p_item.item_id as item_id, p_item.nama_alat_ukur as nama_alat_ukur, k_lembaga.name as lembaga_name');
         $this->db->from('kalibrasi');
         $this->db->join('p_item', 'p_item.item_id = kalibrasi.item_id');
+        $this->db->join('k_lembaga', 'k_lembaga.lembaga_id = kalibrasi.lembaga_id');
         if ($id != null) {
             $this->db->where('kalibrasi_id', $id);
         }
@@ -26,7 +27,7 @@ class kalibrasi_m extends CI_Model
         }
         $params = [
             'item_id' => $post['item'],
-            'lembaga_kalibrasi' => $post['lembaga_kalibrasi'],
+            'lembaga_id' => $post['lembaga'],
             'no_sertifikat' => $post['no_sertifikat'],
             'file_sertifikat' => $post['file_sertifikat'],
             'keterangan' => $post['keterangan'],

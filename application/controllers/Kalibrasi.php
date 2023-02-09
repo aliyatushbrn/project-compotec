@@ -8,7 +8,7 @@ class kalibrasi extends CI_Controller
     {
         parent::__construct();
         check_not_login();
-        $this->load->model(['kalibrasi_m', 'item_m', 'durasi_m']);
+        $this->load->model(['kalibrasi_m', 'item_m', 'durasi_m', 'lembaga_m']);
     }
 
     public function index()
@@ -38,11 +38,19 @@ class kalibrasi extends CI_Controller
             $item[$itm->item_id] = $itm->nama_alat_ukur;
         }
 
+        $query_lembaga = $this->lembaga_m->get();
+        $lembaga[null] = '- Pilih -';
+        foreach ($query_lembaga->result() as $lbg) {
+            $lembaga[$lbg->lembaga_id] = $lbg->name;
+        }
+
+
         $data = array(
             'page' => 'add',
             'row' => $kalibrasi,
             'durasi_kalibrasi' => $this->durasi_m->get(),
             'item' => $item, 'selecteditem' => null,
+            'lembaga' => $lembaga, 'selectedlembaga' => null,
         );
         $this->template->load('template', 'datakalibrasi/kalibrasi_form', $data);
     }

@@ -9,7 +9,7 @@
 </section>
 
 <!-- Main content -->
-<section class="content">
+<section class="d-flex justify-content-between">
 
     <div class="box">
         <div class="box-header">
@@ -20,7 +20,7 @@
                 </a>
             </div>
         </div>
-        <div class="box-body">
+        <div>
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <?php echo form_open_multipart('kalibrasi/process') ?>
@@ -34,9 +34,13 @@
                         ) ?>
                     </div>
                     <div class="form-group">
-                        <label>Lembaga Kalibrasi</label>
-                        <input type="hidden" name="id" value="<?= $row->lembaga_kalibrasi ?>">
-                        <input type="text" name="lembaga_kalibrasi" value="<?= $row->lembaga_kalibrasi ?>" class="form-control" required>
+                        <label>Lembaga *</label>
+                        <?php echo form_dropdown(
+                            'lembaga',
+                            $lembaga,
+                            $selectedlembaga,
+                            ['class' => 'form-control', 'required' => 'required']
+                        ) ?>
                     </div>
                     <div class="form-group">
                         <label>No Sertifikat</label>
@@ -53,7 +57,7 @@
                         <input type="text" name="keterangan" value="<?= $row->keterangan  ?>" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label>Durasi Kalibrasi *</label>
+                        <label>Frekuensi Kalibrasi *</label>
                         <select name="durasi_kalibrasi" class="form-control" required>
                             <option value="">- Pilih -</option>
                             <?php foreach ($durasi_kalibrasi->result() as $item) : ?>
