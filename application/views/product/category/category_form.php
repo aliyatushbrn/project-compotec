@@ -18,14 +18,14 @@
                 <i class="fa fa-undo"></i> Backs
             </a>
         </div>
-        <!-- Horizontal Form -->
-        <div class="box-header with-border">
-        </div>
-        <!-- /.box-header -->
-        <!-- form start -->
-        <form class="form-horizontal">
-            <div class="box-body">
+        <div class="box-body">
+            <div class="col-md-4 col-md-offset-4">
                 <form action="<?= site_url('category/process') ?>" method="post">
+                    <div class="form-group">
+                        <label for="code_category">Code Category *</label>
+                        <input type="hidden" name="id" value="<?= $row->category_id ?>">
+                        <input type="text" name="code_category" value="<?= $row->code_category ?>" class="form-control" required>
+                    </div>
                     <div class="form-group">
                         <label>Jenis Alat *</label>
                         <input type="hidden" name="id" value="<?= $row->category_id ?>">
@@ -34,25 +34,24 @@
                     <div class="form-group">
                         <label>Fungsi *</label>
                         <input type="hidden" name="id" value="<?= $row->category_id ?>">
-                        <input type="text" name="fungsi" value="<?= $row->fungsi ?>" class="form-control" required>
+                        <input type="text" name="fungsi" value="<?= $row->fungsi ?>" class="form-control">
 
                     </div>
-                    <!-- /.box-body -->
-                    <div class="form-group">
-                        <div class="col-md-4 col-md-offset-4">
-                            <button type="submit" name="<?= $page ?>" class="btn btn-success btn-flat">
-                                <i class="fa fa-paper-plane"></i> Save
-                            </button>
-                            <button type="Reset" class="btn btn-flat">Reset</button>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-4">
+                    <button type="submit" name="<?= $page ?>" class="btn btn-success btn-flat">
+                        <i class="fa fa-paper-plane"></i> Save
+                    </button>
+                    <button type="Reset" class="btn btn-flat">Reset</button>
 
-                        </div>
-                        <!-- /.box-footer -->
+                </div>
                 </form>
             </div>
+        </div>
+        </form>
+        </form>
     </div>
-    </form>
-    </form>
-</div>
 </div>
 </div>
 </div>

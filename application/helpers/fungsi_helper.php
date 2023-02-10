@@ -26,3 +26,11 @@ function check_admin()
         redirect('dashboard');
     }
 }
+
+function generateCodebarang($id)
+{
+    $ci = &get_instance();
+    $ci->load->model(['category_m']);
+    $query = $ci->category_m->get($id);
+    return $query->row();
+}

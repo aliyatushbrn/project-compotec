@@ -22,6 +22,7 @@ class Category extends CI_Controller
 
         $category = new stdClass();
         $category->category_id = null;
+        $category->code_category = null;
         $category->jenisalat = null;
         $category->fungsi = null;
         $data = array(

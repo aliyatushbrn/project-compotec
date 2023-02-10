@@ -27,6 +27,7 @@ class kalibrasi extends CI_Controller
         $kalibrasi->file_sertifikat = null;
         $kalibrasi->keterangan = null;
         $kalibrasi->durasi_kalibrasi = null;
+        $kalibrasi->ext_int = null;
         $kalibrasi->tanggal_pembelian = null;
         $kalibrasi->tanggal_kalibrasi = null;
         $kalibrasi->selanjutnya = null;

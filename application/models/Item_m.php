@@ -23,7 +23,14 @@ class item_m extends CI_Model
 
     public function add($post)
     {
+        $category_id = $post['category'];
+        $codedepan = generateCodebarang($category_id)->code_category;
+        $query = $this->db->query("select max(code_barang) as code from p_item where code_barang like '%$codedepan%'")->row();
+        if (empty($query)) {
+            $code_barang = $codedepan . '001' . date('y');
+        }
         $params = [
+            'code_barang' => $post['code_barang'],
             'no_seri' => $post['no_seri'],
             'nama_alat_ukur' => $post['nama_alat_ukur'],
             'merk' => $post['merk'],
@@ -40,6 +47,7 @@ class item_m extends CI_Model
     public function edit($post)
     {
         $params = [
+            'code_barang' => $post['code_barang'],
             'nama_alat_ukur' => $post['nama_alat_ukur'],
             'merk' => $post['merk'],
             'category_id' => $post['category'],

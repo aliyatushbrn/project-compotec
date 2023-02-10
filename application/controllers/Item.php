@@ -40,6 +40,7 @@ class Item extends CI_Controller
 
         $item = new stdClass();
         $item->item_id = null;
+        $item->code_barang = null;
         $item->no_seri = null;
         $item->nama_alat_ukur = null;
         $item->jenisalat = null;
@@ -123,11 +124,11 @@ class Item extends CI_Controller
             $data = array(
                 'page' => 'edit',
                 'row' => $item,
-                'category' => $category, 'selectedcategory' => null,
-                'pemilik' => $pemilik, 'selectedpemilik' => null,
-                'fungsi' => $fungsi, 'selectedfungsi' => null,
-                'range' => $range, 'selectedrange' => null,
-                'akurasi' => $akurasi, 'selectedakurasi' => null,
+                'category' => $category, 'selectedcategory' => $item->category_id,
+                'pemilik' => $pemilik, 'selectedpemilik' => $item->pemilik_id,
+                'fungsi' => $fungsi, 'selectedfungsi' => $item->fungsi,
+                'range' => $range, 'selectedrange' => $item->range_id,
+                'akurasi' => $akurasi, 'selectedakurasi' => $item->akurasi_id,
             );
             $this->template->load('template', 'masterdata/item_form', $data);
         } else {

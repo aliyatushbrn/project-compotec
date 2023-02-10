@@ -26,6 +26,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Code Barang</th>
                         <th>No Seri</th>
                         <th>Nama Alat Ukur</th>
                         <th>Merk</th>
@@ -44,6 +45,7 @@
                     foreach ($row->result() as $key => $data) { ?>
                         <tr>
                             <td style="width:3%;"> <?= $no++ ?>.</td>
+                            <td><?= $data->code_barang ?></td>
                             <td style="width:7%;">
                                 <img src="<?= base_url('assets/logo/' . $data->no_seri . ".png") ?>" style="width:80px">
                             </td>

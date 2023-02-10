@@ -17,6 +17,7 @@ class category_m extends CI_Model
     public function add($post)
     {
         $params = [
+            'code_category' => $post['code_category'],
             'jenisalat' => $post['jenisalat'],
             'fungsi' => $post['fungsi'],
         ];
@@ -26,6 +27,7 @@ class category_m extends CI_Model
     public function edit($post)
     {
         $params = [
+            'code_category' => $post['code_category'],
             'jenisalat' => $post['jenisalat'],
             'fungsi' => $post['fungsi'],
             'updated' => date('Y-m-d H:i:s')

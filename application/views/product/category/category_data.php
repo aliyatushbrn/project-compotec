@@ -25,6 +25,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Code Category</th>
                         <th>Jenis Alat</th>
                         <th>Fungsi</th>
                         <th>Action</th>
@@ -35,6 +36,7 @@
                     foreach ($row->result() as $key => $data) { ?>
                         <tr>
                             <td style="width:5%;"><?= $no++ ?>.</td>
+                            <td><?= $data->code_category ?></td>
                             <td><?= $data->jenisalat ?></td>
                             <td><?= $data->fungsi ?></td>
                             <td class="text-center" width="160px">

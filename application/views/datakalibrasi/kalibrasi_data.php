@@ -31,6 +31,7 @@
                         <th>File Sertikat</th>
                         <th>Keterangan</th>
                         <th>Frekuensi Kalibrasi</th>
+                        <th>External/Internal</th>
                         <th>Tanggal Pembelian</th>
                         <th>Tanggal Kalibrasi</th>
                         <th>Selanjutnya</th>
@@ -52,6 +53,7 @@
                             </td>
                             <td><?= $data->keterangan ?></td>
                             <td><?= $data->durasi_kalibrasi ?></td>
+                            <td><?= $data->ext_int ?></td>
                             <td> <?= $data->tanggal_pembelian ?></td>
                             <td><?= $data->tanggal_kalibrasi ?></td>
                             <td><?= $data->selanjutnya ?></td>
