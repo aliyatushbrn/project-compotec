@@ -35,6 +35,7 @@
                         <th>Fungsi</th>
                         <th>Range</th>
                         <th>Akurasi</th>
+                        <th>Tanggal Pembelian</th>
                         <th>Image</th>
                         <th>Actions</th>
                     </tr>
@@ -56,16 +57,17 @@
                             <td> <?= $data->fungsi ?></td>
                             <td> <?= $data->range_name ?></td>
                             <td> <?= $data->akurasi_name ?></td>
+                            <td> <?= $data->tanggal_pembelian ?></td>
                             <td>
                                 <?php if ($data->image != null) { ?>
                                     <img src="<?= base_url('uploads/product/' . $data->image) ?>" style="width:80px">
                                 <?php } ?>
                             </td>
                             <td class="text-center" width="160px">
-                                <a href="<?= site_url('item/edit/' . $data->item_id) ?>" class="btn btn-primary btn-xs">
+                                <a href="<?= site_url('item/edit/' . $data->code_barang) ?>" class="btn btn-primary btn-xs">
                                     <i class="fa fa-pencil-square-o"></i> Update
                                 </a>
-                                <a href="<?= site_url('item/del/' . $data->item_id) ?>" onclick="return confirm('Yakin hapus data?')" class="btn btn-danger btn-xs">
+                                <a href="<?= site_url('item/del/' . $data->code_barang) ?>" onclick="return confirm('Yakin hapus data?')" class="btn btn-danger btn-xs">
                                     <i class="fa fa-trash"></i> Delete
                                 </a>
                             </td>

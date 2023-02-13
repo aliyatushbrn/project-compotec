@@ -12,6 +12,9 @@
   <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/Ionicons/css/ionicons.min.css">
   <link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/AdminLTE.min.css">
   <link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/select2/dist/css/select2.min.css">
+  <script src="<?= base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="<?= base_url() ?>assets/bower_components/select2/dist/js/select2.full.min.js"></script>
   <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -168,7 +171,7 @@
     </div>
 
 
-    <script src="<?= base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+
     <script src="<?= base_url() ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="<?= base_url() ?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <script src="<?= base_url() ?>assets/dist/js/adminlte.min.js"></script>
@@ -179,6 +182,7 @@
 
     <script>
       $(document).ready(function() {
+        $('.select2').select2()
         $('#table1').DataTable()
       })
     </script>

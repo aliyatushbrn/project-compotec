@@ -25,25 +25,19 @@
                 <div class="col-md-6 ">
 
                     <?php echo form_open_multipart('item/process') ?>
-                    <div class="form-group">
-                        <label for="code_barang">Code Barang *</label>
-                        <input type="hidden" name="id" value="<?= $row->item_id ?>">
-                        <input type="text" name="code_barang" value="<?= $row->code_barang ?>" class="form-control" required>
-                    </div>
+                    <input type="hidden" name="id" value="<?= $row->item_id ?>">
+
                     <div class="form-group">
                         <label>No Seri *</label>
-                        <input type="hidden" name="id" value="<?= $row->item_id ?>">
                         <input type="text" name="no_seri" value="<?= $row->no_seri ?>" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="nama_alat_ukur">Nama Alat Ukur*</label>
-                        <input type="hidden" name="id" value="<?= $row->item_id ?>">
                         <input type="text" name="nama_alat_ukur" value="<?= $row->nama_alat_ukur ?>" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="merk">Merk</label>
-                        <input type="hidden" name="id" value="<?= $row->item_id ?>">
-                        <input type="text" name="merk" value="<?= $row->merk ?>" class="form-control" required>
+                        <input type="text" name="merk" value="<?= $row->merk ?>" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Category *</label>
@@ -54,9 +48,7 @@
                             ['class' => 'form-control', 'required' => 'required']
                         ) ?>
                     </div>
-                </div>
 
-                <div class="col-md-6 ">
                     <div class="form-group">
                         <label>Pemilik *</label>
                         <?php echo form_dropdown(
@@ -66,6 +58,8 @@
                             ['class' => 'form-control', 'required' => 'required']
                         ) ?>
                     </div>
+                </div>
+                <div class="col-md-6 ">
                     <div class="form-group">
                         <label>Fungsi *</label>
                         <?php echo form_dropdown(
@@ -94,6 +88,10 @@
                         ) ?>
                     </div>
                     <div class="form-group">
+                        <label>Tanggal Pembelian</label>
+                        <input type="date" name="tanggal_pembelian" value="<?= $row->tanggal_pembelian  ?>" class="form-control" required>
+                    </div>
+                    <div class="form-group">
                         <label>Image</label>
                         <?php if ($page == 'edit') {
                             if ($row->image != null) { ?>
@@ -119,5 +117,4 @@
 
     </div>
     </div>
-
-</section
+</section>

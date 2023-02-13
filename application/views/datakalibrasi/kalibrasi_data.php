@@ -25,14 +25,13 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Alat Ukur </th>
+                        <th>Code Barang</th>
                         <th>Lembaga Kalibrasi</th>
                         <th>No Sertifikat</th>
                         <th>File Sertikat</th>
                         <th>Keterangan</th>
                         <th>Frekuensi Kalibrasi</th>
                         <th>External/Internal</th>
-                        <th>Tanggal Pembelian</th>
                         <th>Tanggal Kalibrasi</th>
                         <th>Selanjutnya</th>
                         <th>Action</th>
@@ -43,7 +42,7 @@
                     foreach ($row->result() as $key => $data) { ?>
                         <tr>
                             <td style="width:5%;"><?= $no++ ?>.</td>
-                            <td><?= $data->nama_alat_ukur ?></td>
+                            <td><?= $data->code_barang ?></td>
                             <td><?= $data->lembaga_name ?></td>
                             <td><?= $data->no_sertifikat ?></td>
                             <td>
@@ -54,7 +53,6 @@
                             <td><?= $data->keterangan ?></td>
                             <td><?= $data->durasi_kalibrasi ?></td>
                             <td><?= $data->ext_int ?></td>
-                            <td> <?= $data->tanggal_pembelian ?></td>
                             <td><?= $data->tanggal_kalibrasi ?></td>
                             <td><?= $data->selanjutnya ?></td>
 

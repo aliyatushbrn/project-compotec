@@ -48,6 +48,7 @@ class Item extends CI_Controller
         $item->fungsi = null;
         $item->range = null;
         $item->akurasi = null;
+        $item->tanggal_pembelian = null;
 
 
         $query_category = $this->category_m->get();
@@ -98,13 +99,11 @@ class Item extends CI_Controller
             foreach ($query_category->result() as $ctg) {
                 $category[$ctg->category_id] = $ctg->jenisalat;
             }
-
             $query_pemilik = $this->pemilik_m->get();
             $pemilik[null] = '- Pilih -';
             foreach ($query_pemilik->result() as $pmlk) {
                 $pemilik[$pmlk->pemilik_id] = $pmlk->name;
             }
-
             $query_category = $this->category_m->get();
             $fungsi[null] = '- Pilih -';
             foreach ($query_category->result() as $fgs) {

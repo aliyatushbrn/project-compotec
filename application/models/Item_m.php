@@ -14,9 +14,9 @@ class item_m extends CI_Model
         $this->db->join('p_akurasi', 'p_akurasi.akurasi_id = p_item.akurasi_id');
 
         if ($id != null) {
-            $this->db->where('item_id', $id);
+            $this->db->where('code_barang', $id);
         }
-        $this->db->order_by('no_seri', 'asc');
+        $this->db->order_by('tanggal_pembelian', 'desc');
         $query = $this->db->get();
         return $query;
     }
@@ -25,12 +25,25 @@ class item_m extends CI_Model
     {
         $category_id = $post['category'];
         $codedepan = generateCodebarang($category_id)->code_category;
+
         $query = $this->db->query("select max(code_barang) as code from p_item where code_barang like '%$codedepan%'")->row();
-        if (empty($query)) {
-            $code_barang = $codedepan . '001' . date('y');
+        // var_dump($query);
+        // die;
+        if (empty($post['code_barang'])) {
+
+            if (is_null($query->code)) {
+                $code_barang = $codedepan . '001' . '-' . nice_date($post['tanggal_pembelian'], 'Y');
+            } else {
+                $pecah = explode('-', $query->code);
+                $urutan = (int) substr($pecah[0], 3, 3);
+                $urutan++;
+                $code_barang = $codedepan . sprintf("%03s", $urutan) . '-' . nice_date($post['tanggal_pembelian'], 'Y');
+            }
+        } else {
+            $code_barang = $post['code_barang'];
         }
         $params = [
-            'code_barang' => $post['code_barang'],
+            'code_barang' => $code_barang,
             'no_seri' => $post['no_seri'],
             'nama_alat_ukur' => $post['nama_alat_ukur'],
             'merk' => $post['merk'],
@@ -39,6 +52,7 @@ class item_m extends CI_Model
             'fungsi' => $post['fungsi'],
             'range_id' => $post['range'],
             'akurasi_id' => $post['akurasi'],
+            'tanggal_pembelian' => $post['tanggal_pembelian'],
             'image' => $post['image'],
         ];
         $this->db->insert('p_item', $params);
@@ -47,7 +61,6 @@ class item_m extends CI_Model
     public function edit($post)
     {
         $params = [
-            'code_barang' => $post['code_barang'],
             'nama_alat_ukur' => $post['nama_alat_ukur'],
             'merk' => $post['merk'],
             'category_id' => $post['category'],
@@ -55,6 +68,7 @@ class item_m extends CI_Model
             'fungsi' => $post['fungsi'],
             'range_id' => $post['range'],
             'akurasi_id' => $post['akurasi'],
+            'tanggal_pembelian' => $post['tanggal_pembelian'],
             'updated' => date('Y-m-d H:i:s')
         ];
         if ($post['image'] != null) {

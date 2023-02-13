@@ -62,7 +62,7 @@
                             <td> <?= $data->nama_alat_ukur ?></td>
                             <td> <?= $data->jenisalat ?></td>
                             <td> <?= $data->pemilik_name ?></td>
-                            <td> <?= $data->tanggal_kalibrasi ?></td>
+                            <td> <?= $data->tanggal_pembelian ?></td>
                             <td> <?= $data->selanjutnya ?></td>
                             <td>
                                 <?php if ($data->image != null) { ?>

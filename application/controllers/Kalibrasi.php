@@ -17,18 +17,34 @@ class kalibrasi extends CI_Controller
         $this->template->load('template', 'datakalibrasi/kalibrasi_data', $data);
     }
 
+    public function detail($id)
+    {
+        $query = $this->item_m->get($id)->row();
+        $jsondata = [
+            'jenisalat' => $query->jenisalat,
+            'nama_alat_ukur' => $query->nama_alat_ukur,
+            'merk' => $query->merk,
+            'no_seri' => $query->no_seri,
+            'pemilik' => $query->pemilik_name,
+            'fungsi' => $query->fungsi,
+            'range' => $query->range_name,
+            'akurasi' => $query->akurasi_name,
+            'tanggal_pembelian' => $query->tanggal_pembelian,
+        ];
+        echo json_encode($jsondata);
+    }
+
     public function add()
     {
 
         $kalibrasi = new stdClass();
-        $kalibrasi->nama_alat_ukur = null;
+        $kalibrasi->code_barang = null;
         $kalibrasi->lembaga_kalibrasi = null;
         $kalibrasi->no_sertifikat = null;
         $kalibrasi->file_sertifikat = null;
         $kalibrasi->keterangan = null;
         $kalibrasi->durasi_kalibrasi = null;
         $kalibrasi->ext_int = null;
-        $kalibrasi->tanggal_pembelian = null;
         $kalibrasi->tanggal_kalibrasi = null;
         $kalibrasi->selanjutnya = null;
 
@@ -36,7 +52,7 @@ class kalibrasi extends CI_Controller
         $query_item = $this->item_m->get();
         $item[null] = '- Pilih -';
         foreach ($query_item->result() as $itm) {
-            $item[$itm->item_id] = $itm->nama_alat_ukur;
+            $item[$itm->code_barang] = $itm->code_barang;
         }
 
         $query_lembaga = $this->lembaga_m->get();
@@ -61,28 +77,26 @@ class kalibrasi extends CI_Controller
         $query = $this->kalibrasi_m->get($id);
         if ($query->num_rows() > 0) {
             $kalibrasi = $query->row();
-            $kalibrasi->nama_alat_ukur = null;
-            $kalibrasi->lembaga_kalibrasi = null;
-            $kalibrasi->no_sertifikat = null;
-            $kalibrasi->file_sertifikat = null;
-            $kalibrasi->keterangan = null;
-            $kalibrasi->durasi_kalibrasi = null;
-            $kalibrasi->tanggal_pembelian = null;
-            $kalibrasi->tanggal_kalibrasi = null;
-            $kalibrasi->selanjutnya = null;
-
 
             $query_item = $this->item_m->get();
             $item[null] = '- Pilih -';
             foreach ($query_item->result() as $itm) {
-                $item[$itm->item_id] = $itm->nama_alat_ukur;
+                $item[$itm->code_barang] = $itm->code_barang;
+            }
+            $query_lembaga = $this->lembaga_m->get();
+            $lembaga[null] = '- Pilih -';
+            foreach ($query_lembaga->result() as $lbg) {
+                $lembaga[$lbg->lembaga_id] = $lbg->name;
             }
 
             $data = array(
                 'page' => 'edit',
                 'row' => $kalibrasi,
-                'item' => $item, 'selecteditem' => null,
+                'durasi_kalibrasi' => $this->durasi_m->get(),
+                'item' => $item, 'selecteditem' => $kalibrasi->code_barang,
+                'lembaga' => $lembaga, 'selectedlembaga' => $kalibrasi->lembaga_id,
             );
+
             $this->template->load('template', 'datakalibrasi/kalibrasi_form', $data);
         } else {
             echo "<script> alert('Data tidak ditemukan');";
@@ -95,7 +109,7 @@ class kalibrasi extends CI_Controller
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
             $config['upload_path']       = './uploads/file_sertifikat/';
-            $config['allowed_types']     = 'pdf|xls|doc|docx|ppt|png|jpg|jpeg';
+            $config['allowed_types']     = 'png|jpg|jpeg';
             $config['max_size']          = 0;
             $config['file_name']         = 'kalibrasi-' . date('ymd') . '-' . substr(md5(rand()), 0, 10);
             $this->load->library('upload', $config);

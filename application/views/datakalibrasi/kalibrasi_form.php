@@ -27,14 +27,52 @@
 
                         <?php echo form_open_multipart('kalibrasi/process') ?>
                         <div class="form-group">
-                            <label>Item *</label>
+                            <label>Code Barang *</label>
                             <?php echo form_dropdown(
-                                'item',
+                                'code_barang',
                                 $item,
                                 $selecteditem,
-                                ['class' => 'form-control', 'required' => 'required']
+                                ['class' => 'form-control select2', 'required' => 'required', 'width' => '100%']
                             ) ?>
                         </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <input type="text" name="jenisalat" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Nama Alat Ukur</label>
+                            <input type="text" name="nama_alat_ukur" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Merk</label>
+                            <input type="text" name="merk" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>No Seri</label>
+                            <input type="text" name="no_seri" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Pemilik</label>
+                            <input type="text" name="pemilik" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Fungsi</label>
+                            <input type="text" name="fungsi" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Range</label>
+                            <input type="text" name="range" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Akurasi</label>
+                            <input type="text" name="akurasi" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Tanggal Pembelian</label>
+                            <input type="date" name="tanggal_pembelian" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ">
                         <div class="form-group">
                             <label>Lembaga *</label>
                             <?php echo form_dropdown(
@@ -60,9 +98,7 @@
                             <input type="hidden" name="id" value="<?= $row->keterangan ?>">
                             <input type="text" name="keterangan" value="<?= $row->keterangan  ?>" class="form-control" required>
                         </div>
-                    </div>
 
-                    <div class="col-md-6 ">
 
                         <div class="form-group">
                             <label>Frekuensi Kalibrasi *</label>
@@ -81,12 +117,6 @@
                                 <option value="external" <?= $row->ext_int == 'external' ? 'selected' : '' ?>>External</option>
                                 <option value="internal" <?= $row->ext_int == 'internal' ? 'selected' : '' ?>>Internal</option>
                             </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Tanggal Pembelian</label>
-                            <input type="hidden" name="id" value="<?= $row->tanggal_pembelian ?>">
-                            <input type="date" name="tanggal_pembelian" value="<?= $row->tanggal_pembelian  ?>" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label>Tanggal Kalibrasi</label>
@@ -111,3 +141,49 @@
     </div>
 
 </section>
+<script>
+    loaddata("<?= $row->code_barang ?>")
+
+    function loaddata(id) {
+
+        $.ajax({
+            type: 'GET',
+            url: '<?= site_url('kalibrasi/detail/') ?>' + id,
+            dataType: 'json',
+            success: function(data) {
+                console.log(data)
+                $('input[name=jenisalat]').val(data.jenisalat)
+                $('input[name=nama_alat_ukur]').val(data.nama_alat_ukur)
+                $('input[name=merk]').val(data.merk)
+                $('input[name=no_seri]').val(data.no_seri)
+                $('input[name=category]').val(data.category)
+                $('input[name=pemilik]').val(data.pemilik)
+                $('input[name=fungsi]').val(data.fungsi)
+                $('input[name=range]').val(data.range)
+                $('input[name=akurasi]').val(data.akurasi)
+                $('input[name=tanggal_pembelian]').val(data.tanggal_pembelian)
+            }
+        });
+    }
+    $('select[name=code_barang]').on('change', function() {
+        $.ajax({
+            type: 'GET',
+            url: '<?= site_url('kalibrasi/detail/') ?>' + this.value,
+
+            dataType: 'json',
+            success: function(data) {
+                console.log(data)
+                $('input[name=jenisalat]').val(data.jenisalat)
+                $('input[name=nama_alat_ukur]').val(data.nama_alat_ukur)
+                $('input[name=merk]').val(data.merk)
+                $('input[name=no_seri]').val(data.no_seri)
+                $('input[name=category]').val(data.category)
+                $('input[name=pemilik]').val(data.pemilik)
+                $('input[name=fungsi]').val(data.fungsi)
+                $('input[name=range]').val(data.range)
+                $('input[name=akurasi]').val(data.akurasi)
+                $('input[name=tanggal_pembelian]').val(data.tanggal_pembelian)
+            }
+        });
+    });
+</script>
