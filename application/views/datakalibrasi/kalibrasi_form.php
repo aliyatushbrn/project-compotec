@@ -24,8 +24,8 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-6 ">
-
                         <?php echo form_open_multipart('kalibrasi/process') ?>
+                        <input type="hidden" name="id" value="<?= $row->kalibrasi_id ?>">
                         <div class="form-group">
                             <label>Code Barang *</label>
                             <?php echo form_dropdown(
@@ -84,7 +84,6 @@
                         </div>
                         <div class="form-group">
                             <label>No Sertifikat</label>
-                            <input type="hidden" name="id" value="<?= $row->no_sertifikat ?>">
                             <input type="text" name="no_sertifikat" value="<?= $row->no_sertifikat  ?>" class="form-control" required>
                         </div>
 
@@ -95,7 +94,6 @@
 
                         <div class="form-group">
                             <label>Keterangan</label>
-                            <input type="hidden" name="id" value="<?= $row->keterangan ?>">
                             <input type="text" name="keterangan" value="<?= $row->keterangan  ?>" class="form-control" required>
                         </div>
 
@@ -120,7 +118,6 @@
                         </div>
                         <div class="form-group">
                             <label>Tanggal Kalibrasi</label>
-                            <input type="hidden" name="id" value="<?= $row->tanggal_kalibrasi ?>">
                             <input type="date" name="tanggal_kalibrasi" value="<?= $row->tanggal_kalibrasi  ?>" class="form-control" required>
                         </div>
                         <div class="form-group">

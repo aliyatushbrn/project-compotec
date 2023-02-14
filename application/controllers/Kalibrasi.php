@@ -38,6 +38,7 @@ class kalibrasi extends CI_Controller
     {
 
         $kalibrasi = new stdClass();
+        $kalibrasi->kalibrasi_id = null;
         $kalibrasi->code_barang = null;
         $kalibrasi->lembaga_kalibrasi = null;
         $kalibrasi->no_sertifikat = null;
@@ -136,7 +137,30 @@ class kalibrasi extends CI_Controller
                 redirect('kalibrasi');
             }
         } else if (isset($_POST['edit'])) {
+            $post['file_sertifikat'] = null;
             $this->kalibrasi_m->edit($post);
+            redirect('kalibrasi');
+            if (@$_FILES['file_sertifikat']['name'] != null) {
+                if ($this->upload->do_upload('file_sertifikat')) {
+                    $post['file_sertifikat'] = $this->upload->data('file_name');
+                    $this->kalibrasi_m->edit($post);
+                    if ($this->db->affected_rows() > 0) {
+                        $this->session->set_flashdata('success', 'Data berhasil disimpan');
+                    }
+                    redirect('kalibrasi');
+                } else {
+                    $error = $this->upload->display_errors();
+                    $this->session->set_flashdata('error', $error);
+                    redirect('kalibrasi/edit');
+                }
+            } else {
+                $post['file_sertifikat'] = null;
+                $this->kalibrasi_m->edit($post);
+                if ($this->db->affected_rows() > 0) {
+                    $this->session->set_flashdata('success', 'Data berhasil disimpan');
+                }
+                redirect('kalibrasi');
+            }
         }
     }
 

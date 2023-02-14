@@ -47,9 +47,7 @@
                         <tr>
                             <td style="width:3%;"> <?= $no++ ?>.</td>
                             <td><?= $data->code_barang ?></td>
-                            <td style="width:7%;">
-                                <img src="<?= base_url('assets/logo/' . $data->no_seri . ".png") ?>" style="width:80px">
-                            </td>
+                            <td><?= $data->no_seri ?></td>
                             <td> <?= $data->nama_alat_ukur ?></td>
                             <td> <?= $data->merk ?></td>
                             <td> <?= $data->jenisalat ?></td>
@@ -64,10 +62,13 @@
                                 <?php } ?>
                             </td>
                             <td class="text-center" width="160px">
+                                <a href="<?= site_url('detail/detail_QrCode/' . $data->code_barang) ?>" class="btn btn-default btn-xs">
+                                    QrCode <i class="fa fa-pencil-square"></i>
+                                </a>
                                 <a href="<?= site_url('item/edit/' . $data->code_barang) ?>" class="btn btn-primary btn-xs">
                                     <i class="fa fa-pencil-square-o"></i> Update
                                 </a>
-                                <a href="<?= site_url('item/del/' . $data->code_barang) ?>" onclick="return confirm('Yakin hapus data?')" class="btn btn-danger btn-xs">
+                                <a href="<?= site_url('item/del/' . $data->item_id) ?>" onclick="return confirm('Yakin hapus data?')" class="btn btn-danger btn-xs">
                                     <i class="fa fa-trash"></i> Delete
                                 </a>
                             </td>

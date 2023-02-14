@@ -17,14 +17,26 @@ class kalibrasi_m extends CI_Model
         $query = $this->db->get();
         return $query;
     }
+    public function getWhereCodeBarang($id = null)
+    {
+        $this->db->select('kalibrasi.*, p_item.code_barang as code_barang, p_item.nama_alat_ukur as nama_alat_ukur, k_lembaga.name as lembaga_name');
+        $this->db->from('kalibrasi');
+        $this->db->join('p_item', 'p_item.code_barang = kalibrasi.code_barang');
+        $this->db->join('k_lembaga', 'k_lembaga.lembaga_id = kalibrasi.lembaga_id');
+        if ($id != null) {
+            $this->db->where('p_item.code_barang', $id);
+        }
+        $this->db->order_by('nama_alat_ukur', 'asc');
+        $query = $this->db->get();
+        return $query;
+    }
 
     public function add($post)
     { // var_dump($post['durasi_kalibrasi']);
         // die;
-        {
-            $tahun = $post['durasi_kalibrasi'];
-            $selanjutnya = date("Y-m-d", strtotime("+" . $tahun . "year", strtotime($post['tanggal_kalibrasi'])));
-        }
+
+        $tahun = $post['durasi_kalibrasi'];
+        $selanjutnya = date("Y-m-d", strtotime("+" . $tahun . "year", strtotime($post['tanggal_kalibrasi'])));
         $params = [
             'code_barang' => $post['code_barang'],
             'lembaga_id' => $post['lembaga'],
@@ -41,16 +53,23 @@ class kalibrasi_m extends CI_Model
 
     public function edit($post)
     {
+        // var_dump($post);
+        // exit;
+        $tahun = $post['durasi_kalibrasi'];
+        $selanjutnya = date("Y-m-d", strtotime("+" . $tahun . "year", strtotime($post['tanggal_kalibrasi'])));
+
         $params = [
-            'code_barang' => $post['item'],
-            'lembaga_kalibrasi' => $post['lembaga_kalibrasi'],
+            'code_barang' => $post['code_barang'],
+            'lembaga_id' => $post['lembaga'],
             'no_sertifikat' => $post['no_sertifikat'],
             'file_sertifikat' => $post['file_sertifikat'],
             'keterangan' => $post['keterangan'],
             'durasi_kalibrasi' => $post['durasi_kalibrasi'],
             'ext_int' => $post['ext_int'],
             'tanggal_kalibrasi' => $post['tanggal_kalibrasi'],
-            'updated' => $post['updated'],
+            'selanjutnya' => $selanjutnya,
+            'updated' => date('Y-m-d H:i:s')
+
 
         ];
         $this->db->where('kalibrasi_id', $post['id']);
