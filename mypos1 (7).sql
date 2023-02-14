@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2023 at 09:39 AM
+-- Generation Time: Feb 13, 2023 at 09:38 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -74,13 +74,13 @@ INSERT INTO `durasi` (`id_durasi_kalibrasi`, `durasi_kalibrasi`, `created`, `upd
 
 CREATE TABLE `kalibrasi` (
   `kalibrasi_id` int(11) NOT NULL,
-  `item_id` int(11) NOT NULL,
+  `code_barang` varchar(100) NOT NULL,
   `lembaga_id` int(11) NOT NULL,
   `no_sertifikat` varchar(200) NOT NULL,
   `file_sertifikat` varchar(200) DEFAULT NULL,
   `keterangan` text NOT NULL,
   `durasi_kalibrasi` int(11) NOT NULL,
-  `tanggal_pembelian` date DEFAULT NULL,
+  `ext_int` enum('external','internal') NOT NULL,
   `tanggal_kalibrasi` date NOT NULL DEFAULT current_timestamp(),
   `selanjutnya` date DEFAULT NULL,
   `create` datetime NOT NULL DEFAULT current_timestamp(),
@@ -91,31 +91,9 @@ CREATE TABLE `kalibrasi` (
 -- Dumping data for table `kalibrasi`
 --
 
-INSERT INTO `kalibrasi` (`kalibrasi_id`, `item_id`, `lembaga_id`, `no_sertifikat`, `file_sertifikat`, `keterangan`, `durasi_kalibrasi`, `tanggal_pembelian`, `tanggal_kalibrasi`, `selanjutnya`, `create`, `updated`) VALUES
-(8, 55, 0, '65342', 'sdgfhgjewsd', 'sdzfsdzz', 1, NULL, '2024-02-04', '2025-02-04', '2023-01-31 09:11:15', NULL),
-(10, 73, 0, '56432', 'pdf', 'untuk menimbang', 1, NULL, '2023-01-31', '2024-01-31', '2023-01-31 09:11:15', NULL),
-(12, 74, 0, '90998767', 'kalibrasi-230131-850787da5c.docx', 'jdhfjkdxhv', 1, NULL, '2023-01-31', '2024-01-31', '2023-01-31 10:41:32', NULL),
-(26, 77, 0, 'selanjutnya', NULL, 'selanjutnya', 1, NULL, '2023-02-01', '2024-02-01', '2023-02-01 09:50:52', NULL),
-(30, 79, 0, '982645347', NULL, 'Compotec', 1, NULL, '2023-09-01', '2024-09-01', '2023-02-01 10:45:50', NULL),
-(31, 80, 0, '65333232', NULL, 'Compotec', 1, NULL, '2023-04-01', '2024-04-01', '2023-02-01 10:48:03', NULL),
-(35, 93, 0, '65645', 'kalibrasi-230203-458b1e2932.jpg', 'Compotec', 2, '2023-02-03', '2023-02-03', '2025-02-03', '2023-02-03 08:23:18', NULL),
-(49, 96, 0, 'RYE5334124', NULL, 'ERTGXDF', 5, '2023-02-02', '2023-02-02', '2028-02-02', '2023-02-08 09:18:13', NULL),
-(50, 96, 0, 'FE5235', NULL, 'RTGZSDFD', 5, '2023-02-08', '2023-02-08', '2028-02-08', '2023-02-08 09:19:53', NULL),
-(51, 95, 0, '2QAEAW', NULL, 'untuk', 1, '2023-02-08', '2023-02-08', '1970-01-01', '2023-02-08 09:21:53', NULL),
-(52, 95, 2, 'e224343', NULL, 'contoh', 4, '2023-01-02', '2023-02-02', '2027-02-02', '2023-02-08 11:38:47', NULL),
-(53, 97, 2, 'sfk43i2323', NULL, 'wesds', 3, '2023-02-07', '2023-02-08', '2026-02-08', '2023-02-08 14:36:56', NULL);
-
---
--- Triggers `kalibrasi`
---
-DELIMITER $$
-CREATE TRIGGER `tambah_kalibrasi` AFTER INSERT ON `kalibrasi` FOR EACH ROW UPDATE p_item SET tanggal_kalibrasi=NEW.tanggal_kalibrasi,selanjutnya=NEW.selanjutnya WHERE item_id=NEW.item_id
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `update_kalibrasi` AFTER UPDATE ON `kalibrasi` FOR EACH ROW UPDATE p_item SET tanggal_kalibrasi=NEW.tanggal_kalibrasi,selanjutnya=NEW.selanjutnya WHERE item_id=NEW.item_id
-$$
-DELIMITER ;
+INSERT INTO `kalibrasi` (`kalibrasi_id`, `code_barang`, `lembaga_id`, `no_sertifikat`, `file_sertifikat`, `keterangan`, `durasi_kalibrasi`, `ext_int`, `tanggal_kalibrasi`, `selanjutnya`, `create`, `updated`) VALUES
+(69, 'A001-2023', 2, '3323456', NULL, 'Compotec', 3, 'internal', '2023-02-13', '2026-02-13', '2023-02-13 13:51:14', NULL),
+(70, 'A002-2023', 2, '112412A', NULL, 'SSA', 3, 'internal', '2023-02-13', '2026-02-13', '2023-02-13 13:53:35', NULL);
 
 -- --------------------------------------------------------
 
@@ -194,6 +172,7 @@ INSERT INTO `p_akurasi` (`akurasi_id`, `name`, `created`, `updated`) VALUES
 
 CREATE TABLE `p_category` (
   `category_id` int(11) NOT NULL,
+  `code_category` varchar(100) NOT NULL,
   `jenisalat` varchar(100) NOT NULL,
   `fungsi` varchar(255) DEFAULT NULL,
   `created` datetime NOT NULL DEFAULT current_timestamp(),
@@ -204,19 +183,18 @@ CREATE TABLE `p_category` (
 -- Dumping data for table `p_category`
 --
 
-INSERT INTO `p_category` (`category_id`, `jenisalat`, `fungsi`, `created`, `updated`) VALUES
-(8, 'Rubber Hardness Tester', 'Mengukur kekerasan rubber', '2023-01-09 14:22:08', '2023-01-26 02:49:47'),
-(9, 'Timbangan/Neraca ', 'Menimbang Berat Produk', '2023-01-10 09:45:03', '2023-01-26 07:25:58'),
-(10, 'Profile projector', 'Mengukur profile produk', '2023-01-10 13:36:25', '2023-01-26 02:50:47'),
-(11, 'Magnetic Stand Indicator', 'Cek diel tie bar MC', '2023-01-10 13:36:50', '2023-01-26 02:57:12'),
-(12, 'Dial Indicator', 'Cek setting benda kerja', '2023-01-10 13:37:53', '2023-01-26 02:57:43'),
-(13, 'Outside Micrometer', 'Mengukur Dimensi Luar', '2023-01-10 13:38:29', '2023-01-26 02:58:10'),
-(14, 'Torque Wrench', 'Cek Torsi ', '2023-01-10 13:39:25', '2023-01-26 02:58:29'),
-(17, 'Digimatic Caliper ', 'Mengukur Dimensi Luar & Dalam', '2023-01-11 11:22:28', '2023-01-26 02:59:26'),
-(18, 'Thickness Gage ', 'Mengukur ketebalan ', '2023-01-11 11:33:54', '2023-01-26 03:00:45'),
-(20, 'Anak Batu Timbangan', 'Untuk Verifikasi timbangan ', '2023-01-18 15:05:02', '2023-01-26 03:01:35'),
-(21, 'Temperatur Humidity ', '-', '2023-01-18 15:17:29', '2023-01-26 03:01:59'),
-(30, 'asda', 'ada', '2023-02-03 13:40:06', NULL);
+INSERT INTO `p_category` (`category_id`, `code_category`, `jenisalat`, `fungsi`, `created`, `updated`) VALUES
+(8, 'R', 'Rubber Hardness Tester', 'Mengukur kekerasan rubber', '2023-01-09 14:22:08', '2023-02-10 07:37:21'),
+(9, 'TN', 'Timbangan/Neraca ', 'Menimbang Berat Produk', '2023-01-10 09:45:03', '2023-02-10 07:42:53'),
+(10, 'P', 'Profile projector', 'Mengukur profile produk', '2023-01-10 13:36:25', '2023-02-10 07:40:37'),
+(11, 'M', 'Magnetic Stand Indicator', 'Cek diel tie bar MC', '2023-01-10 13:36:50', '2023-02-10 07:40:56'),
+(12, 'DI', 'Dial Indicator', 'Cek setting benda kerja', '2023-01-10 13:37:53', '2023-02-10 07:43:09'),
+(13, 'O', 'Outside Micrometer', 'Mengukur Dimensi Luar', '2023-01-10 13:38:29', '2023-02-10 07:41:24'),
+(14, 'TW', 'Torque Wrench', 'Cek Torsi ', '2023-01-10 13:39:25', '2023-02-10 07:42:18'),
+(17, 'DC', 'Digimatic Caliper ', 'Mengukur Dimensi Luar', '2023-01-11 11:22:28', '2023-02-10 07:43:23'),
+(18, 'TG', 'Thickness Gage ', 'Mengukur ketebalan ', '2023-01-11 11:33:54', '2023-02-10 07:43:44'),
+(20, 'A', 'Anak Batu Timbangan', 'Untuk Verifikasi timbangan ', '2023-01-18 15:05:02', '2023-02-10 07:43:55'),
+(21, 'TH', 'Temperatur Humidity ', '', '2023-01-18 15:17:29', '2023-02-10 07:44:35');
 
 -- --------------------------------------------------------
 
@@ -226,7 +204,9 @@ INSERT INTO `p_category` (`category_id`, `jenisalat`, `fungsi`, `created`, `upda
 
 CREATE TABLE `p_item` (
   `item_id` int(11) NOT NULL,
+  `code_barang` varchar(255) NOT NULL,
   `no_seri` varchar(100) DEFAULT NULL,
+  `tahun_perolehan` varchar(100) NOT NULL,
   `nama_alat_ukur` varchar(100) DEFAULT NULL,
   `merk` varchar(255) NOT NULL,
   `category_id` int(11) NOT NULL,
@@ -234,7 +214,7 @@ CREATE TABLE `p_item` (
   `fungsi` varchar(255) DEFAULT NULL,
   `range_id` int(11) DEFAULT NULL,
   `akurasi_id` int(11) DEFAULT NULL,
-  `tanggal_kalibrasi` varchar(255) NOT NULL,
+  `tanggal_pembelian` varchar(255) NOT NULL,
   `selanjutnya` date DEFAULT NULL,
   `image` varchar(100) DEFAULT NULL,
   `created` datetime NOT NULL DEFAULT current_timestamp(),
@@ -245,19 +225,9 @@ CREATE TABLE `p_item` (
 -- Dumping data for table `p_item`
 --
 
-INSERT INTO `p_item` (`item_id`, `no_seri`, `nama_alat_ukur`, `merk`, `category_id`, `pemilik_id`, `fungsi`, `range_id`, `akurasi_id`, `tanggal_kalibrasi`, `selanjutnya`, `image`, `created`, `updated`) VALUES
-(75, '112510. (7010 S - 10 )', 'Magnetic stand indicator ', 'MITUTOYO', 11, 29, NULL, NULL, NULL, '2020-09-01', NULL, 'item-230131-316157ba32.jpg', '2023-01-31 10:19:12', NULL),
-(81, '0022361', 'Outside Micrometer ', 'MITUTOYO', 13, 10, NULL, NULL, NULL, '', '2025-01-01', NULL, '2023-02-01 12:00:41', NULL),
-(83, 'PJ 300', 'Profile Projector', 'MITUTOYO', 10, 10, NULL, NULL, NULL, '2023-02-01', '2024-02-01', NULL, '2023-02-01 14:15:48', NULL),
-(84, 'J 8050935', 'Timbangan/ Neraca ( 1 )', 'AND EK', 9, 12, '0', 1, 0, '', NULL, 'item-230202-e751aafe57.jpg', '2023-02-02 08:37:45', NULL),
-(85, '452312', 'edsfzcs', 'sfdvrfdv', 14, 13, '0', 0, 2, '', NULL, NULL, '2023-02-02 08:38:33', NULL),
-(88, '6456785', 'x fbkjgdlug', 'reteiud', 11, 19, '0', 5, 0, '', NULL, NULL, '2023-02-02 10:40:53', NULL),
-(89, '232332', 'cdcdece', 'cfecc', 17, 17, '0', 0, 0, '', NULL, NULL, '2023-02-02 11:03:24', NULL),
-(92, '644647', 'vjhv jvg', 'dchbv', 18, 12, 'Mengukur kekerasan rubber', 2, 2, '2024-02-23', '2025-02-23', NULL, '2023-02-03 08:16:58', NULL),
-(93, '8249368734', 'Profile Projector', 'MITUTOYO', 10, 13, 'Mengukur profile produk', 2, 2, '2023-02-03', '2025-02-03', 'item-230203-0a469bc587.jpg', '2023-02-03 08:19:01', '2023-02-03 02:20:20'),
-(95, 'cxxcxc', 'Profile Projector', 'dfsxc', 10, 12, 'Mengukur profile produk', 3, 9, '2023-02-02', '2027-02-02', NULL, '2023-02-07 11:56:21', '2023-02-08 09:37:50'),
-(96, '64464562', 'Profile Projector', 'MITUTOYO', 10, 10, 'Mengukur profile produk', 18, 13, '2023-02-08', '2028-02-08', NULL, '2023-02-08 09:05:35', NULL),
-(97, 'A9901', 'Dial Indicator ', 'TOHNICHI', 12, 10, 'Mengukur Dimensi Luar', 21, 14, '2023-02-08', '2026-02-08', NULL, '2023-02-08 13:55:28', NULL);
+INSERT INTO `p_item` (`item_id`, `code_barang`, `no_seri`, `tahun_perolehan`, `nama_alat_ukur`, `merk`, `category_id`, `pemilik_id`, `fungsi`, `range_id`, `akurasi_id`, `tanggal_pembelian`, `selanjutnya`, `image`, `created`, `updated`) VALUES
+(107, 'A001-2023', '3544', '', 'anak batu timbangan', 'KORI DUROMETER', 20, 13, 'Mengukur profile produk', 18, 9, '2023-02-16', NULL, NULL, '2023-02-13 10:33:16', NULL),
+(109, 'A002-2023', '54354', '', 'anak batu timbangan', 'MITUTOYO', 20, 19, 'Cek diel tie bar MC', 15, 9, '2023-02-15', NULL, NULL, '2023-02-13 10:37:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -403,7 +373,8 @@ ALTER TABLE `p_akurasi`
 -- Indexes for table `p_category`
 --
 ALTER TABLE `p_category`
-  ADD PRIMARY KEY (`category_id`);
+  ADD PRIMARY KEY (`category_id`),
+  ADD UNIQUE KEY `code_category` (`code_category`);
 
 --
 -- Indexes for table `p_item`
@@ -413,7 +384,7 @@ ALTER TABLE `p_item`
   ADD UNIQUE KEY `barcode` (`no_seri`),
   ADD KEY `category_id` (`category_id`),
   ADD KEY `unit_id` (`pemilik_id`),
-  ADD KEY `pertama_kalibrasi` (`tanggal_kalibrasi`),
+  ADD KEY `pertama_kalibrasi` (`tanggal_pembelian`),
   ADD KEY `fungsi` (`fungsi`),
   ADD KEY `range` (`range_id`),
   ADD KEY `akurasi` (`akurasi_id`);
@@ -456,7 +427,7 @@ ALTER TABLE `durasi`
 -- AUTO_INCREMENT for table `kalibrasi`
 --
 ALTER TABLE `kalibrasi`
-  MODIFY `kalibrasi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `kalibrasi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `k_frekuensi`
@@ -486,7 +457,7 @@ ALTER TABLE `p_category`
 -- AUTO_INCREMENT for table `p_item`
 --
 ALTER TABLE `p_item`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
 -- AUTO_INCREMENT for table `p_pemilik`
