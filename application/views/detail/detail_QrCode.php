@@ -106,52 +106,122 @@
                                 </tr>
                             </table>
                             <br>
-                            <button type="button" class="btn btn-default btn-xs"><i class=""></i>Tanggal Kalibrasi Terakhir : <?= $kalibrasi->tanggal_kalibrasi ?></button>
-                            <button type="button" class="btn btn-default btn-xs"><i class=""></i> Kalibrasi Selanjutnya : </button>
+                            <button type="button" class="btn btn-default btn-xs"><i class=""></i>Tanggal Kalibrasi Terakhir : <?= $row->kalibrasi ?></button>
+                            <button type="button" class="btn btn-default btn-xs"><i class=""></i> Kalibrasi Selanjutnya : <?= $row->selanjutnya ?></button>
                         </div>
                         <!-- /.box-body -->
                         <div class="box-footer  box-comments">
-                            <div class="box-comment">
+                            <?php if (!empty($kalibrasi)) : ?>
+                                <?php foreach ($kalibrasi as $item) : ?>
+                                    <div class="box-comment">
 
-                                <table>
-                                    <tr>
-                                        <td>lembaga Kalibrasi</td>
-                                        <td>&nbsp;&nbsp;:</td>
-                                        <td>&nbsp;&nbsp;<?= $kalibrasi->lembaga_name ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>No Sertifikat</td>
-                                        <td>&nbsp;&nbsp;:</td>
-                                        <td>&nbsp;&nbsp;<?= $kalibrasi->no_sertifikat ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>File Sertifikat </td>
+                                        <table>
+                                            <tr>
+                                                <td>lembaga Kalibrasi</td>
+                                                <td>&nbsp;&nbsp;:</td>
+                                                <td>&nbsp;&nbsp;<?= $item->lembaga_name ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>No Sertifikat</td>
+                                                <td>&nbsp;&nbsp;:</td>
+                                                <td>&nbsp;&nbsp;<?= $item->no_sertifikat ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>File Sertifikat </td>
 
-                                        <td>&nbsp;&nbsp;:</td>
-                                        <td>&nbsp;&nbsp;<?= $kalibrasi->file_sertifikat ?>
-                                            <a href="">Download Sertifikat</a></span>
-                                        </td>
+                                                <td>&nbsp;&nbsp;:</td>
+                                                <td>&nbsp;&nbsp;<?= $item->file_sertifikat ?>
+                                                    <a href="">Download Sertifikat</a></span>
+                                                </td>
 
-                                    </tr>
-                                    <tr>
-                                        <td>Keterangan</td>
-                                        <td>&nbsp;&nbsp;:</td>
-                                        <td>&nbsp;&nbsp;<?= $kalibrasi->keterangan ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Frekuensi Kalibrasi</td>
-                                        <td>&nbsp;&nbsp;:</td>
-                                        <td>&nbsp;&nbsp;<?= $kalibrasi->durasi_kalibrasi ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ext/Int</td>
-                                        <td>&nbsp;&nbsp;:</td>
-                                        <td>&nbsp;&nbsp;<?= $kalibrasi->ext_int ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Keterangan</td>
+                                                <td>&nbsp;&nbsp;:</td>
+                                                <td>&nbsp;&nbsp;<?= $item->keterangan ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Frekuensi Kalibrasi</td>
+                                                <td>&nbsp;&nbsp;:</td>
+                                                <td>&nbsp;&nbsp;<?= $item->durasi_kalibrasi ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Ext/Int</td>
+                                                <td>&nbsp;&nbsp;:</td>
+                                                <td>&nbsp;&nbsp;<?= $item->ext_int ?></td>
 
-                                    </tr>
-                                </table>
-                                <!-- /.comment-text -->
-                            </div>
+                                            </tr>
+                                            <tr>
+                                                <td>Tanggal Terakhir Kalibrasi</td>
+                                                <td>&nbsp;&nbsp;:</td>
+                                                <td>&nbsp;&nbsp;<?= $item->tanggal_kalibrasi ?></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>Kalibrasi Selanjutnya</td>
+                                                <td>&nbsp;&nbsp;:</td>
+                                                <td>&nbsp;&nbsp;<?= $item->selanjutnya ?></td>
+
+                                            </tr>
+                                        </table>
+                                        <!-- /.comment-text -->
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php else : ?>
+                                <div class="box-comment">
+
+                                    <table>
+                                        <tr>
+                                            <td>lembaga Kalibrasi</td>
+                                            <td>&nbsp;&nbsp;:</td>
+                                            <td>&nbsp;&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>No Sertifikat</td>
+                                            <td>&nbsp;&nbsp;:</td>
+                                            <td>&nbsp;&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>File Sertifikat </td>
+
+                                            <td>&nbsp;&nbsp;:</td>
+                                            <td>&nbsp;&nbsp;
+
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Keterangan</td>
+                                            <td>&nbsp;&nbsp;:</td>
+                                            <td>&nbsp;&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Frekuensi Kalibrasi</td>
+                                            <td>&nbsp;&nbsp;:</td>
+                                            <td>&nbsp;&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ext/Int</td>
+                                            <td>&nbsp;&nbsp;:</td>
+                                            <td>&nbsp;&nbsp;</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Tanggal Terakhir Kalibrasi</td>
+                                            <td>&nbsp;&nbsp;:</td>
+                                            <td>&nbsp;&nbsp;</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Kalibrasi Selanjutnya</td>
+                                            <td>&nbsp;&nbsp;:</td>
+                                            <td>&nbsp;&nbsp;</td>
+
+                                        </tr>
+                                    </table>
+                                    <!-- /.comment-text -->
+                                </div>
+                            <?php endif ?>
                         </div>
                         <!-- /.box-footer -->
                         <!-- /.box-footer -->

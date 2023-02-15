@@ -152,11 +152,29 @@ class Item extends CI_Controller
                 redirect('item/add');
             } else {
                 $this->load->library('ciqrcode');
-                $link = $this->input->post('no_seri');
-                $params['data'] = $link;
+                $category_id = $post['category'];
+                $codedepan = generateCodebarang($category_id)->code_category;
+
+                $query = $this->db->query("select max(code_barang) as code from p_item where code_barang like '%$codedepan%'")->row();
+                // var_dump($query);
+                // die;
+                if (empty($post['code_barang'])) {
+
+                    if (is_null($query->code)) {
+                        $code_barang = $codedepan . '001' . '-' . nice_date($post['tanggal_pembelian'], 'Y');
+                    } else {
+                        $pecah = explode('-', $query->code);
+                        $urutan = (int) substr($pecah[0], 3, 3);
+                        $urutan++;
+                        $code_barang = $codedepan . sprintf("%03s", $urutan) . '-' . nice_date($post['tanggal_pembelian'], 'Y');
+                    }
+                } else {
+                    $code_barang = $post['code_barang'];
+                }
+                $params['data'] = site_url('detail/detail_QrCode/') . $code_barang;
                 $params['level'] = 'H';
                 $params['size'] = 10;
-                $params['savename'] = FCPATH . "/assets/logo/$link.png";
+                $params['savename'] = FCPATH . "/assets/logo/$code_barang.png";
                 $this->ciqrcode->generate($params);
 
                 if (@$_FILES['image']['name'] != null) {

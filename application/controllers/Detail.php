@@ -19,7 +19,7 @@ class Detail extends CI_Controller
     function detail_QrCode($id)
     {
         $data['row'] = $this->item_m->get($id)->row();
-        $data['kalibrasi'] = $this->kalibrasi_m->getWhereCodeBarang($id)->row();
+        $data['kalibrasi'] = $this->kalibrasi_m->getWhereCodeBarang($id)->result();
         $this->load->view('detail/detail_QrCode', $data);
     }
 }

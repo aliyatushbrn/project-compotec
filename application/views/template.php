@@ -113,14 +113,6 @@
           <li <?= $this->uri->segment(1) == 'dashboard' || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>>
             <a href=" <?= site_url('dashboard') ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
           </li>
-          <li <?= $this->uri->segment(1) == 'item' ? 'class="active"' : '' ?>>
-            <a href="<?= site_url('item') ?>"><i class="fa fa-industry"></i>Data Peralatan</a>
-          </li>
-          <li>
-          <li <?= $this->uri->segment(1) == 'kalibrasi' ? 'class="active"' : '' ?>>
-            <a href="<?= site_url('kalibrasi') ?>"><i class="fa fa-download"></i> <span>Input Kalibrasi</span></a>
-
-          </li>
           <li class="treeview <?= $this->uri->segment(1) == 'category' || $this->uri->segment(1) == 'pemilik' || $this->uri->segment(1) == 'range' || $this->uri->segment(1) == 'akurasi' ? 'active' : '' ?>">
             <a href="#">
               <i class="fa fa-archive"></i> <span>Master Product</span>
@@ -134,6 +126,9 @@
               <li <?= $this->uri->segment(1) == 'akurasi' ? 'class="active"' : '' ?>><a href=" <?= site_url('akurasi') ?>"><i class="fa fa-circle-o"></i> Akurasi</a></li>
             </ul>
           </li>
+          <li <?= $this->uri->segment(1) == 'item' ? 'class="active"' : '' ?>>
+            <a href="<?= site_url('item') ?>"><i class="fa fa-industry"></i>Data Peralatan</a>
+          </li>
           <li class="treeview <?= $this->uri->segment(1) == 'frekuensi' || $this->uri->segment(1) == 'lembaga' ? 'active' : '' ?>">
             <a href="#">
               <i class="fa  fa-navicon"></i> <span>Master Kalibrasi</span>
@@ -143,6 +138,18 @@
             <ul class="treeview-menu">
               <li <?= $this->uri->segment(1) == 'durasi' ? 'class="active"' : '' ?>><a href="<?= site_url('durasi') ?>"><i class="fa fa-circle-o"></i> Frekuensi Kalibrasi</a></li>
               <li <?= $this->uri->segment(1) == 'lembaga' ? 'class="active"' : '' ?>><a href="<?= site_url('lembaga') ?>"><i class="fa fa-circle-o"></i> Lembaga Kalibrasi</a></li>
+            </ul>
+          </li>
+          <li class="treeview <?= $this->uri->segment(1) == 'kalibrasi' || $this->uri->segment(1) == 'kalibrasi/kadaluarsa' || $this->uri->segment(1) == 'kalibrasi/monitoring' ? 'active' : '' ?>">
+            <a href="#">
+              <i class="fa fa-archive"></i> <span>Kalibrasi</span>
+              <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li <?= $this->uri->segment(1) == 'kalibrasi' ? 'class="active"' : '' ?>><a href=" <?= site_url('kalibrasi') ?>"><i class="fa fa-circle-o"></i>Input Data Kalibrasi </a></li>
+              <li <?= $this->uri->segment(1) == 'kalibrasi/kadaluarsa' ? 'class="active"' : '' ?>><a href=" <?= site_url('kalibrasi/kadaluarsa') ?>"><i class="fa fa-circle-o"></i>Kadaluarsa</a></li>
+              <li <?= $this->uri->segment(1) == 'kalibrasi/monitoring' ? 'class="active"' : '' ?>><a href=" <?= site_url('kalibrasi/monitoring') ?>"><i class="fa fa-circle-o"></i>Monitoring</a></li>
             </ul>
           </li>
           <li class="treeview <?= $this->uri->segment(1) == 'history' ? 'active' : '' ?>">

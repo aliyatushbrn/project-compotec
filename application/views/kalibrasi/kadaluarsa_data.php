@@ -16,7 +16,7 @@
         <div class="box-header">
             <h3 class="box-title">Data Product Items</h3>
             <div class="pull-right">
-                <a href="<?= site_url('item/add') ?>" class="btn btn-primary btn-flat">
+                <a href="<?= site_url('kalibrasi/kadaluarsa') ?>" class="btn btn-primary btn-flat">
                     <i class="fa fa-user-plus"></i> Create Product Items
                 </a>
             </div>

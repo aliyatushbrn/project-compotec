@@ -28,16 +28,8 @@
                     <input type="hidden" name="id" value="<?= $row->item_id ?>">
 
                     <div class="form-group">
-                        <label>No Seri *</label>
-                        <input type="text" name="no_seri" value="<?= $row->no_seri ?>" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="nama_alat_ukur">Nama Alat Ukur*</label>
-                        <input type="text" name="nama_alat_ukur" value="<?= $row->nama_alat_ukur ?>" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="merk">Merk</label>
-                        <input type="text" name="merk" value="<?= $row->merk ?>" class="form-control">
+                        <label>Kode Barang (kosongkan jika ingin generate code otomatis)</label>
+                        <input type="text" name="code_barang" value="<?= $row->code_barang ?>" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Category *</label>
@@ -47,6 +39,14 @@
                             $selectedcategory,
                             ['class' => 'form-control', 'required' => 'required']
                         ) ?>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama_alat_ukur">Nama Alat Ukur*</label>
+                        <input type="text" name="nama_alat_ukur" value="<?= $row->nama_alat_ukur ?>" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="merk">Merk</label>
+                        <input type="text" name="merk" value="<?= $row->merk ?>" class="form-control">
                     </div>
 
                     <div class="form-group">
@@ -58,8 +58,16 @@
                             ['class' => 'form-control', 'required' => 'required']
                         ) ?>
                     </div>
+                    <div class="form-group">
+                        <label>No Seri </label>
+                        <input type="text" name="no_seri" value="<?= $row->no_seri ?>" class="form-control">
+                    </div>
                 </div>
                 <div class="col-md-6 ">
+                    <div class="form-group">
+                        <label>Tanggal Pembelian</label>
+                        <input type="date" name="tanggal_pembelian" value="<?= $row->tanggal_pembelian  ?>" class="form-control" required>
+                    </div>
                     <div class="form-group">
                         <label>Fungsi *</label>
                         <?php echo form_dropdown(
@@ -75,7 +83,7 @@
                             'range',
                             $range,
                             $selectedrange,
-                            ['class' => 'form-control', 'required' => 'required']
+                            ['class' => 'form-control']
                         ) ?>
                     </div>
                     <div class="form-group">
@@ -84,12 +92,8 @@
                             'akurasi',
                             $akurasi,
                             $selectedakurasi,
-                            ['class' => 'form-control', 'required' => 'required']
+                            ['class' => 'form-control']
                         ) ?>
-                    </div>
-                    <div class="form-group">
-                        <label>Tanggal Pembelian</label>
-                        <input type="date" name="tanggal_pembelian" value="<?= $row->tanggal_pembelian  ?>" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label>Image</label>

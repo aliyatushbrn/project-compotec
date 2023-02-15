@@ -48,12 +48,16 @@
                             <input type="text" name="merk" class="form-control" readonly>
                         </div>
                         <div class="form-group">
+                            <label>Pemilik</label>
+                            <input type="text" name="pemilik" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
                             <label>No Seri</label>
                             <input type="text" name="no_seri" class="form-control" readonly>
                         </div>
                         <div class="form-group">
-                            <label>Pemilik</label>
-                            <input type="text" name="pemilik" class="form-control" readonly>
+                            <label>Tanggal Pembelian</label>
+                            <input type="date" name="tanggal_pembelian" class="form-control" readonly>
                         </div>
                         <div class="form-group">
                             <label>Fungsi</label>
@@ -66,10 +70,6 @@
                         <div class="form-group">
                             <label>Akurasi</label>
                             <input type="text" name="akurasi" class="form-control" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label>Tanggal Pembelian</label>
-                            <input type="date" name="tanggal_pembelian" class="form-control" readonly>
                         </div>
                     </div>
                     <div class="col-md-6 ">

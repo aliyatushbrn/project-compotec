@@ -25,6 +25,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Action</th>
                         <th>Code Barang</th>
                         <th>Lembaga Kalibrasi</th>
                         <th>No Sertifikat</th>
@@ -34,7 +35,6 @@
                         <th>External/Internal</th>
                         <th>Tanggal Kalibrasi</th>
                         <th>Selanjutnya</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,6 +42,14 @@
                     foreach ($row->result() as $key => $data) { ?>
                         <tr>
                             <td style="width:5%;"><?= $no++ ?>.</td>
+                            <td class="text-center" width="160px">
+                                <a href="<?= site_url('kalibrasi/edit/' . $data->kalibrasi_id) ?>" class="btn btn-primary btn-xs">
+                                    <i class="fa fa-pencil"></i> Update
+                                </a>
+                                <a href="<?= site_url('kalibrasi/del/' . $data->kalibrasi_id) ?>" onclick="return confirm('Yakin hapus data?')" class="btn btn-danger btn-xs">
+                                    <i class="fa fa-trash"></i> Delete
+                                </a>
+                            </td>
                             <td><?= $data->code_barang ?></td>
                             <td><?= $data->lembaga_name ?></td>
                             <td><?= $data->no_sertifikat ?></td>
@@ -56,14 +64,6 @@
                             <td><?= $data->tanggal_kalibrasi ?></td>
                             <td><?= $data->selanjutnya ?></td>
 
-                            <td class="text-center" width="160px">
-                                <a href="<?= site_url('kalibrasi/edit/' . $data->kalibrasi_id) ?>" class="btn btn-primary btn-xs">
-                                    <i class="fa fa-pencil"></i> Update
-                                </a>
-                                <a href="<?= site_url('kalibrasi/del/' . $data->kalibrasi_id) ?>" onclick="return confirm('Yakin hapus data?')" class="btn btn-danger btn-xs">
-                                    <i class="fa fa-trash"></i> Delete
-                                </a>
-                            </td>
                         </tr>
                     <?php
                     } ?>
