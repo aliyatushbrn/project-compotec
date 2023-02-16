@@ -173,12 +173,12 @@ class kalibrasi extends CI_Controller
         redirect('kalibrasi');
     }
 
-    public function kadaluarsa()
-    {
-        $now = date('Y-m-d');
-        $data['row'] = $this->item_m->kadaluarsa($now);
-        $this->template->load('template', 'kalibrasi/kadaluarsa_data', $data);
-    }
+    // public function kadaluarsa()
+    // {
+    //     $now = date('Y-m-d');
+    //     $data['row'] = $this->item_m->kadaluarsa($now);
+    //     $this->template->load('template', 'kalibrasi/kadaluarsa_data', $data);
+    // }
 
     public function monitoring()
     {
