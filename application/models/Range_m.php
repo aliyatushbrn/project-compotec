@@ -10,6 +10,7 @@ class range_m extends CI_Model
         if ($id != null) {
             $this->db->where('range_id', $id);
         }
+        $this->db->order_by('name', 'asc');
         $query = $this->db->get();
         return $query;
     }

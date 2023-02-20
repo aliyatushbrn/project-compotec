@@ -58,24 +58,15 @@
                             ['class' => 'form-control', 'required' => 'required']
                         ) ?>
                     </div>
+                </div>
+                <div class="col-md-6 ">
                     <div class="form-group">
                         <label>No Seri </label>
                         <input type="text" name="no_seri" value="<?= $row->no_seri ?>" class="form-control">
                     </div>
-                </div>
-                <div class="col-md-6 ">
                     <div class="form-group">
                         <label>Tanggal Pembelian</label>
                         <input type="date" name="tanggal_pembelian" value="<?= $row->tanggal_pembelian  ?>" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Fungsi *</label>
-                        <?php echo form_dropdown(
-                            'fungsi',
-                            $fungsi,
-                            $selectedfungsi,
-                            ['class' => 'form-control', 'required' => 'required']
-                        ) ?>
                     </div>
                     <div class="form-group">
                         <label>Range *</label>
@@ -83,7 +74,7 @@
                             'range',
                             $range,
                             $selectedrange,
-                            ['class' => 'form-control']
+                            ['class' => 'form-control', 'required' => 'required']
                         ) ?>
                     </div>
                     <div class="form-group">
@@ -92,7 +83,7 @@
                             'akurasi',
                             $akurasi,
                             $selectedakurasi,
-                            ['class' => 'form-control']
+                            ['class' => 'form-control', 'required' => 'required']
                         ) ?>
                     </div>
                     <div class="form-group">

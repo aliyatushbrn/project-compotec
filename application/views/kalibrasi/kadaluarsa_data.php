@@ -16,7 +16,6 @@
         <div class="box-header">
             <h3 class="box-title">Data Product Items</h3>
             <div class="pull-right">
-                <i class="fa fa-user-plus"></i> Create Product Items
                 </a>
             </div>
         </div>

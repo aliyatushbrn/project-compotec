@@ -8,12 +8,15 @@ class dashboard extends CI_Controller
 	{
 		parent::__construct();
 		check_not_login();
-		$this->load->model(['dashboard_m', 'item_m']);
+		$this->load->model(['dashboard_m', 'item_m', 'kalibrasi_m']);
 	}
 
 	public function index()
 	{
-		$data['row'] = $this->dashboard_m->get();
+		$now = date('Y-m-d');
+		$data['row'] = $this->item_m->kadaluarsa($now);
+		$data['kalibrasi'] = $this->item_m->monitoring($now)->result();
+
 		$this->template->load('template', 'dashboard/dashboard_data', $data);
 	}
 

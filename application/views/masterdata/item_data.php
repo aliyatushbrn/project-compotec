@@ -34,7 +34,7 @@
                         <th>Pemilik</th>
                         <th>No Seri</th>
                         <th>Tanggal Pembelian</th>
-                        <th>Fungsi</th>
+                        <!-- <th>Fungsi</th> -->
                         <th>Range</th>
                         <th>Akurasi</th>
                         <th>Tanggal Kalibrasi</th>
@@ -44,6 +44,7 @@
                     </td>
                 </thead>
                 <tbody>
+
                     <?php $no = 1;
                     foreach ($row->result() as $key => $data) { ?>
                         <tr>
@@ -69,7 +70,6 @@
                             <td> <?= $data->pemilik_name ?></td>
                             <td><?= $data->no_seri ?></td>
                             <td> <?= $data->tanggal_pembelian ?></td>
-                            <td> <?= $data->fungsi ?></td>
                             <td> <?= $data->range_name ?></td>
                             <td> <?= $data->akurasi_name ?></td>
                             <td> <?= $data->kalibrasi ?></td>

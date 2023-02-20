@@ -143,7 +143,7 @@
                                             <tr>
                                                 <td>Frekuensi Kalibrasi</td>
                                                 <td>&nbsp;&nbsp;:</td>
-                                                <td>&nbsp;&nbsp;<?= $item->durasi_kalibrasi ?></td>
+                                                <td>&nbsp;&nbsp;<?= '1x/' . $item->durasi_kalibrasi . 'y' ?></td>
                                             </tr>
                                             <tr>
                                                 <td>Ext/Int</td>

@@ -35,7 +35,7 @@
                     foreach ($row->result() as $key => $data) { ?>
                         <tr>
                             <td style="width:5%;"><?= $no++ ?>.</td>
-                            <td><?= $data->durasi_kalibrasi ?></td>
+                            <td><?= '1x/' . $data->durasi_kalibrasi . 'y' ?></td>
                             <td class="text-center" width="160px">
                                 <a href="<?= site_url('durasi/edit/' . $data->id_durasi_kalibrasi) ?>" class="btn btn-primary btn-xs">
                                     <i class="fa fa-pencil"></i> Update

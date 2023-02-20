@@ -43,3 +43,11 @@ function generateCodebarang($id)
     $query = $ci->category_m->get($id);
     return $query->row();
 }
+
+function check_data($tabel, $data)
+{
+    $ci = &get_instance();
+    $ci->db->where($data);
+    $ci->db->from($tabel);
+    return $ci->db->count_all_results();
+}

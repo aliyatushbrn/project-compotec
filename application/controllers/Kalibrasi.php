@@ -53,7 +53,7 @@ class kalibrasi extends CI_Controller
         $query_item = $this->item_m->get();
         $item[null] = '- Pilih -';
         foreach ($query_item->result() as $itm) {
-            $item[$itm->code_barang] = $itm->code_barang;
+            $item[$itm->code_barang] = $itm->code_barang . ' - ' . $itm->nama_alat_ukur;
         }
 
         $query_lembaga = $this->lembaga_m->get();
@@ -82,7 +82,7 @@ class kalibrasi extends CI_Controller
             $query_item = $this->item_m->get();
             $item[null] = '- Pilih -';
             foreach ($query_item->result() as $itm) {
-                $item[$itm->code_barang] = $itm->code_barang;
+                $item[$itm->code_barang] = $itm->code_barang . ' - ' . $itm->nama_alat_ukur;
             }
             $query_lembaga = $this->lembaga_m->get();
             $lembaga[null] = '- Pilih -';
@@ -180,10 +180,10 @@ class kalibrasi extends CI_Controller
     //     $this->template->load('template', 'kalibrasi/kadaluarsa_data', $data);
     // }
 
-    public function monitoring()
-    {
-        $now = date('Y-m-d');
-        $data['row'] = $this->item_m->monitoring($now);
-        $this->template->load('template', 'kalibrasi/monitoring_data', $data);
-    }
+    // public function monitoring()
+    // {
+    //     $now = date('Y-m-d');
+    //     $data['row'] = $this->item_m->monitoring($now);
+    //     $this->template->load('template', 'kalibrasi/monitoring_data', $data);
+    // }
 }

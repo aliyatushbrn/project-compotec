@@ -27,6 +27,7 @@
                             <label>durasi</label>
                             <input type="hidden" name="id" value="<?= $row->id_durasi_kalibrasi ?>">
                             <input type="text" name="durasi_kalibrasi" value="<?= $row->durasi_kalibrasi ?>" class="form-control" required>
+
                         </div>
                         <div class="form-group">
                             <button type="submit" name="<?= $page ?>" class="btn btn-success btn-flat">

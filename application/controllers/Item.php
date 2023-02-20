@@ -45,7 +45,6 @@ class Item extends CI_Controller
         $item->nama_alat_ukur = null;
         $item->jenisalat = null;
         $item->merk = null;
-        $item->fungsi = null;
         $item->range = null;
         $item->akurasi = null;
         $item->tanggal_pembelian = null;
@@ -60,11 +59,6 @@ class Item extends CI_Controller
         $pemilik[null] = '- Pilih -';
         foreach ($query_pemilik->result() as $pmlk) {
             $pemilik[$pmlk->pemilik_id] = $pmlk->name;
-        }
-        $query_category = $this->category_m->get();
-        $fungsi[null] = '- Pilih -';
-        foreach ($query_category->result() as $fgs) {
-            $fungsi[$fgs->fungsi] = $fgs->fungsi;
         }
         $query_range = $this->range_m->get();
         $range[null] = '- Pilih -';
@@ -81,7 +75,6 @@ class Item extends CI_Controller
             'row' => $item,
             'category' => $category, 'selectedcategory' => null,
             'pemilik' => $pemilik, 'selectedpemilik' => null,
-            'fungsi' => $fungsi, 'selectedfungsi' => null,
             'range' => $range, 'selectedrange' => null,
             'akurasi' => $akurasi, 'selectedakurasi' => null,
         );
@@ -104,11 +97,6 @@ class Item extends CI_Controller
             foreach ($query_pemilik->result() as $pmlk) {
                 $pemilik[$pmlk->pemilik_id] = $pmlk->name;
             }
-            $query_category = $this->category_m->get();
-            $fungsi[null] = '- Pilih -';
-            foreach ($query_category->result() as $fgs) {
-                $fungsi[$fgs->fungsi] = $fgs->fungsi;
-            }
             $query_range = $this->range_m->get();
             $range[null] = '- Pilih -';
             foreach ($query_range->result() as $rng) {
@@ -125,7 +113,6 @@ class Item extends CI_Controller
                 'row' => $item,
                 'category' => $category, 'selectedcategory' => $item->category_id,
                 'pemilik' => $pemilik, 'selectedpemilik' => $item->pemilik_id,
-                'fungsi' => $fungsi, 'selectedfungsi' => $item->fungsi,
                 'range' => $range, 'selectedrange' => $item->range_id,
                 'akurasi' => $akurasi, 'selectedakurasi' => $item->akurasi_id,
             );
@@ -200,7 +187,7 @@ class Item extends CI_Controller
                 }
             }
         } else if (isset($_POST['edit'])) {
-            if ($this->item_m->check_barcode($post[''], $post['id'])->num_rows() > 0) {
+            if ($this->item_m->check_barcode($post['no_seri'], $post['id'])->num_rows() > 0) {
                 $this->session->set_flashdata('error', "barcode $post[barcode] sudah dipakai barang lain");
                 redirect('item/edit/' . $post['id']);
                 // yang kedua ini

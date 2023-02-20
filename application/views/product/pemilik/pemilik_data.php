@@ -37,12 +37,18 @@
                             <td style="width:5%;"><?= $no++ ?>.</td>
                             <td><?= $data->name ?></td>
                             <td class="text-center" width="160px">
-                                <a href="<?= site_url('pemilik/edit/' . $data->pemilik_id) ?>" class="btn btn-primary btn-xs">
-                                    <i class="fa fa-pencil"></i> Update
-                                </a>
-                                <a href="<?= site_url('pemilik/del/' . $data->pemilik_id) ?>" onclick="return confirm('Yakin hapus data?')" class="btn btn-danger btn-xs">
-                                    <i class="fa fa-trash"></i> Delete
-                                </a>
+                                <?php if (check_data('p_item', array(
+                                    'pemilik_id' => $data->pemilik_id
+                                )) == 0) : ?>
+                                    <a href="<?= site_url('pemilik/edit/' . $data->pemilik_id) ?>" class="btn btn-primary btn-xs">
+                                        <i class="fa fa-pencil"></i> Update
+                                    </a>
+                                    <a href="<?= site_url('pemilik/del/' . $data->pemilik_id) ?>" onclick="return confirm('Yakin hapus data?')" class="btn btn-danger btn-xs">
+                                        <i class="fa fa-trash"></i> Delete
+                                    </a>
+                                <?php else : ?>
+                                    Pemilik telah terpakai
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php

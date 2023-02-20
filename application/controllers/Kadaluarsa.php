@@ -10,6 +10,7 @@ class Kadaluarsa extends CI_Controller
         check_not_login();
         $this->load->model('kadaluarsa_m');
         $this->load->model('item_m');
+        $this->load->model('dashboard_m');
     }
 
     public function index()

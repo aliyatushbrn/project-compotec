@@ -59,7 +59,7 @@
                                 <?php } ?>
                             </td>
                             <td><?= $data->keterangan ?></td>
-                            <td><?= $data->durasi_kalibrasi ?></td>
+                            <td><?= '1x/' . $data->durasi_kalibrasi . 'y' ?></td>
                             <td><?= $data->ext_int ?></td>
                             <td><?= $data->tanggal_kalibrasi ?></td>
                             <td><?= $data->selanjutnya ?></td>

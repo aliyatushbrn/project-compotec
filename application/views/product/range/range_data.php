@@ -36,12 +36,18 @@
                             <td style="width:5%;"><?= $no++ ?>.</td>
                             <td><?= $data->name ?></td>
                             <td class="text-center" width="160px">
-                                <a href="<?= site_url('range/edit/' . $data->range_id) ?>" class="btn btn-primary btn-xs">
-                                    <i class="fa fa-pencil"></i> Update
-                                </a>
-                                <a href="<?= site_url('range/del/' . $data->range_id) ?>" onclick="return confirm('Yakin hapus data?')" class="btn btn-danger btn-xs">
-                                    <i class="fa fa-trash"></i> Delete
-                                </a>
+                                <?php if (check_data('p_item', array(
+                                    'range_id' => $data->range_id
+                                )) == 0) : ?>
+                                    <a href="<?= site_url('range/edit/' . $data->range_id) ?>" class="btn btn-primary btn-xs">
+                                        <i class="fa fa-pencil"></i> Update
+                                    </a>
+                                    <a href="<?= site_url('range/del/' . $data->range_id) ?>" onclick="return confirm('Yakin hapus data?')" class="btn btn-danger btn-xs">
+                                        <i class="fa fa-trash"></i> Delete
+                                    </a>
+                                <?php else : ?>
+                                    Range telah terpakai
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php
