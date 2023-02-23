@@ -13,10 +13,17 @@ class dashboard extends CI_Controller
 
 	public function index()
 	{
-		$now = date('Y-m-d');
-		$data['row'] = $this->item_m->kadaluarsa($now);
-		$data['kalibrasi'] = $this->item_m->monitoring($now)->result();
-
+		date_default_timezone_set("Asia/Jakarta");
+		$data['now'] = date('Y-m-d');
+		if (isset($_POST['now'])) {
+			$now = $this->input->post('now');
+			// var_dump($now);
+			// exit;
+			$data['monitoring'] = $this->item_m->monitoring($now);
+		} else {
+			$data['monitoring'] = $this->item_m->monitoring();
+		}
+		// $data['kadaluarsa'] = $this->item_m->kadaluarsa($now);
 		$this->template->load('template', 'dashboard/dashboard_data', $data);
 	}
 

@@ -126,8 +126,8 @@
               <li <?= $this->uri->segment(1) == 'akurasi' ? 'class="active"' : '' ?>><a href=" <?= site_url('akurasi') ?>"><i class="fa fa-circle-o"></i> Akurasi</a></li>
             </ul>
           </li>
-          <li <?= $this->uri->segment(1) == 'item' ? 'class="active"' : '' ?>>
-            <a href="<?= site_url('item') ?>"><i class="fa fa-industry"></i>Data Peralatan</a>
+          <li <?= $this->uri->segment(1) == 'item'  || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>>
+            <a href="<?= site_url('item') ?>"><i class="fa fa-industry"></i> <span>Peralatan</span></a>
           </li>
           <li class="treeview <?= $this->uri->segment(1) == 'durasi' || $this->uri->segment(1) == 'lembaga' ? 'active' : '' ?>">
             <a href="#">
@@ -163,8 +163,10 @@
             </ul>
           </li>
           <li class="header">SETTINGS</li>
-          <li><a href="<?= site_url('user') ?>"><i class="fa fa-users"></i> <span>Users</span></a></i>
-
+          </li>
+          <li <?= $this->uri->segment(1) == 'user'  || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>>
+            <a href="<?= site_url('user') ?>"><i class="fa fa-users"></i> <span>User</span></a>
+          </li>
         </ul>
       </section>
     </aside>
@@ -189,6 +191,6 @@
     <script>
       $(document).ready(function() {
         $('.select2').select2()
-        $('#table1').DataTable()
+        $('.table#table1').DataTable()
       })
     </script>

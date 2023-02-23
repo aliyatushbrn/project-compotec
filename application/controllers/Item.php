@@ -23,14 +23,6 @@ class Item extends CI_Controller
 
     public function index()
     {
-        $this->load->library('ciqrcode');
-        $link = "123";
-        $params['data'] = $link;
-        $params['level'] = 'H';
-        $params['size'] = 10;
-        $params['savename'] = FCPATH . "/assets/logo/$link.png";
-        $this->ciqrcode->generate($params);
-
         $data['row'] = $this->item_m->get();
         $this->template->load('template', 'masterdata/item_data', $data);
     }

@@ -15,7 +15,7 @@ class Monitoring extends CI_Controller
     public function index()
     {
         $now = date('Y-m-d');
-        $data['row'] = $this->item_m->monitoring($now);
+        $data['row'] = $this->item_m->monitor($now);
         $this->template->load('template', 'kalibrasi/monitoring_data', $data);
     }
 }
