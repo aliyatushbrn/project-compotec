@@ -13,7 +13,10 @@ class dashboard extends CI_Controller
 
 	public function index()
 	{
+
 		date_default_timezone_set("Asia/Jakarta");
+		// var_dump(date('Y-m-d') >= notiflist('2023-03-15'));
+		// exit;
 		$data['now'] = date('Y-m-d');
 		if (isset($_POST['now'])) {
 			$now = $this->input->post('now');

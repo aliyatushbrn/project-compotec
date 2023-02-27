@@ -13,6 +13,7 @@ class kalibrasi extends CI_Controller
 
     public function index()
     {
+
         $data['row'] = $this->kalibrasi_m->get();
         $this->template->load('template', 'datakalibrasi/kalibrasi_data', $data);
     }

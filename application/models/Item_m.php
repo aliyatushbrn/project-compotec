@@ -123,11 +123,15 @@ class item_m extends CI_Model
             $this->db->like('p_item.selanjutnya', $now);
         }
 
-        $this->db->order_by('jenisalat', 'desc');
+        $this->db->order_by('p_item.selanjutnya', 'desc');
         $query = $this->db->get();
         return $query;
     }
-    public function monitor($now)
+
+    // public function ()
+
+
+    public function monitor($now = null)
     {
         $this->db->select('p_item.*, p_category.jenisalat as jenisalat, p_pemilik.name as pemilik_name, p_range.name as range_name, p_akurasi.name as akurasi_name ');
         $this->db->from('p_item');
