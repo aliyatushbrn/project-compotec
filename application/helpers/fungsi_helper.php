@@ -31,18 +31,21 @@ function notiflist($selanjutnya)
 {
     $date = date_create($selanjutnya);
     date_sub($date, date_interval_create_from_date_string("30 days"));
-    return date_format($date, "Y-m-d    ");
+    return date_format($date, "Y-m-d");
 }
 
 function day($selanjutnya)
 {
     $pecah = explode("-", $selanjutnya);
+    // var_dump($pecah);
+    // exit;
     $day = $pecah[2];
     $month = $pecah[1];
     $year = $pecah[0];
     $days    = (int)((mktime(0, 0, 0, $month, $day, $year) - time()) / 86400);
     return "Masih ada <b>$days</b> hari lagi, sampai tanggal $day/$month/$year";
 }
+
 // function add_admin()
 // {
 //     $ci = &get_instance();

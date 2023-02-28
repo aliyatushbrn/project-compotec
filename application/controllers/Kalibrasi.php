@@ -111,14 +111,16 @@ class kalibrasi extends CI_Controller
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
             $config['upload_path']       = './uploads/file_sertifikat/';
-            $config['allowed_types']     = 'png|jpg|jpeg';
-            $config['max_size']          = 0;
-            $config['file_name']         = 'kalibrasi-' . date('ymd') . '-' . substr(md5(rand()), 0, 10);
+            $config['allowed_types']     = 'png|jpg|jpeg|docx|xls|ppt';
+            $config['max_size']          = 4084;
+            $config['file_name']         = 'kalibrasi' . date('ymd') . '-' . substr(md5(rand()), 0, 10);
             $this->load->library('upload', $config);
 
-            if (@$_FILES['file_sertifikat']['name'] != null) {
+            if (@$_FILES['file_sertifikat']['name']) {
                 if ($this->upload->do_upload('file_sertifikat')) {
                     $post['file_sertifikat'] = $this->upload->data('file_name');
+                    // var_dump($post);
+                    // exit;
                     $this->kalibrasi_m->add($post);
                     if ($this->db->affected_rows() > 0) {
                         $this->session->set_flashdata('success', 'Data berhasil disimpan');

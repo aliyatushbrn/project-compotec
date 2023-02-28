@@ -130,8 +130,10 @@
                                                 <td>File Sertifikat </td>
 
                                                 <td>&nbsp;&nbsp;:</td>
-                                                <td>&nbsp;&nbsp;<?= $item->file_sertifikat ?>
-                                                    <a href="">Download Sertifikat</a></span>
+                                                <td>
+                                                    <a download now href="<?= base_url('uploads/file_sertifikat/' . $item->file_sertifikat . '.png') ?>" class="btn btn-default btn-xs">
+                                                        Download Sertifikat <i class="fa fa-pencil-square"></i>
+                                                    </a>
                                                 </td>
 
                                             </tr>

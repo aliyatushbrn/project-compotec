@@ -88,8 +88,17 @@
                         </div>
 
                         <div class="form-group">
-                            <label>File Sertikat</label>
+                            <label>file sertifikat</label>
+                            <?php if ($page == 'edit') {
+                                if ($row->file_sertifikat != null) { ?>
+                                    <div style="margin-bottom:4px">
+                                        <img src="<?= base_url('uploads/file_sertifikat/' . $row->file_sertifikat) ?>" style="width:80%">
+                                    </div>
+                            <?php
+                                }
+                            } ?>
                             <input type="file" name="file_sertifikat" class="form-control">
+                            <small>(Biarkan kosong jika tidak <?= $page == 'edit' ? 'diganti' : 'ada' ?>)</small>
                         </div>
 
                         <div class="form-group">
