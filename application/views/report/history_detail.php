@@ -34,7 +34,7 @@
     </header>
 
 
-    <a href="<?= site_url('detail/detail_QrCode') ?>">
+    <a href="<?= site_url('historyD/detail') ?>">
         <div class="box-body">
             <div class="row">
                 <div class="col-md-12">
