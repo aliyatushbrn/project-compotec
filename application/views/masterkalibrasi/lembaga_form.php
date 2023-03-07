@@ -25,7 +25,8 @@
                         <div class="form-group">
                             <label>lembaga</label>
                             <input type="hidden" name="id" value="<?= $row->lembaga_id ?>">
-                            <input type="text" name="lembaga_name" value="<?= $row->name ?>" class="form-control" required>
+                            <textarea type="text" name="lembaga_name" value="<?= $row->name ?>" class="form-control" required>
+                            <?= form_error('lembaga_name') ?> </textarea>
                         </div>
                         <div class="form-group">
                             <button type="submit" name="<?= $page ?>" class="btn btn-success btn-flat">

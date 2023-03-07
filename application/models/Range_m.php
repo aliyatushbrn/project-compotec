@@ -18,7 +18,7 @@ class range_m extends CI_Model
     public function add($post)
     {
         $params = [
-            'name' => $post['range_name'],
+            'name' => $post['name'],
         ];
         $this->db->insert('p_range', $params);
     }
@@ -26,11 +26,22 @@ class range_m extends CI_Model
     public function edit($post)
     {
         $params = [
-            'name' => $post['range_name'],
+            'name' => $post['name'],
             'updated' => date('Y-m-d H:i:s')
         ];
         $this->db->where('range_id', $post['id']);
         $this->db->update('p_range', $params);
+    }
+
+    function check_range($code, $id = null)
+    {
+        $this->db->from('p_range');
+        $this->db->where('name', $code);
+        if ($id != null) {
+            $this->db->where('range_id', $id);
+        }
+        $query = $this->db->get();
+        return $query;
     }
 
     public function del($id)

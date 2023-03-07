@@ -127,7 +127,7 @@ class Item extends CI_Controller
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
             if ($this->item_m->check_barcode($post['no_seri'])->num_rows() > 0) {
-                $this->session->set_flashdata('error', "barcode $post[barcode] sudah dipakai barang lain");
+                $this->session->set_flashdata('error', "no seri $post[barcode] sudah dipakai barang lain");
                 redirect('item/add');
             } else {
                 $this->load->library('ciqrcode');
@@ -180,7 +180,7 @@ class Item extends CI_Controller
             }
         } else if (isset($_POST['edit'])) {
             if ($this->item_m->check_barcode($post['no_seri'], $post['id'])->num_rows() > 0) {
-                $this->session->set_flashdata('error', "barcode $post[barcode] sudah dipakai barang lain");
+                $this->session->set_flashdata('error', "no seri $post[barcode] sudah dipakai barang lain");
                 redirect('item/edit/' . $post['id']);
                 // yang kedua ini
             } else {

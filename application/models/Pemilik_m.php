@@ -17,7 +17,7 @@ class pemilik_m extends CI_Model
     public function add($post)
     {
         $params = [
-            'name' => $post['pemilik_name'],
+            'name' => $post['name'],
         ];
         $this->db->insert('p_pemilik', $params);
     }
@@ -25,11 +25,22 @@ class pemilik_m extends CI_Model
     public function edit($post)
     {
         $params = [
-            'name' => $post['pemilik_name'],
+            'name' => $post['name'],
             'updated' => date('Y-m-d H:i:s')
         ];
         $this->db->where('pemilik_id', $post['id']);
         $this->db->update('p_pemilik', $params);
+    }
+
+    function check_pemilik($code, $id = null)
+    {
+        $this->db->from('p_pemilik');
+        $this->db->where('name', $code);
+        if ($id != null) {
+            $this->db->where('pemilik_id', $id);
+        }
+        $query = $this->db->get();
+        return $query;
     }
 
     public function del($id)

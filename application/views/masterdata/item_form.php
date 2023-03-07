@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Pemilik *</label>
+                        <label>Departement *</label>
                         <?php echo form_dropdown(
                             'pemilik',
                             $pemilik,

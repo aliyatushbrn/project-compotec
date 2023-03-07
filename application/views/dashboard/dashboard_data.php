@@ -8,11 +8,13 @@
                     <ul>
                         <?php foreach ($monitoring->result() as $item) { ?>
                             <?php if ($now >= notiflist($item->selanjutnya)) : ?>
-                                <li>
-
-                                    <?= day($item->selanjutnya) ?>
-
-                                </li>
+                                <?php if ($item->selanjutnya >= date('Y-m-d')) : ?>
+                                    <li>
+                                        <?php if ($now >= notiflist($item->selanjutnya)) {
+                                            echo " " . ' ' . $item->nama_alat_ukur  . ' ' . day($item->selanjutnya);
+                                        } ?>
+                                    </li>
+                                <?php endif; ?>
                             <?php endif; ?>
 
                         <?php } ?>
@@ -38,15 +40,31 @@
             <table class="table table-bordered table-striped" id="table1">
                 <thead>
                     <tr>
-                        <th>Status</th>
                         <th>Nama Barang</th>
                         <th>Tanggal Kalibrasi</th>
                         <th>Tanggal Kalibrasi Selanjutnya</th>
+                        <th>Bulan</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($monitoring->result() as $item) { ?>
                         <tr>
+
+                            <td> <?= $item->nama_alat_ukur ?></td>
+                            <td>
+                                <?= $item->kalibrasi ?>
+                            </td>
+                            <td>
+                                <?= $item->selanjutnya ?>
+                            </td>
+                            <td>
+                                <?php
+                                $date = date_create($item->selanjutnya);
+                                date_sub($date, date_interval_create_from_date_string("0 days"));
+                                echo date_format($date, "M");
+                                ?>
+                            </td>
                             <td>
 
                                 <?php if (check_data('p_item', array(
@@ -58,15 +76,6 @@
                                     <span class="label label-warning">Not Yet </span>
 
                                 <?php endif; ?>
-                            </td>
-
-                            <td> <?= $item->nama_alat_ukur ?></td>
-                            <td>
-                                <?= $item->kalibrasi ?>
-                            </td>
-                            <td>
-                                <?= $item->selanjutnya
-                                ?>
                             </td>
                         </tr>
 

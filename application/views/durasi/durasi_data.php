@@ -1,10 +1,9 @@
 <section class="content-header">
-    <h1>durasi
-        <small>Satuan Barang</small>
+    <h1>Frekuensi
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">durasi</i>
+        <li class="active">Frekuensi</i>
     </ol>
 </section>
 
@@ -13,7 +12,7 @@
     <?php $this->view('messages') ?>
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Data durasi</h3>
+            <h3 class="box-title">Data Frekuensi</h3>
             <div class="pull-right">
                 <a href="<?= site_url('durasi/add') ?>" class="btn btn-primary btn-flat">
                     <i class="fa fa-plus"></i> Create
@@ -26,7 +25,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>durasi</th>
+                        <th>Frekuensi</th>
                         <th>Action</th>
                     </tr>
                 </thead>

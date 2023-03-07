@@ -1,9 +1,9 @@
 <section class="content-header">
-    <h1>durasi
+    <h1>Frekuensi
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">durasi</i>
+        <li class="active">Frekuensi</i>
     </ol>
 </section>
 
@@ -12,7 +12,7 @@
 
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title"><?= ucfirst($page) ?>durasi</h3>
+            <h3 class="box-title"><?= ucfirst($page) ?>Frekuensi</h3>
             <div class="pull-right">
                 <a href="<?= site_url('durasi') ?>" class="btn btn-warning btn-flat">
                     <i class="fa fa-undo"></i> Backs
@@ -24,7 +24,7 @@
                 <div class="col-md-4 col-md-offset-4">
                     <form action="<?= site_url('durasi/process') ?>" method="post">
                         <div class="form-group">
-                            <label>durasi</label>
+                            <label>Frekuensi</label>
                             <input type="hidden" name="id" value="<?= $row->id_durasi_kalibrasi ?>">
                             <input type="text" name="durasi_kalibrasi" value="<?= $row->durasi_kalibrasi ?>" class="form-control" required>
 

@@ -121,7 +121,7 @@
             </a>
             <ul class="treeview-menu">
               <li <?= $this->uri->segment(1) == 'category' ? 'class="active"' : '' ?>><a href=" <?= site_url('category') ?>"><i class="fa fa-circle-o"></i> Category</a></li>
-              <li <?= $this->uri->segment(1) == 'pemilik' ? 'class="active"' : '' ?>><a href=" <?= site_url('pemilik') ?>"><i class="fa fa-circle-o"></i> Pemilik</a></li>
+              <li <?= $this->uri->segment(1) == 'pemilik' ? 'class="active"' : '' ?>><a href=" <?= site_url('pemilik') ?>"><i class="fa fa-circle-o"></i> Departement</a></li>
               <li <?= $this->uri->segment(1) == 'range' ? 'class="active"' : '' ?>><a href=" <?= site_url('range') ?>"><i class="fa fa-circle-o"></i> Range</a></li>
               <li <?= $this->uri->segment(1) == 'akurasi' ? 'class="active"' : '' ?>><a href=" <?= site_url('akurasi') ?>"><i class="fa fa-circle-o"></i> Akurasi</a></li>
             </ul>

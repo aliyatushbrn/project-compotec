@@ -9,7 +9,7 @@
 </section>
 
 <!-- Main content -->
-
+<?php $this->view('messages') ?>
 <div class="box">
     <div class="box-header">
         <h3 class="box-title"><?= ucfirst($page) ?>Category</h3>

@@ -40,18 +40,14 @@
                             <td><?= $data->jenisalat ?></td>
                             <td><?= $data->fungsi ?></td>
                             <td class="text-center" width="160px">
-                                <?php if (check_data('p_item', array(
-                                    'category_id' => $data->category_id
-                                )) == 0) : ?>
-                                    <a href="<?= site_url('category/edit/' . $data->category_id) ?>" class="btn btn-primary btn-xs">
-                                        <i class="fa fa-pencil"></i> Update
-                                    </a>
-                                    <a href="<?= site_url('category/del/' . $data->category_id) ?>" onclick="return confirm('Yakin hapus data?')" class="btn btn-danger btn-xs">
-                                        <i class="fa fa-trash"></i> Delete
-                                    </a>
-                                <?php else : ?>
-                                    category telah terpakai
-                                <?php endif; ?>
+
+                                <a href="<?= site_url('category/edit/' . $data->category_id) ?>" class="btn btn-primary btn-xs">
+                                    <i class="fa fa-pencil"></i> Update
+                                </a>
+                                <a href="<?= site_url('category/del/' . $data->category_id) ?>" onclick="return confirm('Yakin hapus data?')" class="btn btn-danger btn-xs">
+                                    <i class="fa fa-trash"></i> Delete
+                                </a>
+
                             </td>
                         </tr>
                     <?php

@@ -11,3 +11,4 @@
         <i class="icon fa fa-ban"></i> <?= strip_tags(str_replace('</p>', '', $this->session->flashdata('error'))); ?>
     </div>
 <?php } ?>
+<!--  -->

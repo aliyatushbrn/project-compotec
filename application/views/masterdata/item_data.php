@@ -31,7 +31,7 @@
                         <th>Category</th>
                         <th>Nama Alat Ukur</th>
                         <th>Merk</th>
-                        <th>Pemilik</th>
+                        <th>Departement</th>
                         <th>No Seri</th>
                         <th>Tanggal Pembelian</th>
                         <!-- <th>Fungsi</th> -->

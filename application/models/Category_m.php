@@ -36,6 +36,17 @@ class category_m extends CI_Model
         $this->db->update('p_category', $params);
     }
 
+    function  check_code($code, $id = null)
+    {
+        $this->db->from('p_category');
+        $this->db->where('code_category', $code);
+        if ($id != null) {
+            $this->db->where('category_id', $id);
+        }
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function del($id)
     {
         $this->db->where('category_id', $id);

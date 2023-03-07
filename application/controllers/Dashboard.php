@@ -78,6 +78,10 @@ class dashboard extends CI_Controller
 	// 	$this->email->subject('Email Test');
 	// 	$this->email->message('Testing the email class.');
 
-	// 	$this->email->send();
+	// 	if ($this->email->send()) {
+	// 		echo 'Email sent.';
+	// 	} else {
+	// 		show_error($this->email->print_debugger());
+	// 	}
 	// }
 }

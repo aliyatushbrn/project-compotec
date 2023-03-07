@@ -53,8 +53,16 @@ class Category extends CI_Controller
     {
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
+            if ($this->category_m->check_code($post['code_category'])->num_rows() > 0) {
+                $this->session->set_flashdata('error', "Code $post[code_category] sudah ada");
+                redirect('category/add');
+            }
             $this->category_m->add($post);
         } else if (isset($_POST['edit'])) {
+            if ($this->category_m->check_code($post['code_category'])->num_rows() > 0) {
+                $this->session->set_flashdata('error', "Code $post[code_category] sudah ada");
+                redirect('category/edit/' . $post['id']);
+            }
             $this->category_m->edit($post);
         }
         if ($this->db->affected_rows() > 0) {
@@ -65,6 +73,16 @@ class Category extends CI_Controller
 
     public function del($id)
     {
+
+        if (check_data('p_item', array(
+            'category_id' => $id
+        )) > 0) {
+            // var_dump('tes');
+            // exit;
+            $this->session->set_flashdata('error', 'Data sudah terpakai');
+            redirect('category');
+        }
+
         $this->category_m->del($id);
         if ($this->db->affected_rows() > 0) {
             $this->session->set_flashdata('success', 'Data berhasil dihapus');

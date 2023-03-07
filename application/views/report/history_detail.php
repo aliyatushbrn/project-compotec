@@ -69,41 +69,6 @@
                                     <td>&nbsp;&nbsp;:</td>
                                     <td>&nbsp;&nbsp;<?= $row->nama_alat_ukur ?></td>
                                 </tr>
-                                <tr>
-                                    <td>Merk</td>
-                                    <td>&nbsp;&nbsp;:</td>
-                                    <td>&nbsp;&nbsp;<?= $row->merk ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Category</td>
-                                    <td>&nbsp;&nbsp;:</td>
-                                    <td>&nbsp;&nbsp;<?= $row->jenisalat ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Pemilik</td>
-                                    <td>&nbsp;&nbsp;:</td>
-                                    <td>&nbsp;&nbsp;<?= $row->pemilik_name ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Fungsi</td>
-                                    <td>&nbsp;&nbsp;:</td>
-                                    <td>&nbsp;&nbsp;<?= $row->fungsi ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Range</td>
-                                    <td>&nbsp;&nbsp;:</td>
-                                    <td>&nbsp;&nbsp;<?= $row->range_name ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Akurasi</td>
-                                    <td>&nbsp;&nbsp;:</td>
-                                    <td>&nbsp;&nbsp;<?= $row->akurasi_name ?></td>
-                                </tr>
-                                <tr>
-                                    <td>Tanggal Pembelian</td>
-                                    <td>&nbsp;&nbsp;:</td>
-                                    <td>&nbsp;&nbsp;<?= $row->tanggal_pembelian ?></td>
-                                </tr>
                             </table>
                             <br>
                             <button type="button" class="btn btn-default btn-xs"><i class=""></i>Tanggal Kalibrasi Terakhir : <?= $row->kalibrasi ?></button>

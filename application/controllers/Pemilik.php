@@ -50,8 +50,16 @@ class pemilik extends CI_Controller
     {
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
+            if ($this->pemilik_m->check_pemilik($post['name'])->num_rows() > 0) {
+                $this->session->set_flashdata('error', "pemilik $post[name] sudah ada");
+                redirect('pemilik/add');
+            }
             $this->pemilik_m->add($post);
         } else if (isset($_POST['edit'])) {
+            if ($this->pemilik_m->check_pemilik($post['name'])->num_rows() > 0) {
+                $this->session->set_flashdata('error', "pemilik $post[name] sudah ada");
+                redirect('pemilik/edit/' . $post['id']);
+            }
             $this->pemilik_m->edit($post);
         }
         if ($this->db->affected_rows() > 0) {
@@ -62,6 +70,14 @@ class pemilik extends CI_Controller
 
     public function del($id)
     {
+        if (check_data('p_item', array(
+            'pemilik_id' => $id
+        )) > 0) {
+            // var_dump('tes');
+            // exit;
+            $this->session->set_flashdata('error', 'Data sudah terpakai');
+            redirect('pemilik');
+        }
 
         $this->pemilik_m->del($id);
         if ($this->db->affected_rows() > 0) {

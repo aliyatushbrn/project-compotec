@@ -36,14 +36,16 @@ function notiflist($selanjutnya)
 
 function day($selanjutnya)
 {
-    $pecah = explode("-", $selanjutnya);
-    // var_dump($pecah);
-    // exit;
-    $day = $pecah[2];
-    $month = $pecah[1];
-    $year = $pecah[0];
-    $days    = (int)((mktime(0, 0, 0, $month, $day, $year) - time()) / 86400);
-    return "Masih ada <b>$days</b> hari lagi, sampai tanggal $day/$month/$year";
+    if ($selanjutnya >= date('Y-m-d')) {
+        $pecah = explode("-", $selanjutnya);
+        // var_dump($pecah);
+        // exit;
+        $day = $pecah[2];
+        $month = $pecah[1];
+        $year = $pecah[0];
+        $days    = (int)((mktime(0, 0, 0, $month, $day, $year) - time()) / 86400);
+        return "Masih ada <b>$days</b> hari lagi, sampai tanggal $day/$month/$year";
+    }
 }
 
 // function add_admin()

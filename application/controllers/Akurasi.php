@@ -50,8 +50,16 @@ class akurasi extends CI_Controller
     {
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
+            if ($this->akurasi_m->check_code($post['name'])->num_rows() > 0) {
+                $this->session->set_flashdata('error', "Code $post[name] sudah ada");
+                redirect('akurasi/add');
+            }
             $this->akurasi_m->add($post);
         } else if (isset($_POST['edit'])) {
+            if ($this->akurasi_m->check_code($post['name'])->num_rows() > 0) {
+                $this->session->set_flashdata('error', "Code $post[name] sudah ada");
+                redirect('akurasi/edit/' . $post['id']);
+            }
             $this->akurasi_m->edit($post);
         }
         if ($this->db->affected_rows() > 0) {
@@ -62,6 +70,14 @@ class akurasi extends CI_Controller
 
     public function del($id)
     {
+        if (check_data('p_item', array(
+            'akurasi_id' => $id
+        )) > 0) {
+            // var_dump('tes');
+            // exit;
+            $this->session->set_flashdata('error', 'Data sudah terpakai');
+            redirect('akurasi');
+        }
 
         $this->akurasi_m->del($id);
         if ($this->db->affected_rows() > 0) {

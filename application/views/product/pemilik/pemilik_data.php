@@ -1,10 +1,9 @@
 <section class="content-header">
-    <h1>Pemilik
-        <small>Satuan Barang</small>
+    <h1>Departement
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Pemilik</i>
+        <li class="active">Departement</i>
     </ol>
 </section>
 
@@ -13,7 +12,7 @@
     <?php $this->view('messages') ?>
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Data Pemilik</h3>
+            <h3 class="box-title">Data Departement</h3>
             <div class="pull-right">
                 <a href="<?= site_url('pemilik/add') ?>" class="btn btn-primary btn-flat">
                     <i class="fa fa-plus"></i> Create
@@ -26,7 +25,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Pemilik</th>
+                        <th>Departement</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -37,18 +36,13 @@
                             <td style="width:5%;"><?= $no++ ?>.</td>
                             <td><?= $data->name ?></td>
                             <td class="text-center" width="160px">
-                                <?php if (check_data('p_item', array(
-                                    'pemilik_id' => $data->pemilik_id
-                                )) == 0) : ?>
-                                    <a href="<?= site_url('pemilik/edit/' . $data->pemilik_id) ?>" class="btn btn-primary btn-xs">
-                                        <i class="fa fa-pencil"></i> Update
-                                    </a>
-                                    <a href="<?= site_url('pemilik/del/' . $data->pemilik_id) ?>" onclick="return confirm('Yakin hapus data?')" class="btn btn-danger btn-xs">
-                                        <i class="fa fa-trash"></i> Delete
-                                    </a>
-                                <?php else : ?>
-                                    Pemilik telah terpakai
-                                <?php endif; ?>
+
+                                <a href="<?= site_url('pemilik/edit/' . $data->pemilik_id) ?>" class="btn btn-primary btn-xs">
+                                    <i class="fa fa-pencil"></i> Update
+                                </a>
+                                <a href="<?= site_url('pemilik/del/' . $data->pemilik_id) ?>" onclick="return confirm('Yakin hapus data?')" class="btn btn-danger btn-xs">
+                                    <i class="fa fa-trash"></i> Delete
+                                </a>
                             </td>
                         </tr>
                     <?php

@@ -80,7 +80,7 @@
                                     <td>&nbsp;&nbsp;<?= $row->jenisalat ?></td>
                                 </tr>
                                 <tr>
-                                    <td>Pemilik</td>
+                                    <td>Departement</td>
                                     <td>&nbsp;&nbsp;:</td>
                                     <td>&nbsp;&nbsp;<?= $row->pemilik_name ?></td>
                                 </tr>

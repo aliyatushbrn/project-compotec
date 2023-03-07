@@ -26,11 +26,11 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Action</th>
                         <th>Username</th>
                         <th>Name</th>
                         <th>Address</th>
                         <th>Level</th>
-                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,10 +38,6 @@
                     foreach ($row->result() as $key => $data) { ?>
                         <tr>
                             <td style="width:5%;"><?= $no++ ?>.</td>
-                            <td><?= $data->username ?></td>
-                            <td><?= $data->name ?></td>
-                            <td><?= $data->address ?></td>
-                            <td><?= $data->level == 1 ? "Admin" : "User" ?></td>
                             <td class="text-center" width="160px">
                                 <form action="<?= site_url('user/del') ?>" method="post">
                                     <a href="<?= site_url('user/edit/' . $data->user_id) ?>" class="btn btn-primary btn-xs">
@@ -53,6 +49,11 @@
                                     </button>
                                 </form>
                             </td>
+                            <td><?= $data->username ?></td>
+                            <td><?= $data->name ?></td>
+                            <td><?= $data->address ?></td>
+                            <td><?= $data->level == 1 ? "Admin" : "User" ?></td>
+
                         </tr>
                     <?php
                     } ?>

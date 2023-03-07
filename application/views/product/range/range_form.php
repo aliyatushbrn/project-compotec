@@ -10,7 +10,7 @@
 
 <!-- Main content -->
 <section class="content">
-
+    <?php $this->view('messages') ?>
     <div class="box">
         <div class="box-header">
             <h3 class="box-title"><?= ucfirst($page) ?>range</h3>
@@ -27,7 +27,7 @@
                         <div class="form-group">
                             <label>range</label>
                             <input type="hidden" name="id" value="<?= $row->range_id ?>">
-                            <input type="text" name="range_name" value="<?= $row->name ?>" class="form-control" required>
+                            <input type="text" name="name" value="<?= $row->name ?>" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <button type="submit" name="<?= $page ?>" class="btn btn-success btn-flat">

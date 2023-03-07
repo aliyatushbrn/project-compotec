@@ -20,54 +20,43 @@
         </div>
         <div class="box-body table-responsive">
 
-            <form method="post" class="form-inline">
-                <div class="col-md-33 ">
-                    <div class="input-group">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="submit">month/year</button>
-                        </span>
-                        <input type="month" name="now" class="form-control" placeholder="Search for...">
-                    </div><!-- /input-group -->
-                </div><!-- /.col-lg-6 -->
-        </div><!-- /.row -->
-        </form>
 
-        <table class="table table-bordered table-striped" id="table1">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Action</th>
-                    <th>Category</th>
-                    <th>Nama Alat Ukur</th>
-                    <th>Pemilik</th>
-                    <th>No Seri</th>
-                    <th>Tanggal Pertama Kalibrasi</th>
-                    <th>Tanggal Kalibrasi Selanjutnya</th>
-                </tr>
-                </td>
-            </thead>
-            <tbody>
-                <?php $no = 1;
-                foreach ($row->result() as $key => $data) { ?>
+            <table class="table table-bordered table-striped" id="table1">
+                <thead>
                     <tr>
-                        <td style="width:3%;"> <?= $no++ ?>.</td>
-                        <td class="text-center" width="10%">
-                            <a href="<?= site_url('historyD/detail/' . $data->code_barang) ?>" target="_blank" class="btn btn-default btn-xs">
-                                Detail <i class="fa fa-pencil-square"></i>
-                            </a>
-                        </td>
-                        <td> <?= $data->jenisalat ?></td>
-                        <td> <?= $data->nama_alat_ukur ?></td>
-                        <td> <?= $data->pemilik_name ?></td>
-                        <td><?= $data->no_seri ?></td>
-                        <td> <?= $data->tanggal_pembelian ?></td>
-                        <td> <?= $data->selanjutnya ?></td>
+                        <th>No</th>
+                        <th>Action</th>
+                        <th>Category</th>
+                        <th>Nama Alat Ukur</th>
+                        <th>Departement</th>
+                        <th>No Seri</th>
+                        <th>Tanggal Pertama Kalibrasi</th>
+                        <th>Tanggal Kalibrasi Selanjutnya</th>
                     </tr>
-                <?php
-                } ?>
-            </tbody>
-        </table>
-    </div>
+                    </td>
+                </thead>
+                <tbody>
+                    <?php $no = 1;
+                    foreach ($row->result() as $key => $data) { ?>
+                        <tr>
+                            <td style="width:3%;"> <?= $no++ ?>.</td>
+                            <td class="text-center" width="10%">
+                                <a href="<?= site_url('historyD/detail/' . $data->code_barang) ?>" target="_blank" class="btn btn-default btn-xs">
+                                    Detail <i class="fa fa-pencil-square"></i>
+                                </a>
+                            </td>
+                            <td> <?= $data->jenisalat ?></td>
+                            <td> <?= $data->nama_alat_ukur ?></td>
+                            <td> <?= $data->pemilik_name ?></td>
+                            <td><?= $data->no_seri ?></td>
+                            <td> <?= $data->tanggal_pembelian ?></td>
+                            <td> <?= $data->selanjutnya ?></td>
+                        </tr>
+                    <?php
+                    } ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </section>

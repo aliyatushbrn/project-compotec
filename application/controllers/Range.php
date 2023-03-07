@@ -50,8 +50,16 @@ class range extends CI_Controller
     {
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
+            if ($this->range_m->check_range($post['name'])->num_rows() > 0) {
+                $this->session->set_flashdata('error', "Range $post[name] sudah ada");
+                redirect('range/add');
+            }
             $this->range_m->add($post);
         } else if (isset($_POST['edit'])) {
+            if ($this->range_m->check_range($post['name'])->num_rows() > 0) {
+                $this->session->set_flashdata('error', "Range $post[name] sudah ada");
+                redirect('range/edit/' . $post['id']);
+            }
             $this->range_m->edit($post);
         }
         if ($this->db->affected_rows() > 0) {
@@ -62,6 +70,14 @@ class range extends CI_Controller
 
     public function del($id)
     {
+        if (check_data('p_item', array(
+            'range_id' => $id
+        )) > 0) {
+            // var_dump('tes');
+            // exit;
+            $this->session->set_flashdata('error', 'Data sudah terpakai');
+            redirect('range');
+        }
 
         $this->range_m->del($id);
         if ($this->db->affected_rows() > 0) {

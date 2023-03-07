@@ -28,10 +28,9 @@
                         <th>Category</th>
                         <th>Nama Alat Ukur</th>
                         <th>Merk</th>
-                        <th>Pemilik</th>
+                        <th>Departemen</th>
                         <th>No Seri</th>
                         <th>Tanggal Pembelian</th>
-                        <th>Fungsi</th>
                         <th>Range</th>
                         <th>Akurasi</th>
                         <th>Tanggal Kalibrasi</th>
@@ -56,7 +55,6 @@
                             <td> <?= $data->pemilik_name ?></td>
                             <td><?= $data->no_seri ?></td>
                             <td> <?= $data->tanggal_pembelian ?></td>
-                            <td> <?= $data->fungsi ?></td>
                             <td> <?= $data->range_name ?></td>
                             <td> <?= $data->akurasi_name ?></td>
                             <td> <?= $data->kalibrasi ?></td>
