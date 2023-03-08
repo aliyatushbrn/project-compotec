@@ -23,7 +23,7 @@
 
         <div class="box-body">
             <div class="row">
-                <div class="col-md-4 col-md-offset-4">
+                <div class="col-md-6">
                     <form action="" method="post">
                         <div class="form-group <?= form_error('fullname') ? 'has-error' : null ?>">
                             <label>Name *</label>
@@ -40,36 +40,38 @@
                             <input type="password" name="password" value="<?= $this->input->post('password') ?>" class="form-control">
                             <?= form_error('password') ?>
                         </div>
-                        <div class="form-group <?= form_error('passconf') ? 'has-error' : null ?>">
-                            <label>Password Confirmation</label>
-                            <input type="password" name="passconf" value="<?= $this->input->post('passconf') ?>" class="form-control">
-                            <?= form_error('passconf') ?>
-                        </div>
-                        <div class="form-group">
-                            <label>Address</label>
-                            <textarea name="address" class="form-control"><?= $this->input->post('address') ?? $row->address ?></textarea>
-                            <?= form_error('address') ?>
-                        </div>
-                        <div class="form-group <?= form_error('level') ? 'has-error' : null ?>">
-                            <label>Level *</label>
-                            <select name="level" class="form-control">
-                                <?php $level = $this->input->post('level') ? $this->input->post('level') : $row->level ?>
-                                <option value="1">Admin</option>
-                                <option value="2" <?= $level == 2 ? 'selected' : null ?>>User</option>
-                            </select>
-                            <?= form_error('level') ?>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-success btn-flat">
-                                <i class="fa fa-folder-open"></i> Save
-                            </button>
-                            <button type="Reset" class="btn btn-flat">Reset</button>
-                        </div>
-                    </form>
                 </div>
+                <div class="col-md-6">
+                    <div class="form-group <?= form_error('passconf') ? 'has-error' : null ?>">
+                        <label>Password Confirmation</label>
+                        <input type="password" name="passconf" value="<?= $this->input->post('passconf') ?>" class="form-control">
+                        <?= form_error('passconf') ?>
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <textarea name="address" class="form-control"><?= $this->input->post('address') ?? $row->address ?></textarea>
+                        <?= form_error('address') ?>
+                    </div>
+                    <div class="form-group <?= form_error('level') ? 'has-error' : null ?>">
+                        <label>Level *</label>
+                        <select name="level" class="form-control">
+                            <?php $level = $this->input->post('level') ? $this->input->post('level') : $row->level ?>
+                            <option value="1">Admin</option>
+                            <option value="2" <?= $level == 2 ? 'selected' : null ?>>User</option>
+                        </select>
+                        <?= form_error('level') ?>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-flat">
+                            <i class="fa fa-folder-open"></i> Save
+                        </button>
+                        <button type="Reset" class="btn btn-flat">Reset</button>
+                    </div>
+                </div>
+                </form>
             </div>
-
         </div>
+
     </div>
 
 </section>

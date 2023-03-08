@@ -23,7 +23,7 @@
         </div>
         <div class="box-body">
             <div class="row">
-                <div class="col-md-4 col-md-offset-4">
+                <div class="col-md-6">
                     <?php //echo validation_errors(); 
                     ?>
                     <form action="" method="post">
@@ -42,33 +42,35 @@
                             <input type="password" name="password" value="<?= set_value('password') ?>" class="form-control">
                             <?= form_error('password') ?>
                         </div>
-                        <div class="form-group <?= form_error('passconf') ? 'has-error' : null ?>">
-                            <label>Passwod Confirmation *</label>
-                            <input type="password" name="passconf" value="<?= set_value('passconf') ?>" class="form-control">
-                            <?= form_error('passconf') ?>
-                        </div>
-                        <div class="form-group">
-                            <label>Address</label>
-                            <textarea name="address" class="form-control"><?= set_value('address') ?></textarea>
-                            <?= form_error('address') ?>
-                        </div>
-                        <div class="form-group <?= form_error('level') ? 'has-error' : null ?>">
-                            <label>level *</label>
-                            <select name="level" class=" form-control">
-                                <option value="">-Pilih-</option>
-                                <option value="1" <?= set_value('level') == 1 ? "selected" : null ?>>Admin</option>
-                                <option value="2" <?= set_value('level') == 2 ? "selected" : null ?>>User</option>
-                            </select>
-                            <?= form_error('level') ?>
-                        </div>
-                        <div class="form-group">
-                            <button type="Submit" class="btn btn-success btn-flat">
-                                <i class="fa fa-folder-open"></i> Save
-                            </button>
-                            <button type="Reset" class="btn btn-flat">Reset</button>
-                        </div>
-                    </form>
                 </div>
+                <div class="col-md-6">
+                    <div class="form-group <?= form_error('passconf') ? 'has-error' : null ?>">
+                        <label>Passwod Confirmation *</label>
+                        <input type="password" name="passconf" value="<?= set_value('passconf') ?>" class="form-control">
+                        <?= form_error('passconf') ?>
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <textarea name="address" class="form-control"><?= set_value('address') ?></textarea>
+                        <?= form_error('address') ?>
+                    </div>
+                    <div class="form-group <?= form_error('level') ? 'has-error' : null ?>">
+                        <label>level *</label>
+                        <select name="level" class=" form-control">
+                            <option value="">-Pilih-</option>
+                            <option value="1" <?= set_value('level') == 1 ? "selected" : null ?>>Admin</option>
+                            <option value="2" <?= set_value('level') == 2 ? "selected" : null ?>>User</option>
+                        </select>
+                        <?= form_error('level') ?>
+                    </div>
+                    <div class="form-group">
+                        <button type="Submit" class="btn btn-success btn-flat">
+                            <i class="fa fa-folder-open"></i> Save
+                        </button>
+                        <button type="Reset" class="btn btn-flat">Reset</button>
+                    </div>
+                </div>
+                </form>
             </div>
         </div>
 

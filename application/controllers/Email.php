@@ -89,11 +89,18 @@ class Email extends CI_Controller
         foreach ($monitoring->result() as $item) {
             if (date('Y-m-d') >= notiflist($item->selanjutnya)) {
                 if ($item->selanjutnya >= date('Y-m-d')) {
-                    $message = $item->code_barang . ' ' . $item->nama_alat_ukur  . '  Merk : ' . $item->merk  . ' Dept : ' .  $item->pemilik_name  . ' No Seri : ' . $item->no_seri  . ' Range : ' . $item->range_name  . ' Akurasi : ' . $item->akurasi_name  . 'Tanggal Kalibrasi Terakhir : ' . $item->kalibrasi  . '  ' . day($item->selanjutnya);
+                    $subject = " Kalibrasi : $item->nama_alat_ukur ";
+                    $message = "<b> $item->code_barang </b></br>"
+                        . '<br><b> ' . $item->nama_alat_ukur
+                        . '</br></b><br> Merk : ' . $item->merk
+                        . '</br> <br> Dept : ' .  $item->pemilik_name
+                        . '</br><br> No Seri : ' . $item->no_seri
+                        . '</br><br> Tanggal Kalibrasi Terakhir : ' . $item->kalibrasi
+                        . '</br><br> ' .  day($item->selanjutnya);
                     $this->email->set_newline("\r\n");
                     $this->email->from('2021rpl.aliyatu@smkn4bogor.sch.id'); // change it to yours
-                    $this->email->to('khailapuspa19@gmail.com, aliyatushbrn@gmail.com'); // change it to yours
-                    $this->email->subject('Barang Yang Harus Dikalibrasi');
+                    $this->email->to('khailapuspa19@gmail.com, aliyatushbrn@gmail.com, compotecsmk4pkl@gmail.com'); // change it to yours
+                    $this->email->subject($subject);
                     $this->email->message($message);
                     if ($this->email->send()) {
                         echo 'Email sent.';

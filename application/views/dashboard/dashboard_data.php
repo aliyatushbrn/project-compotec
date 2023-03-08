@@ -1,7 +1,7 @@
 <section>
     <div class="box">
         <div class="box-header with-border">
-            <div class="alert alert-warning alert-dismissible">
+            <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h4><i class="icon fa fa-warning"></i> Peringatan!</h4>
                 <div class="box-body">

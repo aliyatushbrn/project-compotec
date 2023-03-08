@@ -44,7 +44,7 @@ function day($selanjutnya)
         $month = $pecah[1];
         $year = $pecah[0];
         $days    = (int)((mktime(0, 0, 0, $month, $day, $year) - time()) / 86400);
-        return "Masih ada <b>$days</b> hari lagi, sampai tanggal $day/$month/$year";
+        return "<b>Masih ada $days hari lagi, sampai tanggal $day/$month/$year</b>";
     }
 }
 

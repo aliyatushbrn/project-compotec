@@ -58,35 +58,28 @@
                     </a>
                   </li>
                 </ul>
+              </ul>
             </li>
-            <li class="footer">
-              <a href="#">View all tasks</a>
+            <!-- User Account-->
+            <li class="dropdown user user-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="<?= base_url() ?>assets/dist/img/user2-160x160.jpg" class="user-image">
+                <span class="hidden-xs"><?= $this->fungsi->user_login()->username ?></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="user-header">
+                  <img src="<?= base_url() ?>assets/dist/img/user2-160x160.jpg" class="img-circle">
+                  <p><?= $this->fungsi->user_login()->name ?>
+                    <small><?= $this->fungsi->user_login()->address ?></small>
+                  </p>
+                </li>
+                <li class="user-footer">
+                  <div class="text-center">
+                    <a href="<?= site_url('auth/logout') ?>" class="btn btn-default btn-flat bg-red">Sign out</a>
+                  </div>
+                </li>
+              </ul>
             </li>
-          </ul>
-          </li>
-          <!-- User Account-->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?= base_url() ?>assets/dist/img/user2-160x160.jpg" class="user-image">
-              <span class="hidden-xs"><?= $this->fungsi->user_login()->username ?></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="user-header">
-                <img src="<?= base_url() ?>assets/dist/img/user2-160x160.jpg" class="img-circle">
-                <p><?= $this->fungsi->user_login()->name ?>
-                  <small><?= $this->fungsi->user_login()->address ?></small>
-                </p>
-              </li>
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
-                  <a href="<?= site_url('auth/logout') ?>" class="btn btn-default btn-flat bg-red">Sign out</a>
-                </div>
-              </li>
-            </ul>
-          </li>
           </ul>
         </div>
       </nav>
@@ -101,7 +94,6 @@
           </div>
           <div class="pull-left info">
             <p><?= ucfirst($this->fungsi->user_login()->username) ?></p>
-            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
         </div>
         <form action="#" method="get" class="sidebar-form">
