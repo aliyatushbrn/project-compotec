@@ -34,7 +34,7 @@
                     <div class="form-group">
                         <label>Fungsi *</label>
                         <input type="hidden" name="id" value="<?= $row->category_id ?>">
-                        <input type="text" name="fungsi" value="<?= $row->fungsi ?>" class="form-control">
+                        <input type="text" name="fungsi" value="<?= $row->fungsi ?>" class="form-control" required>
 
                     </div>
             </div>

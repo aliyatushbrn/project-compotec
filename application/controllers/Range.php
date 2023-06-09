@@ -56,8 +56,7 @@ class range extends CI_Controller
             }
             $this->range_m->add($post);
         } else if (isset($_POST['edit'])) {
-            if ($this->range_m->check_range($post['name'])->num_rows() > 0) {
-                $this->session->set_flashdata('error', "Range $post[name] sudah ada");
+            if ($this->range_m->check_range($post['name'])->num_rows() > 1) {
                 redirect('range/edit/' . $post['id']);
             }
             $this->range_m->edit($post);

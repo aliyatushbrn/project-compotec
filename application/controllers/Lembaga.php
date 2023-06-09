@@ -50,8 +50,15 @@ class lembaga extends CI_Controller
     {
         $post = $this->input->post(null, TRUE);
         if (isset($_POST['add'])) {
+            if ($this->lembaga_m->check_lembaga($post['name'])->num_rows() > 0) {
+                $this->session->set_flashdata('error', "Code $post[name] sudah ada");
+                redirect('lembaga/add');
+            }
             $this->lembaga_m->add($post);
         } else if (isset($_POST['edit'])) {
+            if ($this->lembaga_m->check_lembaga($post['name '])->num_rows() > 1) {
+                redirect('lembaga/edit/' . $post['id']);
+            }
             $this->lembaga_m->edit($post);
         }
         if ($this->db->affected_rows() > 0) {

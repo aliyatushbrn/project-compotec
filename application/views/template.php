@@ -26,8 +26,8 @@
   <div class="wrapper">
     <header class="main-header">
       <a href="<?= base_url('dashboard') ?>" class="logo">
-        <span class="logo-mini"><b>C</b><b>I</b></span>
-        <span class="logo-lg"><b>Com</b><b>Int</b></span>
+        <span class="logo-mini"><b>C</b></span>
+        <span class="logo-lg"><b>Compotec</b></span>
       </a>
       <nav class="navbar navbar-static-top">
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
@@ -63,12 +63,12 @@
             <!-- User Account-->
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="<?= base_url() ?>assets/dist/img/user2-160x160.jpg" class="user-image">
+                <img src="<?= base_url() ?>assets/logo/logo compotec3.jpg" class="user-image">
                 <span class="hidden-xs"><?= $this->fungsi->user_login()->username ?></span>
               </a>
               <ul class="dropdown-menu">
                 <li class="user-header">
-                  <img src="<?= base_url() ?>assets/dist/img/user2-160x160.jpg" class="img-circle">
+                  <img class="img-circle" src="<?= base_url() ?>assets/logo/logo compotec3.jpg">
                   <p><?= $this->fungsi->user_login()->name ?>
                     <small><?= $this->fungsi->user_login()->address ?></small>
                   </p>
@@ -90,7 +90,7 @@
       <section class="sidebar">
         <div class="user-panel">
           <div class="pull-left image">
-            <img src="<?= base_url() ?>assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+            <img class="img-circle" src="<?= base_url() ?>assets/logo/logo compotec3.jpg" alt="User Image">
           </div>
           <div class="pull-left info">
             <p><?= ucfirst($this->fungsi->user_login()->username) ?></p>
@@ -107,7 +107,7 @@
           </li>
           <li class="treeview <?= $this->uri->segment(1) == 'category' || $this->uri->segment(1) == 'pemilik' || $this->uri->segment(1) == 'range' || $this->uri->segment(1) == 'akurasi' ? 'active' : '' ?>">
             <a href="#">
-              <i class="fa fa-archive"></i> <span>Master Product</span>
+              <i class="fa fa-archive"></i> <span>Master Peralatan</span>
               <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
@@ -154,11 +154,13 @@
 
             </ul>
           </li>
-          <li class="header">SETTINGS</li>
-          </li>
-          <li <?= $this->uri->segment(1) == 'user'  || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>>
-            <a href="<?= site_url('user') ?>"><i class="fa fa-users"></i> <span>User</span></a>
-          </li>
+          <?php if ($this->fungsi->user_login()->level == 1) { ?>
+            <li class="header">SETTING</li>
+            <li <?= $this->uri->segment(1) == 'user'  || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>>
+            <li><a href="<?= site_url('user') ?>"><i class="fa fa-users"></i> <span>Users</span></a></i>
+            <li <?= $this->uri->segment(1) == 'email'  || $this->uri->segment(1) == '' ? 'class="active"' : '' ?>>
+            <li><a href="<?= site_url('email/sendmail') ?>"><i class="fa fa-users"></i> <span>Email</span></a></i>
+            <?php } ?>
         </ul>
       </section>
     </aside>

@@ -37,7 +37,7 @@ class Category extends CI_Controller
         $query = $this->category_m->get($id);
         if ($query->num_rows() > 0) {
             $category = $query->row();
-            $category->fungsi = null;
+            $category->fungsi;
             $data = array(
                 'page' => 'edit',
                 'row' => $category
@@ -59,8 +59,7 @@ class Category extends CI_Controller
             }
             $this->category_m->add($post);
         } else if (isset($_POST['edit'])) {
-            if ($this->category_m->check_code($post['code_category'])->num_rows() > 0) {
-                $this->session->set_flashdata('error', "Code $post[code_category] sudah ada");
+            if ($this->category_m->check_code($post['code_category'])->num_rows() > 1) {
                 redirect('category/edit/' . $post['id']);
             }
             $this->category_m->edit($post);

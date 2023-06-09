@@ -117,7 +117,7 @@
 
                                         <table>
                                             <tr>
-                                                <td>lembaga Kalibrasi</td>
+                                                <td>Lembaga Kalibrasi</td>
                                                 <td>&nbsp;&nbsp;:</td>
                                                 <td>&nbsp;&nbsp;<?= $item->lembaga_name ?></td>
                                             </tr>
@@ -174,7 +174,7 @@
 
                                     <table>
                                         <tr>
-                                            <td>lembaga Kalibrasi</td>
+                                            <td>Lembaga Kalibrasi</td>
                                             <td>&nbsp;&nbsp;:</td>
                                             <td>&nbsp;&nbsp;</td>
                                         </tr>

@@ -84,11 +84,11 @@
                         </div>
 
                         <div class="form-group">
-                            <label>file sertifikat</label>
+                            <label>File Sertifikat</label>
                             <?php if ($page == 'edit') {
                                 if ($row->file_sertifikat != null) { ?>
                                     <div style="margin-bottom:4px">
-                                        <img src="<?= base_url('uploads/file_sertifikat/' . $row->file_sertifikat) ?>" style="width:80%">
+                                        <img src="<?= base_url('./uploads/file_sertifikat/' . $row->file_sertifikat) ?>" style="width:80%">
                                     </div>
                             <?php
                                 }

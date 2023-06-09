@@ -8,7 +8,7 @@
 
 <!-- Main content -->
 <section class="content">
-
+    <?php $this->view('messages') ?>
     <div class="box">
         <div class="box-header">
             <h3 class="box-title"><?= ucfirst($page) ?>lembaga</h3>
@@ -25,8 +25,8 @@
                         <div class="form-group">
                             <label>lembaga</label>
                             <input type="hidden" name="id" value="<?= $row->lembaga_id ?>">
-                            <textarea type="text" name="lembaga_name" value="<?= $row->name ?>" class="form-control" required>
-                            <?= form_error('lembaga_name') ?> </textarea>
+                            <input type="text" name="name" value="<?= $row->name ?>" class="form-control" required>
+
                         </div>
                         <div class="form-group">
                             <button type="submit" name="<?= $page ?>" class="btn btn-success btn-flat">

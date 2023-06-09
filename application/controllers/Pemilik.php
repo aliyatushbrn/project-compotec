@@ -56,8 +56,7 @@ class pemilik extends CI_Controller
             }
             $this->pemilik_m->add($post);
         } else if (isset($_POST['edit'])) {
-            if ($this->pemilik_m->check_pemilik($post['name'])->num_rows() > 0) {
-                $this->session->set_flashdata('error', "pemilik $post[name] sudah ada");
+            if ($this->pemilik_m->check_pemilik($post['name'])->num_rows() > 1) {
                 redirect('pemilik/edit/' . $post['id']);
             }
             $this->pemilik_m->edit($post);

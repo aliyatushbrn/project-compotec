@@ -49,7 +49,7 @@
                     foreach ($row->result() as $key => $data) { ?>
                         <tr>
                             <td style="width:3%;"> <?= $no++ ?>.</td>
-                            <td class="text-center" width="160px">
+                            <td class="text-center" width="170px">
                                 <a href="<?= site_url('detail/detail_QrCode/' . $data->code_barang) ?>" target="_blank" class="btn btn-default btn-xs">
                                     Detail <i class="fa fa-pencil-square"></i>
                                 </a>

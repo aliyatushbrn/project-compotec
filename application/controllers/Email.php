@@ -57,13 +57,19 @@ class Email extends CI_Controller
             'charset' => 'iso-8859-1',
             'wordwrap' => TRUE
         );
-
+        $message = "<b> $item->code_barang </b></br>"
+            . '<br><b> ' . $item->nama_alat_ukur . '</br>
+        </b><br> Merk : ' . $item->merk . '</br> 
+        <br> Dept : ' .  $item->pemilik_name . '</br>
+        <br> No Seri : ' . $item->no_seri . '</br>
+        <br> Tanggal Kalibrasi Terakhir : ' . $item->kalibrasi . '</br>
+        <br> ' .  day($item->selanjutnya);
         $this->email->initialize($config);
         $this->email->set_newline("\r\n");
         $this->email->from('compotecsmk4pkl@gmail.com', 'Compotec');
         $this->email->to('aliyatushbrn@gmail.com');
         $this->email->subject('Email Test');
-        $this->email->message('Testing the email class.');
+        $this->email->message($message);
 
         if ($this->email->send()) {
             echo "Email berhasil dikirim";
@@ -77,9 +83,9 @@ class Email extends CI_Controller
         $config = array(
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.gmail.com',
-            'smtp_port' => 465,
-            'smtp_user' => '2021rpl.aliyatu@smkn4bogor.sch.id', // change it to yours
-            'smtp_pass' => 'GantiPassword1!', // change it to yours
+            'smtp_port' => '465',
+            'smtp_user' => 'pklsmk0@gmail.com', // change it to yours
+            'smtp_pass' => 'nekecwgyqvdoupuy', // change it to yours
             'mailtype' => 'html',
             'charset' => 'iso-8859-1',
             'wordwrap' => TRUE
@@ -98,8 +104,8 @@ class Email extends CI_Controller
                         . '</br><br> Tanggal Kalibrasi Terakhir : ' . $item->kalibrasi
                         . '</br><br> ' .  day($item->selanjutnya);
                     $this->email->set_newline("\r\n");
-                    $this->email->from('2021rpl.aliyatu@smkn4bogor.sch.id'); // change it to yours
-                    $this->email->to('khailapuspa19@gmail.com, aliyatushbrn@gmail.com, compotecsmk4pkl@gmail.com'); // change it to yours
+                    $this->email->from('pklsmk0@gmail.com'); // change it to yours
+                    $this->email->to('aliyatushbrn@gmail.com'); // change it to yours
                     $this->email->subject($subject);
                     $this->email->message($message);
                     if ($this->email->send()) {

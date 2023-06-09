@@ -27,6 +27,14 @@ class Item extends CI_Controller
         $this->template->load('template', 'masterdata/item_data', $data);
     }
 
+    public function reminder()
+    {
+        // mengambil data dari database
+        $no    = 0;
+        $query    = mysqli_query($conn, "SELECT * FROM item WHERE next_kalibrasi < '$sekarang' AND status IS NULL ORDER BY next_kalibrasi");
+        while ($data    = mysqli_fetch_array($query));
+    }
+
     public function add()
     {
 
@@ -218,11 +226,15 @@ class Item extends CI_Controller
 
     public function del($id)
     {
-        $item = $this->item_m->get($id)->row();
-        if ($item->image != null) {
-            $target_file = './uploads/masterdata/' . $item->image;
-            unlink($target_file);
+        if (check_data('p_item', array(
+            'item_id' => $id
+        )) > 1) {
+            // var_dump('tes');
+            // exit;
+            $this->session->set_flashdata('error', 'Data sudah dikalibrasi,tidak bisa dihapus');
+            redirect('item');
         }
+
 
         $this->item_m->del($id);
         if ($this->db->affected_rows() > 0) {

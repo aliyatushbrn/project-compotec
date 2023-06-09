@@ -56,8 +56,7 @@ class akurasi extends CI_Controller
             }
             $this->akurasi_m->add($post);
         } else if (isset($_POST['edit'])) {
-            if ($this->akurasi_m->check_code($post['name'])->num_rows() > 0) {
-                $this->session->set_flashdata('error', "Code $post[name] sudah ada");
+            if ($this->akurasi_m->check_code($post['name'])->num_rows() > 1) {
                 redirect('akurasi/edit/' . $post['id']);
             }
             $this->akurasi_m->edit($post);

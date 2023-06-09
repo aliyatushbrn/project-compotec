@@ -65,8 +65,8 @@
                         <input type="text" name="no_seri" value="<?= $row->no_seri ?>" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label>Tanggal Pembelian</label>
-                        <input type="date" name="tanggal_pembelian" value="<?= $row->tanggal_pembelian  ?>" class="form-control" required>
+                        <label>Tahun Perolehan</label>
+                        <input type="date" name="tanggal_pembelian" value="<?= $row->tanggal_pembelian  ?>" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Range *</label>

@@ -117,10 +117,10 @@ class kalibrasi extends CI_Controller
             $this->load->library('upload', $config);
 
             if (@$_FILES['file_sertifikat']['name']) {
+
                 if ($this->upload->do_upload('file_sertifikat')) {
                     $post['file_sertifikat'] = $this->upload->data('file_name');
-                    // var_dump($post);
-                    // exit;
+
                     $this->kalibrasi_m->add($post);
                     if ($this->db->affected_rows() > 0) {
                         $this->session->set_flashdata('success', 'Data berhasil disimpan');
@@ -140,12 +140,27 @@ class kalibrasi extends CI_Controller
                 redirect('kalibrasi');
             }
         } else if (isset($_POST['edit'])) {
-            $post['file_sertifikat'] = null;
-            $this->kalibrasi_m->edit($post);
-            redirect('kalibrasi');
+            //     $post['file_sertifikat'] = null;
+            //     $this->kalibrasi_m->edit($post);
+            //     redirect('kalibrasi') ;
+            $config['upload_path']       = './uploads/file_sertifikat/';
+            $config['allowed_types']     = 'png|jpg|jpeg|docx|xls|ppt';
+            $config['max_size']          = 4084;
+            $config['file_name']         = 'kalibrasi' . date('ymd') . '-' . substr(md5(rand()), 0, 10);
+            $this->load->library('upload', $config);
+
             if (@$_FILES['file_sertifikat']['name'] != null) {
                 if ($this->upload->do_upload('file_sertifikat')) {
+
+                    $kalibrasi = $this->kalibrasi_m->get($post['id'])->row();
+                    if ($kalibrasi->file_sertifikat != null) {
+                        $target_file = './uploads/file_sertifikat/' . $kalibrasi->file_sertifikat;
+                        unlink($target_file);
+                    }
+
                     $post['file_sertifikat'] = $this->upload->data('file_name');
+                    // var_dump($post);
+                    // exit;
                     $this->kalibrasi_m->edit($post);
                     if ($this->db->affected_rows() > 0) {
                         $this->session->set_flashdata('success', 'Data berhasil disimpan');
@@ -154,7 +169,7 @@ class kalibrasi extends CI_Controller
                 } else {
                     $error = $this->upload->display_errors();
                     $this->session->set_flashdata('error', $error);
-                    redirect('kalibrasi/edit');
+                    redirect('kalibrasi/add');
                 }
             } else {
                 $post['file_sertifikat'] = null;

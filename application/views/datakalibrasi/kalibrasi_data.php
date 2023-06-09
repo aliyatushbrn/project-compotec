@@ -41,8 +41,8 @@
                     <?php $no = 1;
                     foreach ($row->result() as $key => $data) { ?>
                         <tr>
-                            <td style="width:5%;"><?= $no++ ?>.</td>
-                            <td class="text-center" width="160px">
+                            <td style="width:3%;"><?= $no++ ?>.</td>
+                            <td class="text-center" width="170px">
                                 <a href="<?= site_url('kalibrasi/edit/' . $data->kalibrasi_id) ?>" class="btn btn-primary btn-xs">
                                     <i class="fa fa-pencil"></i> Update
                                 </a>

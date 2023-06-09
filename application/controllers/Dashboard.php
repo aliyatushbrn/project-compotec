@@ -34,7 +34,7 @@ class dashboard extends CI_Controller
 	{
 		// mengambil data dari database
 		$no    = 0;
-		$query    = mysqli_query($conn, "SELECT * FROM item WHERE next_kalibrasi < '$sekarang' AND status IS NULL ORDER BY next_kalibrasi");
+		$query    = mysqli_query($conn, "SELECT * FROM item WHERE next_kalibrasi < '$now' AND status IS NULL ORDER BY next_kalibrasi");
 		while ($data    = mysqli_fetch_array($query));
 	}
 
